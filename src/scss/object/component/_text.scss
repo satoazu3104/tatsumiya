@@ -1,0 +1,896 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '../../foundation/theme' as *;
+@use '../../foundation/theme-text' as *;
+@use '../../mixin' as *;
+
+::selection {
+    background-color: rgba($color: #989898, $alpha: .8);
+    color: white;
+}
+
+// フォントタイプ指定
+@each $type in $font-types {
+    $vw: map.get($type, 'vw');
+    $space: map.get($type, 'space');
+    $size: map.get($type, 'size');
+    $sp-font: map.get($type, 'sp');
+
+    .c-text__#{map.get($type, 'title')} {
+
+
+        @if $space {
+            letter-spacing: math.div($space, 1000) + em;
+        }
+
+        letter-spacing: math.div(40, 1000)+em;
+
+        //overflow-y: hidden;
+
+        @if $vw {
+            font-size: vw(map.get($type, 'size'));
+        }
+
+        @else {
+            $max: $sp-font + px;
+            $min: $size + px;
+            font-size: clamp($max, vw($size), $min);
+
+            p {
+                font-size: clamp($max, vw($size), $min);
+            }
+        }
+
+        // line-height指定
+        @if map.get($type, 'height') !='' {
+            line-height: map.get($type, 'height');
+            @include lineCut(map.get($type, 'height'));
+        }
+
+        @else {
+            line-height: 1.75;
+            @include lineCut(1.75);
+        }
+
+        // font-family指定
+        @if map.get($type, 'family') !='' {
+            font-family: map.get($type, 'family');
+        }
+
+        font-weight: map.get($type, 'weight');
+
+        // font-family指定
+        @if map.get($type, 'family') !='' {
+            font-family: map.get($type, 'family');
+        }
+
+        font-weight: map.get($type, 'weight');
+
+        transition: color .2s ease;
+
+        @include sp {
+            @if map.get($type, 'sp') !='' {
+                font-size: map.get($type, 'sp') + px;
+            }
+
+            &.body {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.c-text__long-height {
+    @include sp {
+        font-size: 14px;
+        line-height: 2;
+    }
+}
+
+.c-text {
+    &__wrap {
+        &--title {
+            display: grid;
+            grid-auto-rows: max-content;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 48px;
+                height: 1px;
+                background-color: $color-main;
+            }
+
+            @include state(align) {
+                grid-template-columns: max-content max-content;
+                gap: 32px;
+                align-items: center;
+            }
+
+            @include state(center) {
+                justify-content: center;
+                text-align: center;
+                grid-auto-columns: max-content;
+                justify-items: center;
+            }
+
+            @include state(left) {
+                text-align: center;
+                grid-auto-columns: max-content;
+                justify-items: flex-start;
+            }
+
+            @include state('left-white') {
+                text-align: center;
+                grid-auto-columns: max-content;
+                justify-items: flex-start;
+
+                &::after {
+                    background-color: white;
+                }
+            }
+
+            &__jp {
+                margin: 16px auto 24px;
+
+                @include sp {
+                    margin: 20px auto 16px;
+                }
+
+                &#title_jp-sns {
+                    font-size: 22px;
+
+                    @include sp {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            &__column {
+                display: flex;
+                gap: 24px;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            &__row {
+                display: flex;
+                flex-direction: column;
+                gap: 56px;
+            }
+        }
+
+        &--text {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+    }
+
+    &--inner-sup {
+        span {
+            font-size: 14px;
+            opacity: .5;
+
+            @include sp {
+                font-size: 12px;
+            }
+        }
+    }
+
+    &__img {
+        &--dec {
+            width: 113.98px;
+            height: auto;
+        }
+    }
+
+    &--upper {
+        text-transform: uppercase;
+    }
+
+    // これから下は再利用可能
+    &__space {
+        &--0 {
+            letter-spacing: 0;
+        }
+
+        &--40 {
+            letter-spacing: math.div(40, 1000) + em;
+
+            span {
+                letter-spacing: math.div(40, 1000) + em;
+            }
+        }
+
+        &--60 {
+            @include space(60);
+
+            span {
+                @include space(60);
+            }
+        }
+
+        &--80 {
+            @include space(80);
+
+            span {
+                @include space(80);
+            }
+        }
+
+        &--100 {
+            @include space(100);
+
+            span {
+                @include space(100);
+            }
+        }
+
+        &--120 {
+            @include space(120);
+
+            span {
+                @include space(120);
+            }
+        }
+
+        &--140 {
+            @include space(140);
+
+            span {
+                @include space(140);
+            }
+        }
+
+        &--200 {
+            @include space(200);
+
+            span {
+                @include space(200);
+            }
+        }
+
+        &--400 {
+            @include space(400);
+
+            span {
+                @include space(400);
+            }
+        }
+    }
+
+    &--stroke {
+        -webkit-text-stroke: 1px #fff;
+        text-stroke: 1px #fff;
+        color: transparent;
+        opacity: .18;
+    }
+
+    &--outline {
+        color: white !important;
+        text-shadow:
+            -1px -1px 0 $color-main,
+            1px -1px 0 $color-main,
+            -1px 1px 0 $color-main,
+            1px 1px 0 $color-main;
+        -webkit-text-stroke: $color-main;
+    }
+
+    &--back {
+        padding: res(0px) res(8px) 0;
+        margin: 0 res(4px);
+        position: relative;
+        z-index: 1;
+        color: white !important;
+        border-radius: res(4px);
+        background:
+            linear-gradient(to bottom,
+                rgba($color: $color-main, $alpha: 0) calc(0%),
+                rgba($color: $color-main, $alpha: 0) calc(0% + .185em),
+                rgba($color: $color-main, $alpha: 1) calc(0% + .185em),
+                rgba($color: $color-main, $alpha: 1) calc(100% - .1em),
+                rgba($color: $color-main, $alpha: 0) calc(100% - .1em),
+                rgba($color: $color-main, $alpha: 0) calc(100%),
+            );
+        // clip-path: polygon(0 .185em, 100% .185em, 100% calc(100% - .1em), 0 calc(100% - .1em));
+
+        @include dec(before) {
+            display: none !important;
+        }
+
+        &.black {
+            background:
+                linear-gradient(to bottom,
+                    rgba($color: $color-black, $alpha: 0) calc(0%),
+                    rgba($color: $color-black, $alpha: 0) calc(0% + .185em),
+                    rgba($color: $color-black, $alpha: 1) calc(0% + .185em),
+                    rgba($color: $color-black, $alpha: 1) calc(100% - .1em),
+                    rgba($color: $color-black, $alpha: 0) calc(100% - .1em),
+                    rgba($color: $color-black, $alpha: 0) calc(100%),
+                );
+        }
+
+        &--black {
+            padding: res(0px) res(4px) 2px;
+            margin: 0 res(4px);
+            position: relative;
+            z-index: 1;
+            color: white;
+            background:
+                linear-gradient(to bottom,
+                    rgba($color: $color-black, $alpha: 0) calc(0%),
+                    rgba($color: $color-black, $alpha: 0) calc(0% + 0em),
+                    rgba($color: $color-black, $alpha: 1) calc(0% + 0em),
+                    rgba($color: $color-black, $alpha: 1) calc(100% + .10em),
+                    rgba($color: $color-black, $alpha: 0) calc(100% + .10em),
+                    rgba($color: $color-black, $alpha: 0) calc(100%),
+                );
+        }
+
+        &--accent {
+
+            .c-text--back {
+                background-color: $color-accent;
+            }
+        }
+
+        &--inner-main {
+            .c-text--back {
+                color: $color-main;
+            }
+        }
+
+        &--white__wrap {
+            .c-text--back {
+                background-color: white;
+            }
+        }
+    }
+
+    &--under-line {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 8px;
+    }
+
+    &--link {
+        a {
+            color: $color-white;
+            text-decoration: underline;
+            text-decoration-color: $color-white;
+            text-underline-offset: 5px;
+        }
+
+        &__icon {
+            a {
+                font-size: 16px;
+
+                @include sp {
+                    font-size: 12px;
+                }
+
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    background-color: $color-main;
+                    width: 18px;
+                    height: 18px;
+                    mask-image: url(../images/common/icon-link.webp);
+                    mask-size: cover;
+                    transform: translateY(2px);
+                    position: relative;
+                    margin-left: 6px;
+
+                    @include sp {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    &--tate {
+        writing-mode: vertical-rl;
+        @include lineCutTate(1.75);
+
+        span {}
+    }
+
+    &--en {
+        font-family: $font-family-en;
+        @include lineCut(1.75, 'en');
+        letter-spacing: math.div(20, 1000)+em;
+
+        span {
+            font-family: $font-family-en;
+        }
+    }
+
+    &--en2 {
+        font-family: $font-family-en2;
+        // @include lineCut(1.75, 'en');
+
+        span {
+            font-family: $font-family-en2;
+        }
+    }
+
+    &--jp {
+        font-family: $font-family-jp;
+
+        span {
+            font-family: $font-family-jp;
+        }
+    }
+
+    &--jp2 {
+        font-family: $font-family-jp2;
+
+        span {
+            font-family: $font-family-jp2;
+        }
+    }
+
+    &--balance {
+        text-wrap: balance;
+
+        &--sp {
+            @include sp {
+                text-wrap: balance;
+            }
+        }
+    }
+
+    &--pretty {
+        text-wrap: pretty;
+
+        &--sp {
+            @include sp {
+                text-wrap: pretty;
+            }
+        }
+    }
+
+    &--center {
+        text-align: center;
+
+        &--pc {
+            @include pc {
+                text-align: center;
+            }
+
+            @include sp {
+                text-align: left;
+            }
+        }
+
+        &--sp {
+            @include pc {
+                text-align: left;
+            }
+
+            @include sp {
+                text-align: center;
+            }
+        }
+    }
+
+    &--end {
+        text-align: end;
+    }
+
+    &--left {
+        text-align: left;
+        width: 100%;
+    }
+
+    &--border {
+        color: $color-border;
+
+        span {
+            color: $color-border;
+        }
+
+        &.input {
+            color: $color-border !important;
+        }
+    }
+
+    &--line {
+        color: $color-line;
+
+        span {
+            color: $color-line;
+        }
+
+        &.input {
+            color: $color-line !important;
+        }
+    }
+
+    &--main {
+        color: $color-main;
+
+        span {
+            color: $color-main;
+        }
+
+        &.input {
+            color: $color-main !important;
+        }
+    }
+
+    &--accent {
+        color: $color-accent;
+
+        span {
+            color: $color-accent;
+        }
+
+        .c-text--dot {
+            background-image: radial-gradient(circle at center, $color-accent 10%, transparent 0);
+        }
+    }
+
+    &--accent2 {
+        color: $color-accent2;
+
+        span {
+            color: $color-accent2;
+        }
+    }
+
+    &--main2 {
+        color: $color-main2;
+
+        span {
+            color: $color-main2;
+        }
+    }
+
+    &--main3 {
+        color: $color-main3;
+
+        span {
+            color: $color-main3;
+        }
+    }
+
+    &--dark {
+        color: $color-dark !important;
+
+        a {
+            color: $color-dark !important;
+        }
+    }
+
+    &--white {
+        color: $color-white;
+
+        span {
+            color: $color-white;
+        }
+
+        .c-text--back {
+
+            color: $color-main !important;
+            background: linear-gradient(to bottom,
+                    rgba($color: $color-white, $alpha: 0) calc(0%),
+                    rgba($color: $color-white, $alpha: 0) calc(0% + .185em),
+                    rgba($color: $color-white, $alpha: 1) calc(0% + .185em),
+                    rgba($color: $color-white, $alpha: 1) calc(100% - .1em),
+                    rgba($color: $color-white, $alpha: 0) calc(100% - .1em),
+                    rgba($color: $color-white, $alpha: 0) calc(100%),
+                );
+        }
+
+        .c-text--back {}
+    }
+
+    &--red {
+        color: #FF0000;
+    }
+
+    &--white2 {
+        color: $color-white2;
+    }
+
+    &--body {
+        color: $color-body;
+    }
+
+    &--gray {
+        color: $color-gray;
+    }
+
+    &--gray-2 {
+        color: $color-gray2;
+    }
+
+    &--gray-3 {
+        color: #8E8E8F;
+    }
+
+    &--gray-en {
+        color: #F2F4F5;
+    }
+
+    &--green {
+        color: #1AB151;
+    }
+
+    &--black {
+        color: $color-black !important;
+
+        a {
+            color: $color-black !important;
+        }
+    }
+
+    &--big {
+        font-weight: 900;
+
+        span {
+            font-weight: 900;
+        }
+    }
+
+    &--max {
+        font-weight: 800;
+
+        span {
+            font-weight: 800;
+        }
+    }
+
+    &--semi {
+        font-weight: 600;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    &--bold {
+        font-weight: 700;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    &--med {
+        font-weight: 500;
+    }
+
+    &--reg {
+        font-weight: 400;
+
+        span {
+            font-weight: 400;
+        }
+    }
+
+    &--light {
+        font-weight: 200;
+    }
+
+    &--thin {
+        font-weight: 100;
+    }
+
+    &--opacity4 {
+        opacity: .4;
+    }
+
+    &--opacity5 {
+        opacity: .5;
+    }
+
+    &--opacity6 {
+        opacity: .6;
+    }
+
+    &--inner-color {
+        span {
+            color: $color-main;
+        }
+    }
+
+    &--error {
+        color: red;
+    }
+
+    &--dot {
+        background-image: radial-gradient(circle at center, $color-black 10%, transparent 10%);
+        /* 点の色とサイズ調整 */
+        background-position: 96% 0;
+        /* 点の位置 */
+        background-repeat: repeat-x;
+        /* 横方向に繰り返し */
+        background-size: 1em 0.3em;
+        /* 点の間隔とサイズ調整 */
+        padding-top: .05em;
+        /* 縦方向の位置調整 */
+    }
+
+    &--inner-color-dot {
+        span {
+            background-image: radial-gradient(circle at center, $color-main 20%, transparent 20%);
+            /* 点の色とサイズ調整 */
+            background-position: top right;
+            /* 点の位置 */
+            background-repeat: repeat-x;
+            /* 横方向に繰り返し */
+            background-size: 1em 0.3em;
+            /* 点の間隔とサイズ調整 */
+            padding-top: .16em;
+            /* 縦方向の位置調整 */
+        }
+    }
+
+    &--white-dot {
+        span {
+            color: white;
+            background-image: radial-gradient(circle at center, white 20%, transparent 20%);
+            /* 点の色とサイズ調整 */
+            background-position: top right;
+            /* 点の位置 */
+            background-repeat: repeat-x;
+            /* 横方向に繰り返し */
+            background-size: 1em 0.3em;
+            /* 点の間隔とサイズ調整 */
+            padding-top: .16em;
+            /* 縦方向の位置調整 */
+        }
+    }
+
+    &--inner-reg {
+        span {
+            font-weight: 400;
+        }
+    }
+
+    &--inner-color-accent {
+        span {
+            color: $color-accent;
+            font-weight: bold;
+        }
+    }
+
+    &--noheight {
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+
+    &__lh {
+        &--2-6 {
+            line-height: 2.6;
+
+            @include sp {
+                line-height: 2;
+            }
+        }
+
+        &--2-4 {
+            line-height: 2.4;
+        }
+
+        &--2-2 {
+            line-height: 2.2;
+        }
+
+        &--2 {
+            line-height: 2;
+        }
+
+        &--1-6 {
+            line-height: 1.67;
+        }
+
+        &--med {
+            line-height: 1.5;
+        }
+
+        &--1-3 {
+            line-height: 1.3;
+        }
+
+        &--min {
+            line-height: 1.25;
+            @include lineCut(1.25);
+        }
+    }
+
+    &__space {
+
+        &--40 {
+            @include space(40);
+        }
+
+        &--60 {
+            @include space(60);
+        }
+
+        &--80 {
+            @include space(80);
+        }
+
+        &--med {
+            letter-spacing: math.div(80, 1000) + em;
+        }
+
+        &--120 {
+            @include space(120);
+        }
+
+        &--160 {
+            @include space(160);
+        }
+
+        &--200 {
+            @include space(200);
+        }
+
+        &--400 {
+            @include space(400);
+        }
+    }
+
+    &__line-cut {
+        &--1 {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+
+        &--2 {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+
+        &--8 {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+
+        &--single {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+}

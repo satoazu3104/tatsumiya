@@ -1,0 +1,16 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-img {
+
+    &__back {
+        @include size(100%);
+
+        &__picture {
+            position: absolute;
+            z-index: -20;
+            inset: 0;
+        }
+    }
+}

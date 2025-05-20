@@ -1,0 +1,201 @@
+/**
+ * @file _header.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - ヘッダーセクション
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+
+.l-header {
+
+    &__decoy {}
+
+    &__wrap {
+        width: 100vw;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+
+        @include sp {
+            padding: 0;
+        }
+
+        &.active:not(.theme-dark) {}
+
+        &.transition {}
+
+        &.is-down {}
+
+        @include sp {}
+
+    }
+
+    &__button {
+        position: fixed;
+        right: 0;
+        top: 0;
+        @include size-res(88px);
+        background-color: $color-black;
+        z-index: 10000;
+    }
+
+    &__contact-button {}
+
+    &__phone {}
+
+    &__inner {}
+
+    &__nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: res(88px);
+        background-color: $color-body;
+        z-index: 100;
+        padding: res(99px) res(102px) res(64px) res(72px);
+        height: 100vh;
+        overflow-y: scroll;
+        transition: opacity .4s ease, transform .8s ease;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(res(16px));
+        
+        @include sp {
+            padding: 80px 24px 160px;
+            width: calc(100vw - res(88px));
+        }
+
+        &.is-open {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: unset;
+        }
+    }
+
+    &__instagram {
+        width: res(88px);
+        height: calc(100vh - res(88px));
+        background-color: $color-body;
+        position: fixed;
+        z-index: 10000;
+        right: 0;
+        top: res(88px);
+        
+        @include sp {
+            display: none;
+        }
+
+        @include dec('before') {
+            @include size-res(16px, 164px);
+            background-color: $color-main;
+            @include mask-image(copys);
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            bottom: res(160px);
+            transform: translateX(-50%);
+
+        }
+    }
+
+    &__slug {
+        display: block;
+    }
+
+    &__title {}
+
+    &__logo {
+        position: absolute;
+        z-index: 10;
+        left: res(62px);
+        top: res(34px);
+        
+        @include sp {
+            left: 12px;
+        }
+    }
+
+    &__logo-fix {}
+
+    &__logo-link {}
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: res(32px);
+        transition: transform .8s ease;
+        
+        @include sp {
+            display: grid;
+            gap: 4px;
+        }
+
+        @include hover {
+            transform: translateX(4px);
+
+            p {
+                color: $color-accent;
+            }
+        }
+    }
+
+    &__sub-link {
+        transition: transform .8s ease;
+
+        @include hover {
+            transform: translateX(4px);
+
+            p {
+                color: $color-accent;
+            }
+        }
+    }
+
+    &__list {
+        @include content-gap(48px);
+    }
+
+    &__sub-list {
+        @include content-gap(24px);
+    }
+
+    &__items {
+        @include content-gap(18px);
+    }
+
+    &__sub-items {
+        display: grid;
+        grid-template-columns: res(6px, 4px) 1fr;
+        gap: res(8px);
+        align-items: center;
+
+        @include dec('before') {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            background-color: $color-black;
+            border-radius: 50%;
+        }
+
+        &.white {
+            &::before {
+                background-color: white;
+            }
+        }
+    }
+
+    &__img {}
+}

@@ -1,0 +1,315 @@
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+$delays: (
+    1: 1.05s,
+    2: 1.30s,
+    3: 1.15s,
+    4: 1.25s,
+    5: 1.10s,
+    6: 1.20s,
+    7: 1.08s,
+    8: 1.18s,
+    9: 1.12s,
+    10: 1.28s,
+    11: 1.07s,
+    12: 1.22s
+);
+
+.u-anim {
+    &__fade-in {
+        opacity: 0;
+
+        &.active {
+            animation: fade-in .6s .4s ease both;
+
+            @keyframes fade-in {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__scroll-right {
+        opacity: 0;
+        transform: translateX(20px);
+
+        &.active {
+            animation: scroll-right .6s .3s ease both;
+
+            @keyframes scroll-right {
+                0% {
+                    transform: translateX(20px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__scroll-left {
+        opacity: 0;
+        transform: translateX(-20px);
+
+        &.active {
+            animation: scroll-left .6s .3s ease both;
+
+            @keyframes scroll-left {
+                0% {
+                    transform: translateX(-20px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__scroll-up {
+        opacity: 0;
+        transform: translateY(20px);
+
+        &.active {
+            animation: scroll-up .6s .3s ease both;
+
+            @keyframes scroll-up {
+                0% {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__scroll-down {
+        opacity: 0;
+        transform: translateY(-20px);
+
+        &.active {
+            animation: scroll-down .6s .3s ease both;
+
+            @keyframes scroll-down {
+                0% {
+                    transform: translateY(-20px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__skew {
+        opacity: 0;
+        transform: skewY(3deg);
+        transform-origin: left;
+        transition: opacity .6s ease, transform .8s ease;
+
+        &.active {
+            opacity: 1;
+            transform: skewY(0deg);
+        }
+    }
+
+    &__left-under {
+        clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+
+        &.active {
+            animation: left-under .4s ease both;
+
+            @keyframes left-under {
+                0% {
+                    clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+                }
+
+                100% {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                }
+            }
+        }
+    }
+
+    &__right-top {
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+
+        &.active {
+            animation: right-top .4s ease both;
+
+            @keyframes right-top {
+                0% {
+                    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                }
+
+                100% {
+                    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                }
+            }
+        }
+    }
+
+    &__fuwa {
+        transform: translateY(4px);
+        animation: about-main 4s ease-in-out infinite;
+
+        &.delay {
+            animation-delay: 1.3s;
+        }
+
+        @keyframes about-main {
+            0% {
+                transform: translateY(4px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+            100% {
+                transform: translateY(4px);
+            }
+        }
+    }
+
+    &__first-block {
+        background-color: $color-main;
+        opacity: 1;
+        @include size(100%);
+        pointer-events: none;
+        z-index: 10;
+        transform-origin: top;
+
+        animation: shrinkY 0.2s ease-in-out var(--delay) forwards;
+
+        // nth-childごとに --delay をセット
+        @each $idx, $time in $delays {
+            &:nth-child(#{$idx}) {
+                --delay: #{$time};
+            }
+        }
+
+        @keyframes shrinkY {
+            from {
+                transform: scaleY(1);
+            }
+
+            to {
+                transform: scaleY(0);
+            }
+        }
+    }
+
+    &__first {
+        width: 100vw;
+        height: 100vh;
+        z-index: 1000000;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        // gap: 2px;
+        // background-color: $color-body;
+        pointer-events: none;
+
+
+        &--page {
+            &.active {
+                animation: first-page .2s ease-in both;
+            }
+
+            @keyframes first-page {
+                0% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
+
+        &__wrap {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &__logo {
+            @include size(200px, 190px);
+            opacity: 0;
+            transition: opacity .3s ease;
+
+            @include sp {
+                aspect-ratio: 200/190;
+                width: 120px;
+                height: auto;
+            }
+
+            &.active {
+                opacity: 1;
+            }
+
+            image {
+                @include size(100%);
+            }
+        }
+
+        &--icon {
+            @include size-res(320px, 80px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+            pointer-events: none;
+            animation: first-icon 2s ease both;
+            background-image: url(../images/common/icon-logo-header.webp);
+            background-size: cover;
+            z-index: 100000000;
+
+            @keyframes first-icon {
+                0% {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+
+                10% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.05);
+                }
+
+                80% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.05);
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(1.05);
+                }
+            }
+        }
+    }
+
+}

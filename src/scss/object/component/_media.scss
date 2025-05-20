@@ -1,0 +1,35 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.wp-block-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(312px, 1fr));
+  gap: 32px;
+
+  .wp-block-image {
+    width: 100% !important;
+  }
+
+  @include sp {
+    gap: 16px;
+  }
+}
+
+.js-block-media {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+
+  &__picture {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    opacity: 0;
+    background-color: $color-accent;
+
+    &.tate__picture {
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+  }
+
+  &.tate {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}

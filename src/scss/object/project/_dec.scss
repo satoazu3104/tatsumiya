@@ -1,0 +1,173 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-dec {
+  &__fv-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(276px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/276;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .02;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - vw(200)));
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(276px);
+      }
+    }
+  }
+
+  &__fv-top-min {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(216px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/216;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .02;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - vw(200)));
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(216px);
+      }
+    }
+  }
+
+  &__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(356px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/356;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .04;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - vw(200)));
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(356px);
+      }
+    }
+  }
+
+  &__top-min {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(296px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/296;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .08;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - vw(200)));
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(296px);
+      }
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(356px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/356;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .04;
+      clip-path: polygon(0 0, 100% calc(0% + vw(200)), 100% 100%, 0 100%);
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(356px);
+      }
+    }
+  }
+
+  &__bottom-min {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: res(296px);
+
+    @include dec('before') {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      height: auto;
+      aspect-ratio: 1920/296;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      background-color: $color-back;
+      opacity: .08;
+      clip-path: polygon(0 0, 100% calc(0% + vw(200)), 100% 100%, 0 100%);
+
+      @include sp {
+        aspect-ratio: unset;
+        height: res(296px);
+      }
+    }
+  }
+}

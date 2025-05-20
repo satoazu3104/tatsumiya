@@ -1,0 +1,323 @@
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+@use 'sass:math';
+
+// [gsap animation] split text
+.js-split-text {
+    &__list {}
+
+    &__items {
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    &__span {
+        transform: translateY(16px) scale(.8);
+        opacity: 0;
+    }
+
+    &__space {
+        width: .375em;
+    }
+}
+
+// [gsap animation] block text
+.js-blocks-text {
+    display: none;
+}
+
+.p-dec {
+    &__position {
+        &--10 {
+            position: relative;
+            z-index: 10;
+        }
+    }
+}
+
+.p-blocks {
+    &__wrap {
+        display: grid;
+        grid-template-columns: 100%;
+        gap: res(0px);
+
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        @include sp {
+            gap: 0px;
+        }
+
+        &.c-text--center,
+        &.center {
+            justify-items: center;
+        }
+    }
+
+    &__flex {
+        display: flex;
+        gap: .6em 0;
+        flex-wrap: wrap;
+        align-items: baseline;
+
+        &.center {
+            justify-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__text {
+        width: fit-content;
+        background: transparent linear-gradient(85deg, #0092D7 0%, #54C4F9 100%) 0% 0% no-repeat padding-box;
+        padding: 8px 24px;
+        
+        @include sp {
+            padding: 4px 12px;
+        }
+
+        &.color {
+            background: unset;
+            background-color: #0D54BF;
+        }
+
+        &.main {
+            background: unset;
+            background-color: $color-main;
+        }
+        
+        &.black {
+            background: unset;
+            background-color: $color-black;
+        }
+
+        &.white {
+            background: unset;
+            background-color: $color-white;
+        }
+
+        &.med-padding {
+            padding: res(10px) res(12px);
+        }
+
+        &.c-text--tate {
+            padding: res(8px) res(4px) res(10px);
+        }
+
+        &__wrap {
+            width: fit-content;
+            position: relative;
+            z-index: 1;
+            clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+            transform-origin: left;
+            opacity: 0;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+
+            &.c-text--tate {
+                display: grid;
+                height: fit-content;
+            }
+        }
+
+        &__decoy {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            transform-origin: right;
+            left: 0;
+            top: 0;
+            background-color: $color-text;
+            z-index: 10;
+        }
+    }
+}
+
+.p-wrap {
+    &__post {
+        // 投稿スタイル
+        display: grid;
+        grid-template-columns: grid-size(520) 1fr;
+        justify-content: space-between;
+        gap: res(40px);
+
+        .p-post {
+            &__list {
+                display: grid;
+                grid-template-columns: 100%;
+            }
+
+            &__items {
+                &__inner {
+                    grid-template-columns: res(313px) 1fr;
+                    gap: res(40px);
+                    padding-bottom: res(32px);
+                    border-bottom: 1px solid rgba($color: $color-black, $alpha: .1);
+                    align-items: center;
+                    transition: border .3s ease;
+
+                    @include hover {
+                        border-bottom: 1px solid $color-main;
+                    }
+
+                    @include sp {
+                        grid-template-columns: 120px 1fr;
+                    }
+                }
+            }
+        }
+
+        @include sp {
+            grid-template-columns: 100%;
+            grid-auto-rows: max-content;
+            gap: 48px;
+        }
+
+        &.page {
+            grid-template-columns: 100%;
+            justify-self: center;
+        }
+    }
+
+    &__space-between {
+        display: flex;
+
+        @include pc {
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        @include sp {
+            display: grid;
+            grid-template-columns: 100%;
+            gap: 32px;
+        }
+
+        &.start {
+            align-items: flex-start;
+        }
+
+        &.center {
+            align-items: center;
+        }
+    }
+
+    &__gray {
+        background-color: $color-back;
+    }
+
+    &__grad {
+        background: linear-gradient(to right, rgba($color: #3295C8, $alpha: 1), rgba($color: #325CC8, $alpha: 1));
+    }
+
+    &__box {
+        &--blur {
+            background-color: rgba($color: white, $alpha: 0);
+            backdrop-filter: brightness(1.05) blur(10px);
+        }
+    }
+
+    &--hidden {
+        overflow: hidden;
+    }
+}
+
+.aioseo-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 16px;
+    // justify-content: flex-end;
+
+    br {
+        display: none;
+    }
+
+    .aioseo-breadcrumb-separator {
+        opacity: .5;
+        color: white;
+    }
+
+    .aioseo-breadcrumb {
+        color: white;
+        // color: $color-main;
+        font-weight: 400;
+
+        @include sp {
+            font-size: 14px;
+        }
+
+        a {
+            opacity: .5;
+            color: $color-black;
+            color: white;
+            transition: opacity .3s ease;
+
+            @include hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.p-bread__black {
+    .aioseo-breadcrumb-separator {
+        opacity: .5;
+        color: $color-black;
+    }
+
+    .aioseo-breadcrumb {
+        // color: white;
+        color: $color-main;
+        font-weight: 400;
+
+        @include sp {
+            font-size: 14px;
+        }
+
+        a {
+            opacity: .5;
+            color: $color-black;
+            transition: opacity .3s ease;
+
+            @include hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.splide.splide__service.is-initialized:not(.is-active) .splide__list {
+    @include sp {
+        max-width: calc(100vw - 48px);
+        margin: 0 auto !important;
+        display: grid;
+        gap: 32px;
+    }
+}
+
+.splide__works {
+    @include sp {
+        .splide__track {
+            overflow: unset;
+        }
+    }
+}
+
+.splide__track {
+    // overflow: unset;
+}
+
+.splide__busi {
+    @include sp {
+        .splide__track {
+            overflow: unset;
+        }
+    }
+}

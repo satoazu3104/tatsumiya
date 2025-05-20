@@ -1,0 +1,41 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-title {
+    &__wrap {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: res(48px);
+        grid-template-areas:
+            'en jp'
+        ;
+        align-items: center;
+
+        @include sp {
+            gap: 24px;
+            grid-template-columns: 100%;
+            grid-template-areas: 'en' 'jp';
+        }
+
+        &--en {
+            grid-area: en;
+
+            &.white {
+                .p-title__en {
+                    color: white;
+                }
+            }
+        }
+
+        &--jp {
+            grid-area: jp;
+
+            &.white {
+                .p-title__jp {
+                    color: white;
+                }
+            }
+        }
+    }
+}

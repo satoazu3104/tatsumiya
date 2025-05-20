@@ -1,0 +1,27 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+/**
+ * @file _button.scss
+ * @layera Component
+ * @description: ファイルの役割やスタイルの概要。
+ * - ボタンクラス
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+.c-button {
+    &__link {
+        position: absolute;
+        z-index: 20;
+        inset: 0;
+        cursor: pointer;
+    }
+}

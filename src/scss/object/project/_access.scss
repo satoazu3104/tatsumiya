@@ -1,0 +1,9 @@
+// ショートコード[google_map]で使用するクラスです。
+
+.p-access {
+  &__map {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}

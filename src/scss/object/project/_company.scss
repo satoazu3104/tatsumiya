@@ -1,0 +1,94 @@
+$list-padding: 32px;
+$list-padding-sp: 32px;
+$list-padding-inline: 0px;
+$list-column: calc(240px - 24px);
+$list-column-sp: 64px;
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-company {
+  &__list {
+    display: grid;
+    grid-auto-rows: max-content;
+    gap: $list-padding;
+    // max-width: 681px;
+    margin: 0 auto;
+    // padding: res(72px) res(120px);
+    // max-width: calc(100% - res(160px));
+
+    // padding-top: $list-padding;
+    @include sp {
+      gap: $list-padding-sp;
+      // padding: 64px 24px;
+      // padding-top: $list-padding-sp;
+    }
+  }
+
+  &__content {
+    word-break: auto-phrase;
+    a {
+      color: $color-dark !important;
+    }
+  }
+
+  &--white {
+    p {
+      color: white;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: $list-column 1fr;
+    gap: 80px;
+    // padding-inline: $list-padding-inline;
+    padding-bottom: $list-padding;
+    border-bottom: 1px solid #C4C4C4;
+
+    @include sp {
+      grid-template-columns: 100%;
+      grid-auto-rows: max-content;
+      padding-inline: 0;
+      gap: 12px;
+    }
+  }
+
+  &__img {
+    &--main {
+      width: 678px;
+      height: 679px;
+      border-radius: 80px;
+      overflow: hidden;
+      position: absolute;
+      opacity: 0;
+      transition: opacity .4s ease, transform .4s ease;
+
+      @include pc {
+        left: 50%;
+        top: 50%;
+        transform: translate(calc(-50% + 339px + 162px), calc(-50% + 10px));
+
+        &.active {
+          opacity: 1;
+          transform: translate(calc(-50% + 339px + 162px), -50%);
+        }
+      }
+
+      @include sp {
+        width: 303px;
+        height: 219px;
+        border-radius: 40px;
+        right: 24px;
+        bottom: -179px;
+        border-radius: 40px;
+        transform: translateY(10px);
+
+        &.active {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+    }
+  }
+}

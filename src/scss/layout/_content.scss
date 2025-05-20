@@ -1,0 +1,76 @@
+/**
+ * @file _content.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - タイトルや本文の塊
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-content {
+    &__fv {
+        height: 100vh;
+        padding: 0 0 res(77px);
+        display: grid;
+        align-items: flex-end;
+    }
+
+    &__fv-sub {
+        max-width: res(1207px);
+        padding: res(27px) 0 0;
+    }
+
+    &__business-info {
+        @include content-gap(32px);
+    }
+
+    &__hero {
+        @include content-gap(120px);
+        
+        @include sp {
+            gap: 48px;
+        }
+    }
+
+    &__limit {
+        &--med {
+            max-width: res(524px);
+        }
+
+        &--big {
+            max-width: res(640px);
+        }
+    }
+
+    &__info {
+        @include content-gap(32px);
+    }
+
+    &__contact {
+        @include content-gap(32px);
+        justify-items: center;
+        width: 100%;
+        max-width: res(492px);
+
+        @include pc {
+            margin-left: auto;
+        }
+    }
+
+    &__contact-button {
+        @include content-gap(40px);
+        padding-top: res(32px);
+        border-top: 1px solid #707070;
+        width: 100%;
+    }
+}

@@ -1,0 +1,88 @@
+/**
+ * @file _header.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - ヘッダーセクション
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+
+.l-header {
+
+    &__decoy {}
+
+    &__wrap {
+
+        @include sp {
+            padding: 0;
+        }
+
+        &.active:not(.theme-dark) {}
+
+        &.transition {}
+
+        &.is-down {}
+
+        @include sp {}
+
+    }
+
+    &__button {
+
+    }
+
+    &__contact-button {}
+
+    &__phone {}
+
+    &__inner {
+
+    }
+
+    &__nav {
+
+    }
+
+    &__slug {
+        display: none;
+    }
+
+    &__title {
+
+    }
+
+    &__logo {
+
+    }
+
+    &__logo-fix {
+
+    }
+
+    &__logo-link {}
+
+    &__link {
+
+    }
+
+    &__list {
+
+    }
+
+    &__items {
+
+    }
+
+    &__img {}
+}

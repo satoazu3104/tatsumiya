@@ -1,0 +1,21 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-title {
+    &__wrap {
+        @include content-gap(36px);
+        grid-template-areas:
+            'jp'
+            'en'
+        ;
+
+        &--en {
+            grid-area: en;
+        }
+
+        &--jp {
+            grid-area: jp;
+        }
+    }
+}

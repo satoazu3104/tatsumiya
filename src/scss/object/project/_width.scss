@@ -1,0 +1,27 @@
+.p-width {
+  &__max {
+    &--680 {
+      max-width: 680px;
+    }
+    &--510 {
+      max-width: 510px;
+    }
+    &--480 {
+      max-width: 480px;
+    }
+  }
+  
+  &--center {
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  &--end {
+    margin-left: auto;
+    width: fit-content;
+  }
+  
+  &__fit {
+    width: fit-content;
+  }
+}

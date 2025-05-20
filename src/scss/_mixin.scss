@@ -1,0 +1,254 @@
+@use './foundation/theme' as *;
+@use 'sass:math';
+$sp-match: 1024px;
+$pc-match: 1025px;
+
+// 文字列から特定の文字列を削除する関数
+@function remove-string($string, $remove) {
+    $index: str-index($string, $remove); // $removeの位置を検索
+
+    // $removeが見つからなければ、元の文字列をそのまま返す
+    @if $index ==null {
+        @return $string;
+    }
+
+    // $removeを削除した文字列を返す
+    @return str-slice($string, 1, $index - 1)+str-slice($string, $index + str-length($remove));
+}
+
+@mixin sp($width: $sp-match) {
+    @media(max-width: $width) {
+        @content;
+    }
+}
+
+@mixin pc($width: $pc-match) {
+    @media(min-width: $width) {
+        @content;
+    }
+}
+
+@mixin state($state) {
+    &[data-state=#{$state}] {
+        @content;
+    }
+}
+
+@mixin size($width, $height: $width) {
+    @if ($height) {
+        width: $width;
+        height: $height;
+    }
+
+    @else {
+        width: $width;
+        height: $width;
+    }
+}
+
+@mixin max-size-res($width, $height: $width) {
+    $cleanWidth: math.div($width, 1px);
+    $cleanHeight: math.div($height, 1px);
+    // $aspect-ratio: #{$cleanWidth / $cleanHeight};
+    $aspect-ratio: #{$cleanWidth} + '/' + #{$cleanHeight};
+
+    @if ($height) {
+        width: 100%;
+        max-width: clamp($width*.66, vw($cleanWidth), $width);
+        height: auto;
+        aspect-ratio: #{$aspect-ratio};
+    }
+
+    @else {
+        width: 100%;
+        max-width: clamp($width*.66, vw($cleanWidth), $width);
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+}
+
+@mixin size-res($width, $height: $width) {
+
+    $cleanWidth: math.div($width, 1px);
+    $cleanHeight: math.div($height, 1px);
+
+    @if ($height) {
+        width: clamp($width*.66, vw($cleanWidth), $width);
+        height: clamp($height*.66, vw($cleanHeight), $height);
+    }
+
+    @else {
+        width: clamp($width*.66, vw($cleanWidth), $width);
+        height: clamp($width*.66, vw($cleanWidth), $width);
+    }
+}
+
+@mixin space($space) {
+    letter-spacing: math.div($space, 1000) + em;
+}
+
+@function anim-speed($width, $speed: 50) {
+    @return math.div($width, $speed)+s;
+}
+
+@function res($value, $sp-value: $value) {
+    $cleanValue: math.div($value, 1px);
+
+    @if $sp-value ==$value {
+        @if $value < 0 {
+            @return clamp($value, vw($cleanValue), $value * 0.66);
+        }
+
+        @else {
+            @return clamp($value * 0.66, vw($cleanValue), $value);
+        }
+    }
+
+    @else {
+        @if $value < 0 {
+            @return clamp($value, vw($cleanValue), $sp-value);
+        }
+
+        @else {
+            @return clamp($sp-value, vw($cleanValue), $value);
+        }
+    }
+}
+
+@mixin dec($state) {
+    &::#{$state} {
+        content: '';
+        display: block;
+        @content;
+    }
+}
+
+@function grid-size($value, $width: $max-width) {
+    $cleanWidth: math.div($width, 1px);
+    @return calc($value / $cleanWidth) * 100%;
+}
+
+@mixin generate-grid-area($count, $prefix) {
+    @for $i from 1 through $count {
+        &:nth-child(#{$i}) {
+            grid-area: #{$prefix}#{$i};
+        }
+    }
+}
+
+@function vw($value, $width: 1920) {
+    @return calc($value / $width) * 100+vw;
+}
+
+@function vh($value, $width: 916) {
+    @return calc($value / $width) * 100+vh;
+}
+
+
+@function rem($value, $font-size: 18) {
+    @return calc($value / $font-size)+rem;
+}
+
+@mixin lineCut($line-height, $style: 'jp') {
+    line-height: $line-height;
+    @if ($style =='jp') {
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-top: calc((1 - #{$line-height}) * .5em);
+            content: "";
+        }
+
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-bottom: calc((1 - #{$line-height}) * .5em);
+            content: "";
+        }
+    }
+
+    @else {
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-top: calc((1 - #{$line-height}) * .7em);
+            content: "";
+        }
+
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-bottom: calc((1 - #{$line-height}) * .7em);
+            content: "";
+        }
+    }
+}
+
+@mixin lineCutTate($line-height, $style: 'jp') {
+    display: inline;
+
+    @if ($style =='jp') {
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-left: calc((1 - #{$line-height}) * .5em);
+            margin-top: unset;
+            content: "";
+        }
+
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-right: calc((1 - #{$line-height}) * .5em);
+            margin-bottom: unset;
+            content: "";
+        }
+    }
+
+    @else {
+        &::before {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-left: calc((1 - #{$line-height}) * .6em);
+            margin-top: unset;
+            content: "";
+        }
+
+        &::after {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-right: calc((1 - #{$line-height}) * .6em);
+            margin-bottom: unset;
+            content: "";
+        }
+    }
+}
+
+@mixin content-gap($size) {
+    display: grid;
+    grid-auto-rows: max-content;
+    gap: res($size);
+}
+
+@mixin hover() {
+    &:hover {
+        @include pc {
+            @content;
+        }
+    }
+}
+
+@mixin mask-image($slug) {
+    mask-image: url(../images/common/#{$slug}.webp);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}

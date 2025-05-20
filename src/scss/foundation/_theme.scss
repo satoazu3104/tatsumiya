@@ -1,0 +1,70 @@
+// Design Rules
+
+/* ==========================================================================
+  Color
+   ========================================================================== */
+$color-main: #2D1109;
+$color-main2: #2D1109;
+$color-main3: #2D1109;
+$color-line: #669F28;
+$color-dark: #2D1109; 
+$color-black: #2D1109;
+$color-text: #2D1109;
+$color-accent: #FE001A;
+$color-accent2: #FE001A;
+$color-white: #ffffff;
+$color-input: #ffffff;
+$color-white2: #EEF3F3;
+$color-back-base: #EDEFF5;
+// $color-body: black;
+$color-body: #FCFCFC;
+$color-back: #FBF2F2;
+$color-back2: #EBEBEB;
+$color-back-grad: linear-gradient(to right bottom, $color-main2, $color-main);
+$color-back-grad2: linear-gradient(to bottom, $color-main2, $color-main);
+$color-background: linear-gradient(to bottom right, #0073D7, $color-main2);
+$color-border: rgba($color: $color-white, $alpha: .5);
+$color-border2: rgba($color: $color-black, $alpha: .2);
+$color-gray: #8B8B8B;
+$color-gray2: #C7C7C7;
+
+/* ==========================================================================
+  Text
+   ========================================================================== */
+$font-family-en: 'Bebas Neue', sans-serif;
+$font-family-en2: 'Bebas Neue', sans-serif;
+$font-family-jp: YakuHanJP_Narrow, 'Noto Sans JP', sans-serif;
+$font-family-jp2: 'Noto Sans JP', sans-serif;
+@use "./theme-text" as *;
+$default-spacing: 40;
+
+/* ==========================================================================
+  Grid Desing
+   ========================================================================== */
+$max-width-big: 1776px;
+$max-width-max: 1592px;
+$max-width: 1636px;
+$max-width-middle: 1350px;
+$max-width-med: 1064px;
+$max-width-min: 788px;
+$gap: 32px;
+$grid-lists: (
+    3,
+    4,
+    6,
+    7,
+    8,
+    9
+);
+$column: 54px;
+$min: 1;
+$max: 13;
+
+/* ==========================================================================
+  Header Style
+   ========================================================================== */
+$header-height-pc: 85px;
+$header-height-sp: 64px;
+$header-padding-pc: 0 0px 0 32px;
+$header-padding-sp: 0 0px 0 24px;
+$header-active-color: $color-body;

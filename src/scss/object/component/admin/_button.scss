@@ -1,0 +1,48 @@
+.c-button {
+  color: white!important;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    color: white!important;
+  }
+
+  &--end {
+    margin-left: auto!important;
+  }
+
+  &__remove {
+    width: 48px;
+    cursor: pointer;
+    height: 32px;
+    border-radius: 4px;
+    background-color: $color-accent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -24px;
+    right: 0px;
+    border: none;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .3s;
+    &::before {
+      content: '削除';
+      color: white;
+    }
+
+    @include pc {
+      &:hover {
+        opacity: .7;
+      }
+    }
+
+    @include state('category') {
+      margin-top: 0px;
+      transform: unset;
+      top: 24px;
+      right: 24px;
+    }
+  }
+}

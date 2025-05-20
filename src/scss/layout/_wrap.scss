@@ -1,0 +1,259 @@
+/**
+ * @file _wrap.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - 汎用的に使用可能なクラス。各コンテンツを
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-wrap {
+    &__title-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: res(80px);
+    }
+
+    &__staff-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - res(40px));
+    }
+
+    &__recruit-head {
+        display: flex;
+        align-items: flex-start;
+        gap: res(12px);
+    }
+
+    &__post {
+        &--white {
+            .p-text {
+
+                &__date,
+                &__post {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    &__message {
+        display: grid;
+        gap: res(80px);
+        grid-template-columns: grid-size(715) 1fr;
+        grid-template-areas: 'media content';
+        align-items: center;
+
+        @include sp {
+            grid-template-columns: 100%;
+            grid-template-areas: 'content' 'media';
+        }
+
+        // justify-content: flex-end;
+    }
+
+    &__profile {
+        display: grid;
+        grid-template-columns: grid-size(715) 1fr;
+        gap: res(80px);
+        align-content: flex-start;
+        align-items: flex-start;
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+
+        @include pc {
+            .wp-block-portart-title {
+                position: sticky;
+                top: res(120px);
+            }
+        }
+    }
+
+    &__history {
+        display: grid;
+        grid-template-columns: 1fr res(698px);
+        grid-template-areas: 'content media';
+
+        @include sp {
+            grid-template-columns: 100%;
+            grid-template-areas:
+                'content'
+                'media'
+            ;
+        }
+
+        .p-grid {
+            &__content {
+                position: relative;
+                z-index: 1;
+
+                @include dec('before') {
+                    position: absolute;
+                    z-index: -10;
+                    left: 0;
+                    top: 0;
+                    width: calc(100% + res(142px));
+                    height: 100%;
+                    background-color: white;
+                }
+
+                @include pc {
+                    padding: res(80px) res(80px) res(80px) res(142px);
+                }
+
+                @include sp {
+                    background-color: $color-white;
+                    padding: 48px 0;
+
+                    @include dec('before') {
+                        width: 100vw;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: calc(100% + 80px);
+                    }
+                }
+            }
+
+            &__media {
+                padding: res(120px) 0;
+                position: relative;
+                z-index: 10;
+                
+                @include sp {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    &__work-life {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: res(80px);
+        align-items: center;
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__business-flex {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: res(80px);
+        align-items: center;
+        margin-bottom: res(96px);
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__problem {
+        display: grid;
+        grid-template-columns: res(635px) 1fr;
+        grid-template-areas: 'content media';
+        gap: res(80px);
+        align-items: center;
+        
+        @include sp {
+            grid-template-columns: 100%;
+            grid-template-areas: 'content' 'media';
+        }
+
+        .p-grid {
+            &__content {
+                @include pc {
+                    padding: res(86px) 0;
+                }
+            }
+
+            &__media {
+                height: 100%;
+            }
+        }
+    }
+
+    &__problem-title {
+        padding: res(48px) 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+
+        &::before,
+        &::after {
+            display: block;
+            content: '';
+            @include size-res(80px);
+            background-color: $color-white;
+            @include mask-image(problem-dec);
+            position: absolute;
+            z-index: 10;
+            left: 0;
+            top: 0;
+        }
+
+        &::after {
+            left: unset;
+            top: unset;
+            right: 0;
+            bottom: 0;
+            transform: scale(-1, -1);
+        }
+    }
+
+    &__title-body {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: res(80px);
+        
+        @include sp {
+            grid-template-columns: 100%;
+            gap: 40px;
+        }
+    }
+
+    &__info-title {
+        display: flex;
+        align-items: flex-start;
+        gap: res(16px);
+
+        @include dec('before') {
+            @include size(res(6px, 4px));
+            border-radius: 50%;
+            background-color: $color-accent;
+        }
+    }
+
+    &__contact {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        justify-content: space-between;
+        align-items: center;
+        
+        @include sp {
+            grid-template-columns: 100%;
+            gap: 40px;
+        }
+    }
+
+}

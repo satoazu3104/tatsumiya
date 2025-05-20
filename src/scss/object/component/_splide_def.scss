@@ -1,0 +1,55 @@
+/**
+ * @file _splide.scss
+ * @layer Component 
+ * @description: ファイルの役割やスタイルの概要。
+ * - splide.jsのスタイル
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.c-splide {}
+
+.splide {
+  &__pagination {
+    position: relative;
+    bottom: unset;
+    padding: unset;
+
+    li {
+      display: flex;
+      line-height: unset;
+    }
+
+    &__page {
+      margin: 0;
+
+      &.is-active {
+        transform: unset;
+      }
+    }
+  }
+
+  &__arrows {}
+
+  &__arrow {
+    position: relative;
+
+    &--prev {
+      left: unset;
+    }
+
+    &--next {
+      right: unset;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+/**
+ * @file _section.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - 各セクションを囲うスタイル。
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-section {
+    &__position {
+        position: relative;
+        z-index: 1;
+
+        &.upper {
+            z-index: 10;
+        }
+    }
+}

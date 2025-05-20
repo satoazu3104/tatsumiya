@@ -1,0 +1,10 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+@use '../component/text';
+
+.u-lh {
+    &--20 {
+        @include lineCut(2);
+    }
+}

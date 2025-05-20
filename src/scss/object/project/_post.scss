@@ -1,0 +1,150 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-post {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: res(40px);
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+
+        &.vertical {
+            grid-template-columns: 100%;
+            grid-auto-rows: max-content;
+        }
+    }
+
+    &__item {
+        @include content-gap(24px);
+        position: relative;
+        z-index: 1;
+        padding-bottom: res(24px);
+        border-bottom: 1px solid rgba($color: white, $alpha: .2);
+
+        @include hover {
+            .p-text__post {
+                color: $color-accent;
+            }
+        }
+
+        &.vertical {
+            border-bottom: 1px solid $color-border2;
+            padding-bottom: res(48px);
+        }
+
+        &.horizon {
+            gap: res(40px);
+            padding: 0 0 res(40px);
+            width: 100%;
+            border-bottom: 1px solid $color-border2;
+        }
+    }
+
+    &__item-inner {
+        @include content-gap(24px);
+    }
+
+    &__img {
+        &--thumb {
+            aspect-ratio: 492/305;
+            width: 100%;
+            height: auto;
+            // border-radius: res(10px);
+        }
+    }
+
+    &__cate {
+        padding: res(80px) (140px);
+        background-color: #2E2F36;
+
+        @include sp {
+            padding: 48px 24px;
+        }
+
+        &__list {
+            // display: flex;
+            flex-wrap: wrap;
+            gap: 16px 8px;
+            margin-top: res(32px);
+            display: none;
+
+            &.no-mt {
+                margin-top: unset;
+            }
+        }
+
+        &__items {
+            padding: 4px 6px;
+            background-color: #58595E;
+            transition: background .3s ease;
+
+            @include hover {
+                background-color: $color-main;
+            }
+
+            @include state('select') {
+                background-color: $color-main;
+            }
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    &__horizon {
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        gap: res(64px);
+        align-items: center;
+    }
+
+    &__time {
+        display: grid;
+        gap: res(12px) 0px;
+        grid-template-areas:
+            "year date"
+            "month date";
+        grid-template-columns: max-content max-content;
+        align-items: flex-end;
+
+        &__year {
+            grid-area: year;
+        }
+
+        &__month {
+            grid-area: month;
+            font-size: res(40px);
+        }
+
+        &__date {
+            grid-area: date;
+            font-size: res(64px);
+        }
+    }
+}
+
+.p-post {
+    &__content {
+
+        p,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ol,
+        li,
+        ul,
+        label {
+            color: $color-text;
+        }
+    }
+}

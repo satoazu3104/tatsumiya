@@ -1,0 +1,168 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+@use '../component/text';
+/**
+ * @file _text.scss
+ * @layer Project
+ * @description: ファイルの役割やスタイルの概要。
+ * - 本文の見た目を整える
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+.p-text {
+
+    &__header-slug {
+        font-size: res(56px, 32px);
+        font-family: $font-family-en;
+        @include space(60);
+        @include lineCut(1.5);
+    }
+
+    &__header {
+        font-size: res(16px, 14px);
+        @include lineCut(1.5);
+        font-weight: 700;
+    }
+
+    &__fv-content {
+        font-size: res(24px, 16px);
+        @include lineCut(2);
+        font-weight: 700;
+    }
+
+    &__section-title-en {
+        font-size: res(160px, 32px);
+        @include space(60);
+        @include lineCut(1.5);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    &__section-title-jp {
+        font-size: res(24px, 18px);
+        @include lineCut(2);
+        font-weight: 700;
+    }
+
+    &__title {
+        font-size: res(40px, 20px);
+        font-weight: 700;
+        @include lineCut(1.75);
+    }
+
+    &__title-b {
+        font-size: res(56px, 24px);
+        font-weight: 700;
+        @include lineCut(1.75);
+    }
+
+    &__number {
+        font-size: res(24px, 16px);
+        @include space(60);
+        @include lineCut(1.5);
+        font-family: $font-family-en;
+    }
+
+    &__item {
+        font-size: res(32px, 22px);
+        @include lineCut(math.div(48, 32));
+    }
+
+    &__item-b {
+        font-size: res(24px, 16px);
+        @include lineCut(math.div(40.08, 24));
+        font-weight: 700;
+    }
+
+    &__item-m {
+        font-size: res(20px, 16px);
+        @include space(100);
+        font-weight: 700;
+    }
+
+    &__button {
+        font-size: res(28px, 22px);
+        @include lineCut(1.5);
+        font-weight: 700;
+        font-family: $font-family-en;
+
+        &.big {
+            font-size: res(40px, 24px);
+        }
+    }
+
+    &__button-m {
+        font-size: 18px;
+        @include lineCut(1.5);
+        font-weight: 700;
+        font-family: $font-family-en;
+    }
+
+    &__body {
+        font-size: res(18px, 14px);
+        font-weight: 700;
+        @include lineCut(2);
+    }
+
+    &__body-r {
+        font-size: res(18px, 14px);
+        font-weight: 400;
+        @include lineCut(2);
+
+        a {
+            color: $color-main;
+            text-decoration: underline;
+        }
+    }
+
+    &__body-m {
+        font-size: res(16px, 14px);
+        font-weight: 700;
+        @include lineCut(math.div(26.72, 16));
+    }
+
+    &__body-s {
+        font-size: res(16px, 14px);
+        @include lineCut(math.div(30.06, 16));
+    }
+
+    &__min {
+        font-size: res(14px, 12px);
+        @include lineCut(1.5);
+    }
+
+    &__date {
+        font-size: res(16px, 12px);
+        @include lineCut(1.5);
+        @include space(60);
+        font-family: $font-family-en;
+    }
+
+    &__tag {
+        font-size: res(16px, 12px);
+        @include lineCut(1.5);
+        @include space(60);
+        font-family: $font-family-en;
+    }
+
+    &__post {
+        font-size: res(18px, 14px);
+        @include lineCut(1.5);
+        font-weight: 700;
+    }
+    
+    &__phone {
+        font-size: 18px;
+        font-weight: 700;
+        @include space(100);
+    }
+}

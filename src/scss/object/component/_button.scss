@@ -1,0 +1,154 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+/**
+ * @file _button.scss
+ * @layera Component
+ * @description: ファイルの役割やスタイルの概要。
+ * - ボタンクラス
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+.c-button {
+    &__link {
+        position: absolute;
+        z-index: 20;
+        inset: 0;
+        cursor: pointer;
+    }
+
+    &__wrap {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        gap: res(16px, 8px);
+        padding: 0 0 res(16px, 8px);
+        border-bottom: 1px solid rgba($color: #2D1109, $alpha: .2);
+        width: fit-content;
+        align-items: center;
+
+        @include sp {
+            margin-left: auto;
+        }
+
+        @include hover {
+            .c-button {
+                &__before {
+                    transform: scale(2);
+                }
+            }
+        }
+
+        &.center {
+            margin: 0 auto;
+        }
+
+        &.white {
+            border-bottom: 1px solid rgba($color: white, $alpha: .2);
+
+            .c-button__text {
+                color: white;
+            }
+        }
+    }
+
+    &__before {
+        @include size(res(6px, 4px), res(6px, 4px));
+        border-radius: 50%;
+        background-color: $color-accent;
+        transition: transform .2s ease;
+    }
+
+    &__after {
+        display: none;
+    }
+
+    &__text {
+        color: $color-text;
+    }
+
+    &__instagram {
+        padding: 10px 48px;
+        border-radius: 5em;
+        border: 1px solid rgba($color: white, $alpha: .5);
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+        gap: 16px;
+        width: fit-content;
+
+        @include dec('before') {
+            @include size(20px);
+            background-color: white;
+            @include mask-image(icon-instagram);
+        }
+    }
+
+    &__instagram-head {
+        @include size-res(48px);
+        background-color: $color-main;
+        border-radius: 50%;
+        transition: background .4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        bottom: res(71px);
+        transform: translateX(-50%);
+        border: 1px solid $color-main;
+
+        @include hover {
+            background-color: $color-white;
+
+            &::before {
+                background-color: $color-main;
+            }
+        }
+
+        @include dec('before') {
+            @include size-res(20px);
+            background-color: $color-white;
+            @include mask-image(icon-instagram-big);
+            transition: background .4s ease;
+        }
+    }
+
+    &__contact {
+        width: 100%;
+        max-width: res(400px);
+        margin: 0 auto;
+        height: res(80px);
+        border-radius: 5em;
+        border: 1px solid $color-main;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background .2s ease;
+
+        @include hover {
+            background-color: $color-main;
+
+            &::before {
+                background-color: $color-white;
+            }
+        }
+
+        @include dec('before') {
+            @include size(95.67px, 18px);
+            background-color: $color-main;
+            @include mask-image(contact-button);
+            transition: background .2s ease;
+        }
+    }
+}

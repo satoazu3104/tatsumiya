@@ -1,0 +1,50 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+.c-pagination {
+  &__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    
+    .page-numbers {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: $color-text;
+      font-family: $font-family-en;
+      border-radius: 50%;
+      &.current {
+        background-color: $color-main;
+        color: white!important;
+      }
+      
+      &.prev,&.next {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      &.prev {
+        .number-arrow {
+          transform: scale(-1, 1);
+        }
+      }
+      
+      .number-arrow {
+        background-color: $color-main;
+        mask-image: url(../images/common/icon-arrow.webp);
+        width: 16px;
+        height: 16px;
+        mask-size: cover;
+      }
+    }
+  }
+}

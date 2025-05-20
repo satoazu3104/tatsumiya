@@ -1,0 +1,48 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-nav {
+    &__button {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        border: unset;
+        background-color: unset;
+        outline: unset;
+        z-index: 1000000;
+        position: relative;
+        margin-left: auto;
+        opacity: .8;
+
+        &--line {
+            @include size-res(40px, 7px);
+            background-color: white;
+            @include mask-image(button-line);
+            position: absolute;
+            z-index: 1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform .4s ease;
+
+            &:nth-child(1) {
+                transform: translate(-50%, calc(-50% - res(8px)));
+
+                &.is-open {
+                    transform: translate(-50%, calc(-50% - res(1px))) rotate(48deg);
+                }
+            }
+
+            &:nth-child(2) {
+                transform: translate(-50%, calc(-50% + res(6px)));
+
+                &.is-open {
+                    transform: translate(-50%, calc(-50% - res(1px))) rotate(-32deg);
+                }
+            }
+        }
+
+    }
+}

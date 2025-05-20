@@ -1,0 +1,163 @@
+/**
+ * @file _section.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - 各セクションを囲うスタイル。
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-section {
+    &__position {
+        position: relative;
+        z-index: 1;
+
+        &.upper {
+            z-index: 10;
+        }
+    }
+
+    &__fv {
+        padding: 0 0 res(100px);
+        
+        &.is-active {
+            .p-img__fv-back__picture {
+            }
+        }
+    }
+
+    &__business {
+        padding: 0 res(88px);
+
+        @include sp {
+            padding: 0 24px;
+        }
+    }
+
+    &__magazine {
+        position: relative;
+        z-index: 1;
+        padding: res(160px) 0;
+
+        @include sp {
+            padding: 64px 0;
+        }
+
+        @include dec('after') {
+            width: calc(100vw - res(197px));
+            height: calc(100% + res(100px) + res(202px));
+            position: absolute;
+            z-index: -10;
+            background-image: url(../images/common/magazine-back-color.webp);
+            background-size: cover;
+            top: res(-100px);
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+
+        @include dec('before') {
+            width: calc(100vw - res(197px));
+            height: calc(100% + res(100px) + res(202px));
+            position: absolute;
+            z-index: -5;
+            background-image: url(../images/common/magazine-back.webp);
+            background-size: cover;
+            mix-blend-mode: multiply;
+            top: res(-100px);
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+    }
+
+    &__big {
+        padding: 0 res(88px);
+
+        @include sp {
+            padding: 0 24px;
+        }
+    }
+
+    &__hero {
+        padding: res(240px) 0 res(32px);
+        
+        @include sp {
+            padding: 104px 0 12px;
+        }
+
+        .p-title__wrap {
+            grid-template-columns: 100%;
+            grid-template-areas: 'en' 'jp';
+            gap: res(40px);
+        }
+
+        @include sp {
+            .p-text__title-b {
+                font-size: 22px;
+            }
+        }
+    }
+
+    &__history {
+        padding: res(160px) 0 res(120px);
+        position: relative;
+        z-index: 1;
+
+        &.problem {
+            padding: res(120px) 0 res(160px);
+
+            &::before,
+            &::after {
+                height: 100%;
+                top: 0;
+            }
+        }
+
+        @include dec('after') {
+            width: calc(100vw - res(197px));
+            height: calc(100% + res(202px));
+            position: absolute;
+            z-index: -10;
+            background-image: url(../images/common/magazine-back-color.webp);
+            background-size: cover;
+            top: res(-202px);
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+
+        @include dec('before') {
+            width: calc(100vw - res(197px));
+            height: calc(100% + res(202px));
+            position: absolute;
+            z-index: -5;
+            background-image: url(../images/common/magazine-back.webp);
+            background-size: cover;
+            mix-blend-mode: multiply;
+            top: res(-202px);
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+    }
+}

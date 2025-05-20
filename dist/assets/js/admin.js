@@ -1,0 +1,2 @@
+!function(){"use strict";setTimeout((()=>{const o=document.querySelectorAll(".block-editor-warning__action .components-button");console.log(o),o&&o.forEach((o=>{o.click()}))}),1e3)}();
+//# sourceMappingURL=admin.js.map

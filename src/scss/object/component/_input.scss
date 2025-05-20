@@ -1,0 +1,332 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.c-input {
+    &__label {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        gap: 24px;
+        justify-content: flex-end;
+
+        .mwform-checkbox-field-text {
+            display: none;
+        }
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-auto-rows: max-content;
+        gap: res(56px);
+        margin-bottom: res(64px);
+
+        p {
+            // color: $color-white;
+        }
+
+        @include sp {
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+    }
+
+    &__items {
+        display: grid;
+        grid-template-columns: 245px 40px 1fr;
+        grid-template-areas: "labels req input";
+        gap: 32px;
+
+        p {
+            &:nth-child(1) {
+                grid-area: labels;
+            }
+
+            &:nth-child(2) {
+                grid-area: input;
+            }
+        }
+
+        @include sp {
+            grid-template-columns: max-content 1fr;
+            grid-template-areas: "labels req"
+                "input input";
+            gap: 16px 12px;
+        }
+
+        .c-text__title {
+            color: $color-text;
+
+            @include pc {
+                position: relative;
+                transform: translateY(16px);
+            }
+        }
+
+        &::before {
+            grid-area: req;
+            content: '任意';
+            display: block;
+            width: 40px;
+            height: 24px;
+            background-color: #EDEFF5;
+            color: rgba($color: #000000, $alpha: .5);
+            border-radius: 2px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+
+            @include pc {
+                position: relative;
+                transform: translateY(14px);
+            }
+
+            @include sp {
+                width: 32px;
+                height: 16px;
+                font-size: 12px;
+            }
+        }
+
+        &--radio {
+            align-items: center;
+
+            .c-text__title {
+                @include pc {
+                    position: relative;
+                    transform: translateY(0px);
+                }
+            }
+
+            &::before {
+                @include pc {
+                    position: relative;
+                    transform: translateY(0px);
+                }
+            }
+
+            p {
+                &:nth-last-child(1) {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 24px 56px;
+
+                    @include sp {
+                        display: grid;
+                        grid-auto-rows: max-content;
+                        gap: 24px;
+                    }
+                }
+            }
+        }
+
+        &--none {
+            &::before {
+                content: '';
+                background-color: unset;
+            }
+
+            @include sp {
+                &::before {
+                    display: none;
+                }
+
+                .c-input__label {
+                    justify-content: center;
+                }
+            }
+        }
+
+        &--req {
+            &::before {
+                content: '必須';
+                background-color: $color-main;
+                color: white;
+            }
+        }
+    }
+
+    &__input,
+    &__textarea,
+    &__select {
+        background-color: $color-input;
+        border-radius: 0px;
+        border: unset;
+        padding: 0 24px;
+        width: 100%;
+        outline: unset;
+        appearance: none;
+        border: 1px solid rgba($color: $color-main, $alpha: .2);
+
+        &::placeholder {
+            color: rgba($color: #2F3343, $alpha: .3);
+        }
+
+        @include sp {
+            width: 100%;
+        }
+    }
+
+    &__input,
+    &__select {
+        height: 56px;
+
+        @include sp {
+            height: 48px;
+        }
+    }
+
+    &__select {
+        background-image: url(../../../icon/ionic-ios-arrow-down.png);
+        background-size: 11.81px 6.75px;
+        background-repeat: no-repeat;
+        background-position: right 24px center;
+    }
+
+    &__textarea {
+        resize: vertical;
+        padding: 12px 24px;
+
+        @include sp {
+            min-height: 200px !important;
+        }
+    }
+
+    &__check {
+        appearance: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 16px solid $color-input;
+        outline: unset;
+        padding: 0;
+        min-height: unset;
+        margin: 0;
+        margin-right: 0 !important;
+        background-image: url(../images/common/icon-check.webp);
+        background-size: 14px 10.25px;
+        background-color: $color-main;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: border .2s ease;
+
+        &:checked {
+            border: 8px solid $color-input;
+        }
+    }
+
+    &__submit {
+        width: 400px;
+        height: 64px;
+        border-radius: 32px;
+        background: transparent linear-gradient(263deg, #F16C61 0%, #CC41B3 100%) 0% 0% no-repeat padding-box !important;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0px auto 0;
+
+        &__wrap {
+            position: relative;
+            width: fit-content;
+            height: fit-content;
+            z-index: 1;
+            margin: 40px auto 0;
+
+            @include sp {
+                width: 100%;
+                max-width: 279px;
+            }
+
+            &::before {
+                content: '';
+                display: block;
+                width: 8px;
+                height: 14px;
+                background-image: url(../images/common/icon-arrow.webp);
+                background-size: cover;
+                position: absolute;
+                z-index: 10;
+                top: 50%;
+                right: 60px;
+                transform: translateY(-50%);
+
+                @include sp {
+                    right: 24px;
+                }
+            }
+        }
+
+        @include sp {
+            width: 100%;
+            font-size: 14px;
+            height: 56px;
+            border-radius: 28px;
+        }
+    }
+}
+
+.mwform-radio-field {
+    label {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        gap: 24px;
+
+        @include sp {
+            gap: 16px;
+        }
+    }
+}
+
+.mwform-checkbox-field-text {
+    @include sp {
+        font-size: 14px;
+    }
+}
+
+.mw_wp_form_preview {
+    .answer {
+        display: none;
+    }
+
+    p {
+        // color: white;
+    }
+}
+
+.mwform-radio-field-text {
+    // color: $color-white;
+    font-size: 16px;
+
+    @include sp {
+        font-size: 14px;
+    }
+}
+
+.mw_wp_form .horizontal-item+.horizontal-item {
+    margin-left: 0;
+}
+
+.wpcf7-list-item.first.last {
+    display: flex;
+    align-items: center;
+    margin-left: unset;
+    gap: res(16px);
+}
+
+.wpcf7-spinner {
+    display: none;
+}
+
+.wpcf7-form-control-wrap {
+    width: 100%;
+}
+
+.wpcf7-checkbox {
+    input {
+        @include size(24px);
+        border-radius: 50%;
+    }
+}

@@ -1,0 +1,105 @@
+/**
+ * @file _list.scss
+ * @layer Layout
+ * @description: ファイルの役割やスタイルの概要。
+ * - リストスタイル
+ * 
+ * @dependencies: 依存している他のファイル（変数ファイル、ミックスインなど）
+ * - ../_mixin.scss
+ * 
+ * @modifies: 他のファイルへの影響や、変更時に注意すべき点。
+ * - 特筆事項無し
+ * 
+ * @note: 開発時の注意点や特記事項
+ * - 特筆事項無し
+ */
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-list {
+
+    &__business {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__staff {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__staff-cat {
+        display: flex;
+        flex-wrap: wrap;
+        gap: res(8px);
+        align-items: center;
+    }
+
+    &__recruit {
+        @include sp {
+            @include content-gap(64px)
+        }
+    }
+
+    &__banner {
+        width: calc(100% - res(142px));
+        display: grid;
+        grid-auto-rows: max-content;
+        gap: 2px;
+        grid-template-columns: 100%;
+
+        @include sp {
+            width: 100vw
+        }
+    }
+
+    &__history {
+        @include content-gap(40px);
+    }
+
+    &__peace {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 317/196;
+        }
+
+        @include sp {
+            grid-template-columns: 100%;
+            gap: 48px;
+        }
+    }
+
+    &__point {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+    }
+
+    &__business-number {
+        display: flex;
+        // gap: res(88px);
+        
+        @include sp {
+            display: grid;
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__info-value {}
+}

@@ -1,0 +1,156 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+
+.p-img {
+
+    &__back {
+        @include size(100%);
+
+        &__picture {
+            position: absolute;
+            z-index: -20;
+            inset: 0;
+        }
+    }
+
+    &__fv-back {
+        object-position: 0% 50%;
+
+        &__picture {
+            height: 100vh;
+        }
+    }
+
+    &__logo-header,
+    &__logo-footer {
+        @include size-res(320px, 80px);
+    }
+
+    &__business {
+
+        &__picture {
+            @include dec('before') {
+                position: absolute;
+                z-index: 10;
+                inset: 0;
+                background: transparent linear-gradient(180deg, #2D1109 0%, #F2BFAF 100%) 0% 0% no-repeat padding-box;
+                mix-blend-mode: multiply;
+                opacity: 0.4;
+            }
+        }
+    }
+
+    &__visual {
+        width: calc(100vw - res(142px));
+        height: auto;
+        aspect-ratio: 1778/680;
+        margin-left: auto;
+
+        @include sp {
+            width: calc(100vw - 48px);
+            aspect-ratio: 327/210;
+        }
+    }
+
+    &__staff {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 580/358;
+        object-fit: cover;
+        transition: transform .8s ease;
+    }
+
+    &__banner {
+        width: auto;
+        height: vw(392);
+        transition: transform .8s ease;
+
+        @include sp {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 375/240;
+        }
+
+        &__picture {
+            overflow: hidden;
+        }
+    }
+
+    &__footer-text {
+        @include size-res(656.22px, 104px);
+        margin-top: res(88px);
+
+        @include sp {
+            aspect-ratio: 656.22/104;
+            width: 80%;
+            height: auto;
+        }
+    }
+
+    &__hero {
+        &.big {}
+
+        &__picture {
+            @include dec('before') {
+                position: absolute;
+                z-index: 10;
+                inset: 0;
+                background: transparent linear-gradient(180deg, #2D1109 0%, #F2BFAF 100%) 0% 0% no-repeat padding-box;
+                mix-blend-mode: multiply;
+                opacity: 0.4;
+            }
+
+            &.black__picture {
+                &::before {
+                    opacity: .6;
+                }
+            }
+        }
+    }
+
+    &__history {
+        height: 100%;
+
+        &__picture {
+            height: 100%;
+        }
+    }
+
+    &__point-icon {
+        @include size-res(64px);
+        margin: 0 auto;
+    }
+
+    &__business-title {
+        &.metal {
+            @include max-size-res(598px, 197px);
+        }
+
+        &.pipe {
+            @include max-size-res(686px, 169px);
+        }
+
+        &.cutting {
+            @include max-size-res(755px, 169px);
+        }
+    }
+
+    &__business-number {
+        @include size-res(240px, 126px);
+        margin: 0 auto;
+    }
+
+    &__problem-main {
+        @include size(100%);
+
+        &__picture {
+            @include size(100%);
+        }
+    }
+
+    &__number {
+        @include size-res(298px, 110px);
+        margin: 0 auto;
+    }
+}

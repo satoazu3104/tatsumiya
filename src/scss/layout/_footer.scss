@@ -1,0 +1,131 @@
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+
+.l-footer {
+    &__wrap {
+        padding: res(82px) 0;
+        position: relative;
+        z-index: 1;
+
+        @include sp {
+            padding: 64px 0 104px;
+        }
+
+        @include dec('after') {
+            width: calc(100vw - res(88px));
+            height: 100%;
+            position: absolute;
+            z-index: -10;
+            background-image: url(../images/common/footer-back-color.webp);
+            background-size: cover;
+            top: 0;
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+
+        @include dec('before') {
+            width: calc(100vw - res(88px));
+            height: 100%;
+            position: absolute;
+            z-index: -5;
+            background-image: url(../images/common/footer-back.webp);
+            background-size: cover;
+            mix-blend-mode: multiply;
+            top: 0;
+            left: 0;
+
+            @include sp {
+                width: 100vw;
+            }
+        }
+    }
+
+    &__inner {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        justify-content: space-between;
+        align-items: flex-end;
+        max-width: res(1382px);
+
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__address {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        margin: res(40px) 0 res(32px);
+
+        @include sp {
+            grid-template-columns: 100%;
+            gap: 12px;
+
+            .p-text__body-m {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.l-footer {
+    &__menu {
+        &--list {
+            display: grid;
+            gap: res(48px);
+        }
+
+        &--items {}
+
+        &--link {}
+
+        &--nav {
+            margin-top: 48px;
+        }
+    }
+
+    &__fix {
+        width: 100vw;
+        height: 64px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: #f9f4e9;
+        z-index: 100000;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        transform: translateY(64px);
+        transition: transform .2s ease;
+
+        &.active {
+            transform: translateY(0px);
+        }
+
+        &--inner {
+            @include state(mail) {
+                background-color: $color-main;
+            }
+
+            @include state(line) {
+                background-color: #4CAF50;
+            }
+
+
+            display: grid;
+            grid-template-columns: 24px max-content;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &--img {
+            @include size(24px);
+            object-position: center;
+            object-fit: contain;
+        }
+    }
+}

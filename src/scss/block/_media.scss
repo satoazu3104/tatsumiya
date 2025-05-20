@@ -1,0 +1,35 @@
+@use 'sass:math';
+@use '../foundation/theme' as *;
+@use '../mixin' as *;
+.b-media {
+  &__img {
+    max-height: 320px;
+    width: fit-content;
+  }
+
+  &__group {
+    display: grid;
+    gap: 8px;
+    padding: 12px 12px;
+    background-color: #efefef;
+    button {
+      width: fit-content;
+    }
+
+    &__inner {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+  }
+
+  &__first {
+    width: fit-content;
+    padding: 6px;
+    background-color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
+    border-radius: 5px;
+    color: white;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+}

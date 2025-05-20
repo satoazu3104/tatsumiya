@@ -1,0 +1,287 @@
+// テキストタイプ
+$font-types:
+(
+  title: 'hero-dec',
+  size: 160,
+  sp: 80, 
+  weight: 400, 
+  color: '', 
+  height: 1.212,
+  space: 40,
+),
+(
+  title: 'big-dec',
+  size: 200,
+  sp: 80, 
+  weight: 400, 
+  color: '', 
+  height: 1.212,
+),
+(
+  title: 'total',
+  size: 75,
+  sp: 48, 
+  weight: 700, 
+  color: '', 
+  height: '',
+),
+(
+  title: 'case',
+  size: 100,
+  sp: 44, 
+  weight: 700, 
+  color: '', 
+  height: '',
+),
+(
+  title: 'sp-40',
+  size: 100,
+  sp: 40, 
+  weight: 700, 
+  color: '', 
+  height: '',
+),
+(
+  title: 'med-dec',
+  size: 56,
+  sp: 32, 
+  weight: 400, 
+  color: '', 
+  height: 1.75,
+),
+(
+  title: 'min-dec',
+  size: 29,
+  sp: 16, 
+  weight: 500, 
+  color: '', 
+  height: 1.5,
+),
+(
+  title: 'fv-header',
+  size: 14,
+  sp: 10, 
+  weight: 300, 
+  color: '', 
+  height: 1.5,
+  space: 80
+),
+(
+  title: 'fv',
+  size: 40,
+  sp: 28, 
+  weight: 700, 
+  color: '',
+  height: 1.5,
+  space: 80,
+),
+(
+  title: 'fv-min',
+  size: 32,
+  sp: 16, 
+  weight: 700, 
+  color: '',
+  height: 2.14,
+),
+(
+  title: 'section-title',
+  size: 80,
+  sp: 32, 
+  weight: 700, 
+  color: '',
+  height: 1.75,
+  space: 0
+),
+(
+  title: 'max',
+  size: 64,
+  sp: 32, 
+  weight: 400, 
+  color: '', 
+  height: 1.5,
+),
+(
+  title: 'section-title-jp',
+  size: 18,
+  sp: 16,
+  weight: 700, 
+  color: '',
+  height: 1.33,
+),
+(
+  title: '40-24',
+  size: 40,
+  sp: 24, 
+  weight: 500,
+  color: '', 
+  height: ''
+),
+(
+  title: 'middle',
+  size: 38,
+  sp: 24, 
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'header-title',
+  size: 32,
+  sp: 24, 
+  weight: 400,
+  color: '', 
+  height: ''
+),
+(
+  title: 'phone-number',
+  size: 28,
+  sp: 20, 
+  weight: 500, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'list-title',
+  size: 24,
+  sp: 20, 
+  weight: 500, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'list-content',
+  size: 22,
+  sp: 16, 
+  weight: 500, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'page-title-jp',
+  size: 56,
+  sp: 20, 
+  weight: 600, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'page-title',
+  size: 20,
+  sp: 18, 
+  weight: 400, 
+  color: '', 
+  height: 2.2
+),
+(
+  title: 'list-header',
+  size: 18,
+  sp: 14,
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'title',
+  size: 18,
+  sp: 16, 
+  weight: 700, 
+  color: '',
+  height: '',
+),
+(
+  title: 'content',
+  size: 20,
+  sp: 16, 
+  weight: 400, 
+  color: '', 
+  height: 2,
+),
+(
+  title: 'long-height',
+  size: 18,
+  sp: 16, 
+  weight: 400, 
+  color: '', 
+  height: 2.5,
+),
+(
+  title: 'title-reg',
+  size: 18,
+  sp: 14, 
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'nav',
+  size: 16,
+  sp: 14, 
+  weight: 700, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'nav-jp',
+  size: 16,
+  sp: 16, 
+  weight: 700, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'normal-min',
+  size: 16,
+  sp: 12, 
+  weight: 400, 
+  color: '', 
+  height: '', 
+),
+(
+  title: 'normal',
+  size: 16,
+  sp: 14, 
+  weight: 400, 
+  color: '', 
+  height: 1.75, 
+),
+(
+  title: 'normal-min',
+  size: 16,
+  sp: 14, 
+  weight: 400, 
+  color: '', 
+  height: 1.75, 
+),
+(
+  title: 'bold',
+  size: 16,
+  sp: 16, 
+  weight: 700, 
+  color: '', 
+  height: 1.875
+),
+(
+  title: '15',
+  size: 15,
+  sp: 15, 
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'med',
+  size: 14,
+  sp: 12, 
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(
+  title: 'min',
+  size: 12,
+  sp: 10, 
+  weight: 400, 
+  color: '', 
+  height: ''
+),
+(title: 'text', size: 44, sp: 20, weight: bold, color: white, height: '');
