@@ -24,6 +24,12 @@ $blog_link = get_site_url() . '/news';
 $post_type_slug = get_post_type();
 $name = get_the_title();
 
+$return_link = [
+    "post" => get_site_url() . "/news",
+    "works" => get_site_url() . "/work",
+    "staff" => get_site_url() . '/staff',
+];
+
 // 方法①：正規表現で「(」以降をキャプチャする
 if (preg_match('/^(.+?)\((.+?)\)$/u', $name, $matches)) {
     $title = trim($matches[1]);  // 「社員インタビュー / 山田隆司」
@@ -71,7 +77,7 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
 
         <?php Space(80, 48); ?>
 
-        <a href="<?php echo site_url() . '/' . $post_type_slug; ?>" class="c-button__wrap center color return">
+        <a href="<?php echo $return_link[$post_type]; ?>" class="c-button__wrap center color return">
             <div class="c-button__before"></div>
             <div class="c-button__inner">
                 <p class="p-text__button">return view</p>

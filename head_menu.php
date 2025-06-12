@@ -33,7 +33,7 @@ $pc_menu = '';
 
 $slug_array = array(
     "staff" => "professional",
-    "post" => "magazine"
+    "news" => "magazine"
 );
 ?>
 

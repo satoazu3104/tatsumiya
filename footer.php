@@ -20,7 +20,7 @@ function display_footer_menu()
 
             $slug_array = array(
                 "staff" => "professional",
-                "post" => "magazine"
+                "news" => "magazine"
             );
 ?>
             <li class="l-header__items l-footer__menu--items">
