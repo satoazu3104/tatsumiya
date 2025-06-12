@@ -154,7 +154,7 @@ if (splidePositionElements.length) {
             perPage: 1,
             focus: 'center',
             speed: 800,
-            gap: '2px',
+            gap: '16px',
             pauseOnHover: false,
             interval: 8000,
             breakpoints: {
