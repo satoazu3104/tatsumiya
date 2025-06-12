@@ -5,7 +5,7 @@ function add_script() {
     'temp_uri' => get_template_directory_uri(),
     'site_url' => site_url()
   );
-  wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/dist/assets/js/index.js', ['wp-element', 'wp-api'], '4.1', true);
+  wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/dist/assets/js/index.js', ['wp-element', 'wp-api'], '4.3', true);
   // wp_enqueue_script( 'custom_script', 'https://www.google.com/recaptcha/api.js', ['wp-element', 'wp-api'], '2.4', true);
   wp_localize_script( 'custom_script', 'tmp_path', $tmp_path_arr );
   $data_array = array(

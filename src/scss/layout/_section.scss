@@ -49,13 +49,17 @@
         position: relative;
         z-index: 1;
         padding: res(160px) 0;
+        
+        .l-wrap__title-button {
+            width: calc(100% - res(286px));
+        }
 
         @include sp {
             padding: 64px 0;
         }
 
         @include dec('after') {
-            width: calc(100vw - res(197px));
+            width: calc(100vw - res(197px) - res(88px));
             height: calc(100% + res(100px) + res(202px));
             position: absolute;
             z-index: -10;
@@ -70,7 +74,7 @@
         }
 
         @include dec('before') {
-            width: calc(100vw - res(197px));
+            width: calc(100vw - res(197px) - res(88px));
             height: calc(100% + res(100px) + res(202px));
             position: absolute;
             z-index: -5;

@@ -24,6 +24,10 @@
             &.white {
                 .p-title__en {
                     color: white;
+                    
+                    span {
+                        color: white;
+                    }
                 }
             }
         }
