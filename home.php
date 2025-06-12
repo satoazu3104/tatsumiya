@@ -48,18 +48,12 @@ $slug = $post ? $post->post_name : null;
                 include get_template_directory() . '/post.php';
             }
         } else {
-            $post_type_slug = get_post_type();
-
-            // 2) 同名スラッグの固定ページを取得
-            $page = get_page_by_path($post_type_slug, OBJECT, 'page');
-
-            // 3) ページが存在すれば本文を出力
-            if ($page) {
-                // 本文を WordPress のフィルター経由で整形
-                echo apply_filters('the_content', $page->post_content);
-            } else {
-                the_content();
-            }
+            // 現在の投稿の本文を出力（固定ページ含む）
+            if (have_posts()) :
+                while (have_posts()) : the_post();
+                    the_content(); // ←これがショートコードも処理してくれます
+                endwhile;
+            endif;
         }
         ?>
         <?php
