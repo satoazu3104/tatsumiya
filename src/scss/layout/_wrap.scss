@@ -35,9 +35,7 @@
     }
 
     &__recruit-head {
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        display: grid;
         gap: res(12px);
     }
 
