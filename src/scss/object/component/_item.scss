@@ -162,7 +162,7 @@
                 }
 
                 &__media {
-                    height: res(800px);
+                    height: fit-content;
 
                     @include sp {
                         height: 200px;
@@ -173,6 +173,7 @@
 
                         &__picture {
                             height: 100%;
+                            aspect-ratio: 1/1;
                         }
                     }
                 }
