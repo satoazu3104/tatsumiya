@@ -27,7 +27,7 @@ $name = get_the_title();
 $return_link = [
     "post" => get_site_url() . "/news",
     "works" => get_site_url() . "/work",
-    "staff" => get_site_url() . '/staff',
+    "staff" => get_site_url() . '/professional',
 ];
 
 // 方法①：正規表現で「(」以降をキャプチャする
