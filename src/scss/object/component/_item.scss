@@ -31,6 +31,20 @@
         gap: res(112px);
         align-content: space-between;
 
+        .p-img__back {
+            transition: transform .8s ease;
+
+            &__picture {
+                overflow: hidden;
+            }
+        }
+
+        @include hover {
+            .p-img__back {
+                transform: scale(1.05);
+            }
+        }
+
         @include sp {
             padding: 24px;
 
@@ -114,6 +128,21 @@
         grid-template-areas: 'media content';
         gap: res(80px);
         align-items: center;
+
+        .p-img__staff {
+            transition: transform .8s ease;
+
+            &__picture {
+                overflow: hidden;
+            }
+        }
+
+        @include hover {
+            .p-img__staff {
+                transform: scale(1.05);
+            }
+        }
+
 
         @include sp {
             gap: 48px;

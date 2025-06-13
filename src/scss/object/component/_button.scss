@@ -25,6 +25,18 @@
         cursor: pointer;
     }
 
+    &__wrap,
+    &__trigger {
+        @include hover {
+            .c-button {
+                &__before {
+                    transform: scale(2);
+                }
+            }
+        }
+
+    }
+
     &__wrap {
         display: grid;
         grid-template-columns: max-content max-content;
@@ -36,14 +48,6 @@
 
         @include sp {
             margin-left: auto;
-        }
-
-        @include hover {
-            .c-button {
-                &__before {
-                    transform: scale(2);
-                }
-            }
         }
 
         &.center {

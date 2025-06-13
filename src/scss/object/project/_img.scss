@@ -78,11 +78,13 @@
     }
 
     &__footer-text {
-        @include size-res(656.22px, 104px);
+        width: auto;
+        height: res(104px);
+        aspect-ratio: 1483.09/211.25;
         margin-top: res(88px);
 
         @include sp {
-            aspect-ratio: 656.22/104;
+            aspect-ratio: 1483.09/211.25;
             width: 80%;
             height: auto;
         }
