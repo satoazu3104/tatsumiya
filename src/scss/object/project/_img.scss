@@ -78,6 +78,7 @@
     }
 
     &__footer-text {
+        @include size-res(656.22px, 104px);
         aspect-ratio: 656.22/104;
         margin-top: res(88px);
 
