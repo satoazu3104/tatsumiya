@@ -137,7 +137,7 @@ function display_information($phone_number)
                     <?php display_footer_menu(); ?>
                 </div>
 
-                <img class="p-img__footer-text" src="<?php echo get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp'; ?>" alt="銅、100年――。">
+                <img class="p-img__footer-text" src="<?php echo get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp?3.0'; ?>" alt="銅、100年――。">
             </div>
 
             <div class="pc">
