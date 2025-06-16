@@ -16,6 +16,7 @@ function block_enqueue() {
     'linkbutton',
     'splide',
     'dectitle',
+    'interview'
   ];
   foreach ($blocks as $key => $value) {
     //アセットファイルをインクルード

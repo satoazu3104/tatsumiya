@@ -154,4 +154,26 @@
         @include size-res(298px, 110px);
         margin: 0 auto;
     }
+
+    &__ques {
+        background-color: $color-main;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include dec('before') {
+            content: 'Q';
+            color: white;
+            font-size: res(48px, 24px);
+            font-weight: 700;
+            font-family: $font-family-en;
+            text-align: center;
+        }
+    }
+
+    &__answer,
+    &__ques {
+        @include size-res(80px);
+        border-radius: 50%;
+    }
 }

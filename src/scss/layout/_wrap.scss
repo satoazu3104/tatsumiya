@@ -134,7 +134,7 @@
                 padding: res(120px) 0;
                 position: relative;
                 z-index: 10;
-                
+
                 @include sp {
                     padding: 0;
                 }
@@ -171,7 +171,7 @@
         grid-template-areas: 'content media';
         gap: res(80px);
         align-items: center;
-        
+
         @include sp {
             grid-template-columns: 100%;
             grid-template-areas: 'content' 'media';
@@ -224,7 +224,7 @@
         display: grid;
         grid-template-columns: max-content 1fr;
         gap: res(80px);
-        
+
         @include sp {
             grid-template-columns: 100%;
             gap: 40px;
@@ -248,11 +248,37 @@
         grid-template-columns: max-content 1fr;
         justify-content: space-between;
         align-items: center;
-        
+
         @include sp {
             grid-template-columns: 100%;
             gap: 40px;
         }
     }
 
+    &__answer,
+    &__ques {
+        padding: res(32px);
+        background-color: rgba(45, 17, 9, .03);
+        width: fit-content;
+        position: relative;
+        z-index: 1;
+
+        @include dec('before') {
+            position: absolute;
+            z-index: 1;
+            @include size(24px, 18px);
+            background-color: rgba(45, 17, 9, .03);
+            bottom: 0px;
+            right: 100%;
+            clip-path: polygon(100% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    }
+    
+    &__answer {
+        &::before {
+            right: unset;
+            left: 100%;
+            clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+        }
+    }
 }

@@ -102,4 +102,12 @@
     }
 
     &__info-value {}
+    
+    &__qa {
+        @include content-gap(20px);
+    }
+    
+    &__qa-group {
+        @include content-gap(40px);
+    }
 }

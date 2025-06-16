@@ -503,4 +503,30 @@
             }
         }
     }
+
+    &__ques,
+    &__answer {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: res(32px);
+        align-items: flex-end;
+
+        .l-wrap__ques,
+        .l-wrap__answer {
+        }
+    }
+
+    &__answer {
+        grid-template-areas: 'content media';
+        grid-template-columns: 1fr max-content;
+
+        .p-img__answer {
+            grid-area: media;
+        }
+
+        .l-wrap__answer {
+            grid-area: content;
+            margin-left: auto;
+        }
+    }
 }
