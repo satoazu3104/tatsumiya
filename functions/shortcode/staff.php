@@ -51,6 +51,20 @@ function custom_staff_shortcode($atts)
             if (empty($thumbnail)) {
                 $thumbnail = '<img src="' . $fallback_image_url . '" alt="Fallback Image" class="p-img__staff" />';
             }
+
+            // カテゴリーを取得
+            $terms = get_the_terms(get_the_ID(), 'category');
+            $cat_list = '';
+            if (! empty($terms) && ! is_wp_error($terms)) {
+                $cat_list .= '<ul class="l-list__staff-cat">';
+                foreach ($terms as $term) {
+                    $cat_list .= sprintf(
+                        '<li class="c-item__staff-cat"><p class="p-text__tag">%s</p></li>',
+                        esc_html($term->name)
+                    );
+                }
+                $cat_list .= '</ul>';
+            }
             ob_start(); ?>
             <li class="c-item__staff l-section__position">
                 <a class="c-button__link" href="<?php echo get_the_permalink(); ?>"></a>
@@ -63,14 +77,10 @@ function custom_staff_shortcode($atts)
                     <div class="l-wrap__staff-head">
                         <p class="p-text__date"><?php echo $formatted_date; ?></p>
 
-                        <ul class="l-list__staff-cat">
-                            <li class="c-item__staff-cat">
-                                <p class="p-text__tag">INTERVIEW</p>
-                            </li>
-                            <li class="c-item__staff-cat">
-                                <p class="p-text__tag">RECRUIT</p>
-                            </li>
-                        </ul>
+                        <?php
+                        // 動的に生成したカテゴリリストを出力
+                        echo $cat_list;
+                        ?>
                     </div>
                     <p class="p-text__post">社員インタビュー / <?php echo $title; ?></p>
                 </div>

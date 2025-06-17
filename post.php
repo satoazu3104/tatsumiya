@@ -63,6 +63,32 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
         </div>
         <?php Space(32, 24); ?>
         <p class="c-text__med c-text--bold c-text--main c-text--en"><?php echo $formatted_date ?></p>
+
+        <?php
+        // カテゴリーを取得
+        $terms = get_the_terms(get_the_ID(), 'category');
+        $cat_list = '';
+        if (! empty($terms) && ! is_wp_error($terms)) {
+            $cat_list .= '<ul class="l-list__staff-cat">';
+            foreach ($terms as $term) {
+                $cat_list .= sprintf(
+                    '<li class="c-item__staff-cat">
+                <p class="p-text__tag">%s</p>
+            </li>',
+                    esc_html($term->name)
+                );
+            }
+            $cat_list .= '</ul>';
+        }
+
+        ?>
+
+        <?php Space(24, 20); ?>
+
+        <?php
+        // 動的に生成したカテゴリリストを出力
+        echo $cat_list;
+        ?>
         <?php Space(48, 40); ?>
 
         <!-- 画像ギャラリー-->
