@@ -2,7 +2,7 @@ const BlockMediaLoading = () => {
     const blockMedia = document.getElementsByClassName('block-media');
     if (!blockMedia) return false;
     const theme_uri = tmp_path.temp_uri;
-    let ver = 4.0;
+    let ver = 5.0;
 
     const loadImage = (element) => {
         const srcUrl = theme_uri + element.dataset.src + '?' + ver;
