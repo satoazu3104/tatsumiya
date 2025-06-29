@@ -108,13 +108,13 @@
     }
 
     &__body {
-        font-size: res(18px, 14px);
+        font-size: res(20px, 16px);
         font-weight: 700;
         @include lineCut(2);
     }
 
     &__body-r {
-        font-size: res(18px, 14px);
+        font-size: res(20px, 16px);
         font-weight: 400;
         @include lineCut(2);
 
@@ -125,37 +125,37 @@
     }
 
     &__body-m {
-        font-size: res(16px, 14px);
+        font-size: res(18px, 16px);
         font-weight: 700;
         @include lineCut(math.div(26.72, 16));
     }
 
     &__body-s {
-        font-size: res(16px, 14px);
+        font-size: res(18px, 16px);
         @include lineCut(math.div(30.06, 16));
     }
 
     &__min {
-        font-size: res(14px, 12px);
+        font-size: res(16px, 16px);
         @include lineCut(1.5);
     }
 
     &__date {
-        font-size: res(16px, 12px);
+        font-size: res(18px, 16px);
         @include lineCut(1.5);
         @include space(60);
         font-family: $font-family-en;
     }
 
     &__tag {
-        font-size: res(16px, 12px);
+        font-size: res(18px, 16px);
         @include lineCut(1.5);
         @include space(60);
         font-family: $font-family-en;
     }
 
     &__post {
-        font-size: res(18px, 14px);
+        font-size: res(18px, 16px);
         @include lineCut(1.5);
         font-weight: 700;
     }
