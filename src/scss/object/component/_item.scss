@@ -466,6 +466,21 @@
                         border-bottom: unset;
                     }
                 }
+
+                &.detail {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    border-bottom: 1px solid #C8C1BF;
+
+                    @include sp {
+                        grid-template-columns: 100%;
+                        gap: 12px;
+                    }
+
+                    &:nth-last-child(1) {
+                        border-bottom: unset;
+                    }
+                }
             }
         }
     }
@@ -512,8 +527,7 @@
         align-items: flex-end;
 
         .l-wrap__ques,
-        .l-wrap__answer {
-        }
+        .l-wrap__answer {}
     }
 
     &__answer {
