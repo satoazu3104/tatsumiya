@@ -471,7 +471,7 @@
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     border-bottom: 1px solid #C8C1BF;
-                    gap: res(12px);
+                    gap: res(40px);
 
                     @include sp {
                         grid-template-columns: 100%;
