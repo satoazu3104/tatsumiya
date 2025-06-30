@@ -109,6 +109,6 @@ $slug_array = array(
     </div>
 
     <div class="l-header__instagram">
-        <a class="c-button__instagram-head" href="" target="_blank" rel="noopener noreferrer"></a>
+        <a class="c-button__instagram-head" href="https://www.instagram.com/tatsumiya_metal/" target="_blank" rel="noopener noreferrer"></a>
     </div>
 </header>

@@ -127,7 +127,7 @@ function display_information($phone_number)
 
                 <a
                     class="c-button__instagram"
-                    href=""
+                    href="https://www.instagram.com/tatsumiya_metal/"
                     target="_blank"
                     rel="noopener noreferrer">
                     <p class="p-text__button-m c-text--en c-text--upper c-text--white">instagram</p>
