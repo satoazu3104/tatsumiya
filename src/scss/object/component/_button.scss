@@ -149,7 +149,7 @@
         }
 
         @include dec('before') {
-            @include size(95.67px, 18px);
+            @include size(105.67px, 18px);
             background-color: $color-main;
             @include mask-image(contact-button);
             transition: background .2s ease;
