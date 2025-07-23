@@ -247,7 +247,7 @@ $pc-match: 1025px;
 }
 
 @mixin mask-image($slug) {
-    mask-image: url(../images/common/#{$slug}.webp);
+    mask-image: url(../images/common/#{$slug}.webp?3.0);
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
