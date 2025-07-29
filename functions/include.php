@@ -10,26 +10,24 @@ remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 //   10, 2
 // );
 add_filter(
-  'wpcf7_recaptcha_threshold',
+    'wpcf7_recaptcha_threshold',
 
-  function ($threshold) {
-    $threshold = 0.5; // decrease threshold to 0.3
+    function ($threshold) {
+        $threshold = 0.5; // decrease threshold to 0.3
 
-    return $threshold;
-  },
+        return $threshold;
+    },
 
-  10,
-  1
+    10,
+    1
 );
 add_filter('acf/settings/rest_api_format', function () {
-  return 'standard';
+    return 'standard';
 });
 /*
  * 変数
  */
 include get_template_directory() . '/functions/menu/global_menu.php';
-include get_template_directory() . '/functions/variable/medias.php';
-include get_template_directory() . '/functions/variable/texts.php';
 /*
  * class
  */
@@ -81,7 +79,7 @@ include get_template_directory() . '/functions/customizer/line-qr.php';
 //include get_template_directory().'/functions/post/shop.php';
 include get_template_directory() . '/functions/post/works.php';
 include get_template_directory() . '/functions/post/pipe_works.php';
-include get_template_directory().'/functions/post/staff.php';
+include get_template_directory() . '/functions/post/staff.php';
 // include get_template_directory().'/functions/post/doctor.php';
 //include get_template_directory().'/functions/post/menu.php';
 //include get_template_directory().'/functions/post/user.php';
@@ -119,10 +117,10 @@ include get_template_directory() . '/functions/shortcode/contact.php';
 add_action('registered_post_type', 'kaiza_posts_hierarchical', 10, 2);
 function kaiza_posts_hierarchical($post_type, $pto)
 {
-  global $wp_post_types;
-  if ($post_type != 'post') return;
-  $wp_post_types['post']->hierarchical = 1;
-  add_post_type_support('post', 'page-attributes');
+    global $wp_post_types;
+    if ($post_type != 'post') return;
+    $wp_post_types['post']->hierarchical = 1;
+    add_post_type_support('post', 'page-attributes');
 }
 /*
  * 個別ページ内での次の投稿、前の投稿
