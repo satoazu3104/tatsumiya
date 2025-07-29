@@ -1,13 +1,13 @@
 <?php
-add_action('init', 'create_post_works');
+add_action('init', 'create_post_pipe_works');
 
 
-function create_post_works()
+function create_post_pipe_works()
 {
   register_post_type(
-    'works',
+    'pipe_works',
     array(
-      'label' => '加工実績',
+      'label' => 'パイプ加工実績',
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
@@ -28,8 +28,8 @@ function create_post_works()
   );
 
   register_taxonomy(
-    'works-cat',
-    'works',
+    'pipe_works-cat',
+    'pipe_works',
     array(
       'label' => 'カテゴリー',
       'hierarchical' => true,
@@ -39,7 +39,7 @@ function create_post_works()
   );
 
   register_taxonomy(
-    'works-tag',
+    'pipe_works-tag',
 
     array(
       'label' => 'タグ',
@@ -60,7 +60,7 @@ function add_address_meta_box()
     'address_meta_box', // メタボックスID
     '住所', // メタボックスのタイトル
     'display_address_meta_box', // コールバック関数
-    'works', // 対象のカスタム投稿タイプ
+    'pipe_works', // 対象のカスタム投稿タイプ
     'side', // 表示位置 ('side'にするとカテゴリ―の近くに表示される)
     'default' // 優先度
   );

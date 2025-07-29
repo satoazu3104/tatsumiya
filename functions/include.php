@@ -80,6 +80,7 @@ include get_template_directory() . '/functions/customizer/line-qr.php';
 // include get_template_directory() . '/functions/post/voice.php';
 //include get_template_directory().'/functions/post/shop.php';
 include get_template_directory() . '/functions/post/works.php';
+include get_template_directory() . '/functions/post/pipe_works.php';
 include get_template_directory().'/functions/post/staff.php';
 // include get_template_directory().'/functions/post/doctor.php';
 //include get_template_directory().'/functions/post/menu.php';
