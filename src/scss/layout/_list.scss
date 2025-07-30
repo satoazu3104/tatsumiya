@@ -94,7 +94,7 @@
     &__business-number {
         display: flex;
         // gap: res(88px);
-        
+
         @include sp {
             display: grid;
             grid-template-columns: 100%;
@@ -102,12 +102,19 @@
     }
 
     &__info-value {}
-    
+
     &__qa {
         @include content-gap(20px);
     }
-    
+
     &__qa-group {
         @include content-gap(40px);
+    }
+
+    &__works {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: res(48px);
+        margin-top: res(80px);
     }
 }

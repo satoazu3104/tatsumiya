@@ -55,11 +55,11 @@ function custom_news_shortcode($atts)
             while ($query->have_posts()) {
                 $query->the_post();
                 $formatted_date = get_the_date('Y.m.d'); // フォーマットした投稿日を取得
-                $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-post__img--thumb'));
                 $year = get_the_date('Y'); // フォーマットした投稿日を取得
                 $month = ltrim(get_the_date('m.'), '0'); // フォーマットした投稿日を取得
                 $date = get_the_date('d'); // フォーマットした投稿日を取得
                 $categories = get_the_category(get_the_ID());
+                $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-post__img--thumb'));
                 if (empty($thumbnail)) {
                     $thumbnail = '<img src="' . $fallback_image_url . '" alt="Fallback Image" class="p-post__img--thumb" />';
                 }

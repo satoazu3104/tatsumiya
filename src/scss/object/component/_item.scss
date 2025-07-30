@@ -544,4 +544,8 @@
             margin-left: auto;
         }
     }
+    
+    &__works {
+        @include content-gap(12px);
+    }
 }

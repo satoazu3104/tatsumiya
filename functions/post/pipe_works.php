@@ -28,10 +28,21 @@ function create_post_pipe_works()
   );
 
   register_taxonomy(
-    'pipe_works-cat',
+    'pipe_works_material-cat',
     'pipe_works',
     array(
-      'label' => 'カテゴリー',
+      'label' => '材質テゴリー',
+      'hierarchical' => true,
+      'public' => true,
+      'show_in_rest' => true,
+    )
+  );
+
+  register_taxonomy(
+    'pipe_works_shape-cat',
+    'pipe_works',
+    array(
+      'label' => '形状カテゴリー',
       'hierarchical' => true,
       'public' => true,
       'show_in_rest' => true,
@@ -40,7 +51,7 @@ function create_post_pipe_works()
 
   register_taxonomy(
     'pipe_works-tag',
-
+    'pipe_works',
     array(
       'label' => 'タグ',
       'hierarchical' => false,

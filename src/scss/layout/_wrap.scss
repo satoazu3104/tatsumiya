@@ -273,12 +273,30 @@
             clip-path: polygon(100% 0, 100% 0, 100% 100%, 0% 100%);
         }
     }
-    
+
     &__answer {
         &::before {
             right: unset;
             left: 100%;
             clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+        }
+    }
+
+    &__cat-form {
+        padding: res(64px) res(140px);
+        background-color: $color-main;
+        display: grid;
+        grid-template-columns: 1fr 1fr max-content;
+    }
+    
+    &__cat-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: res(8px);
+        
+        &__group {
+            @include content-gap(4px);
+            margin-bottom: res(12px);
         }
     }
 }

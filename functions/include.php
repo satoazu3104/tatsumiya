@@ -104,6 +104,7 @@ include get_template_directory() . '/functions/shortcode/news.php';
 include get_template_directory() . '/functions/shortcode/voice.php';
 include get_template_directory() . '/functions/shortcode/categorys.php';
 include get_template_directory() . '/functions/shortcode/works.php';
+include get_template_directory() . '/functions/shortcode/pipe_works.php';
 include get_template_directory() . '/functions/shortcode/staff.php';
 include get_template_directory() . '/functions/shortcode/google_map.php';
 include get_template_directory() . '/functions/shortcode/pagination.php';
