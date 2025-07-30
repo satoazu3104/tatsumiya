@@ -52,20 +52,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const subjectSelect = document.querySelector('select[name="subject"]');
     if (subjectSelect) {
         const bodyTextarea = document.querySelector('textarea[name="body"]');
+        const processingFields = document.querySelectorAll('.c-input__items.processing');
 
         const placeholders = {
-            '金属材料について':
+            '材料について':
                 '例：「銅の材料 C1020 2mm コイル材を探しています。50mm幅ぐらいを最少ロットで見積いただくことは可能でしょうか？」\n「銅のコイル材を安定的に納入していただける会社を探しています。相談したいので一度連絡いただくことは可能でしょうか？」',
-            'パイプ加工について':
-                '例：「設備の補修で、ステンレスの配管部品が必要になりました。必要なのは数個だけなのですが、対応可能でしょうか？」\n「銅の熱交換器の製作を検討しています。ぐるぐるとらせん状に巻きたいのですが、図面（ポンチ絵可）をお送りさせて下さい。」',
-            '切削加工について':
-                '例：「黄銅の切削部品を使用しています。鉛レス材の対応を求められているのですが、材料の選定から相談乗っていただけますか？」\n「純銅の切削加工をやってくれる業者を探しています。一度図面を見ていただきたいのですが。」',
-            'その他お問い合わせ': ''
+            '加工について':
+                '例：「設備の補修で、ステンレスの配管部品が必要になりました。必要なのは数個だけなのですが、対応可能でしょうか？」\n「銅の熱交換器の製作を検討しています。ぐるぐるとらせん状に巻きたいのですが、図面（ポンチ絵可）をお送りさせて下さい。」\n\n例：「黄銅の切削部品を使用しています。鉛レス材の対応を求められているのですが、材料の選定から相談乗っていただけますか？」\n「純銅の切削加工をやってくれる業者を探しています。一度図面を見ていただきたいのですが。」',
+            'その他': ''
         };
 
         function updatePlaceholder() {
             const selected = subjectSelect.value;
             bodyTextarea.placeholder = placeholders[selected] || '';
+        }
+        
+        function updateFormState() {
+            const selected = subjectSelect.value;
+
+            // プレースホルダー更新
+            bodyTextarea.placeholder = placeholders[selected] || '';
+
+            // processing クラスを表示／非表示に
+            processingFields.forEach(el => {
+                if (selected === '加工について') {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
         }
 
         // 初期表示
