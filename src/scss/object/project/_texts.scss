@@ -113,6 +113,7 @@
         font-weight: 700;
         @include space(40);
         font-family: $font-family-en;
+        @include lineCut(1.5);
     }
 
     &__button-m {
