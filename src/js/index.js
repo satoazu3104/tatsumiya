@@ -82,6 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updateFormState();
 
         // 変更時
-        subjectSelect.addEventListener('change', updatePlaceholder);
+        subjectSelect.addEventListener('change', updateFormState);
     }
 });
