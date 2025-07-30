@@ -107,6 +107,13 @@
             font-size: res(40px, 24px);
         }
     }
+    
+    &__phone-contact {
+        font-size: res(48px, 24px);
+        font-weight: 700;
+        @include space(40);
+        font-family: $font-family-en;
+    }
 
     &__button-m {
         font-size: 18px;
