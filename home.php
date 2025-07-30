@@ -54,11 +54,19 @@ if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
             }
         } else {
             // 現在の投稿の本文を出力（固定ページ含む）
-            if (have_posts()) :
-                while (have_posts()) : the_post();
-                    the_content(); // ←これがショートコードも処理してくれます
-                endwhile;
-            endif;
+            $post_type = get_post_type(get_the_ID());
+            console_log($post_type);
+            if ($post_type == 'staff') {
+                $staff_page = get_page_by_path('professional', OBJECT, 'page');
+                $staff_html = apply_filters('the_content', $staff_page->post_content);
+                echo $staff_html;
+            } else {
+                if (have_posts()) :
+                    while (have_posts()) : the_post();
+                        the_content(); // ←これがショートコードも処理してくれます
+                    endwhile;
+                endif;
+            }
         }
         ?>
         <?php
