@@ -29,7 +29,12 @@ $slug = $post ? $post->post_name : null;
     <div class="u-anim__first u-anim__first--page js-first-animation"></div>
 <?php endif; ?>
 
-<a href="<?php echo site_url() . '/contact'; ?>" class="p-img__fix-recruit pc js-loaded-animation"></a>
+<?php
+if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
+    // recruitスラッグのページだけに表示する内容
+    echo '<div class="p-img__fix-recruit"></div>';
+}
+?>
 
 <div class="l-section__load"></div>
 <main

@@ -48,6 +48,7 @@ $slug_array = array(
     </a>
 </div>
 <header class="l-header__wrap <?php echo is_front_page() ? $pc_menu : 'is-active ' . $pc_menu; ?>">
+    <a href="<?php echo site_url() . '/contact'; ?>" class="p-img__fix-contact pc js-loaded-animation"></a>
     <div class="l-header__inner <?php echo $pc_menu; ?>">
         <!-- ロゴ -->
 

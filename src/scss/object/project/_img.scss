@@ -176,4 +176,40 @@
         @include size-res(80px);
         border-radius: 50%;
     }
+
+    &__fix-contact {
+        width: res(220px);
+        height: res(56px, 48px);
+        border-radius: 5em;
+        border: 1px solid $color-white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 100;
+        right: res(120px);
+        top: res(16px);
+
+        @include dec('before') {
+            @include size-res(95.67px, 18px);
+            background-color: $color-white;
+            @include mask-image(fix-mail);
+        }
+    }
+
+    &__fix-recruit {
+        @include size-res(180px);
+        background-image: url(../images/common/fix-recruit.webp);
+        background-size: cover;
+        position: fixed;
+        z-index: 100;
+        right: res(88px);
+        bottom: res(48px);
+
+        @include sp {
+            background-image: url(../images/common/fix-recruit-sp.webp);
+            right: 12px;
+            bottom: 76px;
+        }
+    }
 }
