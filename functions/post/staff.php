@@ -1,12 +1,13 @@
 <?php
 // カスタム投稿タイプ「スタッフ」を登録
-function create_staff_post_type() {
+function create_staff_post_type()
+{
     register_post_type(
         'staff',
         array(
             'labels' => array(
-                'name'          => __( 'スタッフ' ),
-                'singular_name' => __( 'スタッフ' ),
+                'name'          => __('スタッフ'),
+                'singular_name' => __('スタッフ'),
             ),
             'public'        => true,
             'show_in_rest'  => true,
@@ -24,9 +25,21 @@ function create_staff_post_type() {
                 'page-attributes',
             ),
             // ↓ ここで「カテゴリ」を有効化
-            'taxonomies'    => array( 'category' ),
-            'rewrite'       => array( 'slug' => 'staff' ),
+            // 'taxonomies'    => array('category'),
+            'rewrite'       => array('slug' => 'staff'),
+        )
+    );
+
+    // スタッフ専用カテゴリ
+    register_taxonomy(
+        'staff_category',
+        'staff',
+        array(
+            'label' => 'スタッフカテゴリー',
+            'hierarchical' => true,
+            'public' => true,
+            'show_in_rest' => true,
         )
     );
 }
-add_action( 'init', 'create_staff_post_type' );
+add_action('init', 'create_staff_post_type');

@@ -136,3 +136,18 @@ include get_template_directory() . '/functions/parm.php';
  */
 // include get_template_directory().'/functions/registration.php';
 include get_template_directory() . '/functions/block-registration/register.php';
+
+add_filter('aioseo_breadcrumbs_trail', 'remove_category_from_breadcrumbs');
+function remove_category_from_breadcrumbs($breadcrumbs)
+{
+    // カテゴリのラベルの例：'カテゴリー', 'Categories' など
+    // カスタム投稿や多言語対応サイトでは名称に注意
+
+    return array_filter($breadcrumbs, function ($crumb) {
+        // 例: カテゴリURLを含むパスを除外（投稿URLの一部にcategoryが含まれるかで判断）
+        if (isset($crumb['url']) && strpos($crumb['url'], '/category/') !== false) {
+            return false;
+        }
+        return true;
+    });
+}
