@@ -59,7 +59,7 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
     ?>
     <div class="l-row" data-state="min">
         <div class="p-width__fit">
-            <h1 class="c-text__middle c-text--bold"><?php echo $title; ?></h1>
+            <h1 class="c-text__middle c-text--bold"><?php echo $title . ' ' . $user_name; ?></h1>
         </div>
         <?php Space(32, 24); ?>
         <p class="c-text__med c-text--bold c-text--main c-text--en"><?php echo $formatted_date ?></p>
