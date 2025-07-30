@@ -43,26 +43,29 @@ function display_pipe_works_list()
 
     // フィルターフォーム
 ?>
-    <form class="l-wrap__cat-form" method="get" action="">
-        <select class="c-input__select" name="pipe_works_material">
-            <option value="">材質で絞り込む</option>
-            <?php foreach ($materials as $term): ?>
-                <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($material, $term->slug); ?>>
-                    <?php echo esc_html($term->name); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url().'/business/pipe/works'; ?>">
+        <p class="p-text__body c-text--white">材質・形状から検索する</p>
+        <div class="l-wrap__cat-form__inner">
+            <select class="c-input__select" name="pipe_works_material">
+                <option value="">材質で絞り込む</option>
+                <?php foreach ($materials as $term): ?>
+                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($material, $term->slug); ?>>
+                        <?php echo esc_html($term->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-        <select class="c-input__select" name="pipe_works_shape">
-            <option value="">形状で絞り込む</option>
-            <?php foreach ($shapes as $term): ?>
-                <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($shape, $term->slug); ?>>
-                    <?php echo esc_html($term->name); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+            <select class="c-input__select" name="pipe_works_shape">
+                <option value="">形状で絞り込む</option>
+                <?php foreach ($shapes as $term): ?>
+                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($shape, $term->slug); ?>>
+                        <?php echo esc_html($term->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-        <button type="submit">検索</button>
+            <button type="submit">検索</button>
+        </div>
     </form>
     <div class="pipe-works-results">
         <?php if ($query->have_posts()): ?>

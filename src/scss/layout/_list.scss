@@ -114,8 +114,8 @@
     &__works {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: res(48px);
-        margin-top: res(80px);
+        gap: res(24px);
+        margin-top: res(48px);
     }
     
     &__numbers {

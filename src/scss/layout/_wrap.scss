@@ -285,24 +285,28 @@
     &__cat-form {
         padding: res(64px) res(140px);
         background-color: $color-main;
-        display: grid;
-        grid-template-columns: 1fr 1fr max-content;
+
+        &__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr max-content;
+            gap: 8px;
+            margin-top: res(24px);
+        }
     }
-    
+
     &__cat-list {
         display: flex;
         flex-wrap: wrap;
         gap: res(8px);
-        
+
         &__group {
             @include content-gap(4px);
             margin-bottom: res(12px);
         }
     }
-    
-    &__numbers-header {
-    }
-    
+
+    &__numbers-header {}
+
     &__numbers-body {
         display: flex;
         align-items: baseline;
