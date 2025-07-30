@@ -61,11 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 '例：「設備の補修で、ステンレスの配管部品が必要になりました。必要なのは数個だけなのですが、対応可能でしょうか？」\n「銅の熱交換器の製作を検討しています。ぐるぐるとらせん状に巻きたいのですが、図面（ポンチ絵可）をお送りさせて下さい。」\n\n例：「黄銅の切削部品を使用しています。鉛レス材の対応を求められているのですが、材料の選定から相談乗っていただけますか？」\n「純銅の切削加工をやってくれる業者を探しています。一度図面を見ていただきたいのですが。」',
             'その他': ''
         };
-
-        function updatePlaceholder() {
-            const selected = subjectSelect.value;
-            bodyTextarea.placeholder = placeholders[selected] || '';
-        }
         
         function updateFormState() {
             const selected = subjectSelect.value;
@@ -84,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // 初期表示
-        updatePlaceholder();
+        updateFormState();
 
         // 変更時
         subjectSelect.addEventListener('change', updatePlaceholder);
