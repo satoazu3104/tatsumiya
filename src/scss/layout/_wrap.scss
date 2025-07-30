@@ -299,4 +299,13 @@
             margin-bottom: res(12px);
         }
     }
+    
+    &__numbers-header {
+    }
+    
+    &__numbers-body {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+    }
 }

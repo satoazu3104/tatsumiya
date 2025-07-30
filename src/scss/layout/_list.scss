@@ -117,4 +117,14 @@
         gap: res(48px);
         margin-top: res(80px);
     }
+    
+    &__numbers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        
+        @include sp {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 }

@@ -47,6 +47,14 @@
         text-transform: uppercase;
     }
 
+    &__numbers {
+        font-size: res(140px, 32px);
+        @include space(60);
+        @include lineCut(1.5);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
     &__section-title-jp {
         font-size: res(24px, 18px);
         @include lineCut(2);
@@ -159,7 +167,7 @@
         @include lineCut(1.5);
         font-weight: 700;
     }
-    
+
     &__phone {
         font-size: 18px;
         font-weight: 700;
