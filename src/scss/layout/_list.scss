@@ -116,13 +116,18 @@
         grid-template-columns: repeat(4, 1fr);
         gap: res(24px);
         margin-top: res(48px);
+
+        @include sp {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
     }
-    
+
     &__numbers {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2px;
-        
+
         @include sp {
             grid-template-columns: repeat(2, 1fr);
         }

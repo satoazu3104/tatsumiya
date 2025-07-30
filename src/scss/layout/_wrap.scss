@@ -286,11 +286,20 @@
         padding: res(64px) res(140px);
         background-color: $color-main;
 
+        @include sp {
+            padding: 32px 24px;
+        }
+
         &__inner {
             display: grid;
             grid-template-columns: 1fr 1fr max-content;
             gap: 8px;
             margin-top: res(24px);
+
+            @include sp {
+                grid-template-columns: 100%;
+                gap: 4px;
+            }
         }
     }
 
