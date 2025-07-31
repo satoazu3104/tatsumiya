@@ -302,6 +302,12 @@
             border-radius: 28px;
         }
     }
+    
+    &__file-wrap {
+        @include sp {
+            width: 280px;
+        }
+    }
 }
 
 .mwform-radio-field {
