@@ -20,15 +20,15 @@
                 grid-template-areas: 'labels input';
                 gap: 12px;
             }
-            
+
             a {
                 color: $color-accent;
             }
-            
+
             br {
                 display: none;
             }
-            
+
             .wpcf7-list-item-label {
                 display: none;
             }
@@ -220,7 +220,8 @@
         }
     }
 
-    &__check {
+    &__check,
+    &__radio {
         input {
             appearance: none;
             width: 32px;
@@ -238,11 +239,19 @@
             background-position: center;
             background-repeat: no-repeat;
             transition: border .2s ease;
-            outline: 1px solid rgba(45,17,9,.2);
+            outline: 1px solid rgba(45, 17, 9, .2);
 
             &:checked {
                 border: 8px solid $color-input;
             }
+        }
+    }
+
+    &__radio {
+        .wpcf7-list-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
     }
 
@@ -352,5 +361,4 @@
     width: 100%;
 }
 
-.wpcf7-checkbox {
-}
+.wpcf7-checkbox {}
