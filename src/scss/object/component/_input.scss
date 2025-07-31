@@ -6,14 +6,27 @@
     &__label {
         display: flex;
         align-items: center;
-        flex-direction: row-reverse;
         gap: 24px;
-        justify-content: flex-end;
+
+        @include sp {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: "labels" "input";
+        }
+
+        &.check {
+            @include sp {
+                grid-template-columns: max-content 1fr;
+                grid-template-areas: 'labels input';
+                gap: 12px;
+            }
+        }
 
         .mwform-checkbox-field-text {
             display: none;
         }
     }
+
 
     &__list {
         display: grid;
