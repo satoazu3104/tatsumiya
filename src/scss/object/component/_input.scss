@@ -209,25 +209,27 @@
     }
 
     &__check {
-        appearance: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: 16px solid $color-input;
-        outline: unset;
-        padding: 0;
-        min-height: unset;
-        margin: 0;
-        margin-right: 0 !important;
-        background-image: url(../images/common/icon-check.webp);
-        background-size: 14px 10.25px;
-        background-color: $color-main;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition: border .2s ease;
+        input {
+            appearance: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 16px solid $color-input;
+            outline: unset;
+            padding: 0;
+            min-height: unset;
+            margin: 0;
+            margin-right: 0 !important;
+            background-image: url(../images/common/icon-check.webp);
+            background-size: 14px 10.25px;
+            background-color: $color-main;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: border .2s ease;
 
-        &:checked {
-            border: 8px solid $color-input;
+            &:checked {
+                border: 8px solid $color-input;
+            }
         }
     }
 
