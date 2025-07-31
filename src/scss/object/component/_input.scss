@@ -20,6 +20,18 @@
                 grid-template-areas: 'labels input';
                 gap: 12px;
             }
+            
+            a {
+                color: $color-accent;
+            }
+            
+            br {
+                display: none;
+            }
+            
+            .wpcf7-list-item-label {
+                display: none;
+            }
         }
 
         .mwform-checkbox-field-text {
@@ -226,6 +238,7 @@
             background-position: center;
             background-repeat: no-repeat;
             transition: border .2s ease;
+            outline: 1px solid rgba(45,17,9,.2);
 
             &:checked {
                 border: 8px solid $color-input;
@@ -340,8 +353,4 @@
 }
 
 .wpcf7-checkbox {
-    input {
-        @include size(24px);
-        border-radius: 50%;
-    }
 }
