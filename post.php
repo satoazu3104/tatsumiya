@@ -106,7 +106,7 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
         <a href="<?php echo $return_link[$post_type]; ?>" class="c-button__wrap center color return">
             <div class="c-button__before"></div>
             <div class="c-button__inner">
-                <p class="p-text__button">return view</p>
+                <p class="p-text__button">view all</p>
             </div>
             <div class="c-button__after"></div>
         </a>

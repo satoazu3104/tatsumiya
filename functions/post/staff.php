@@ -6,8 +6,8 @@ function create_staff_post_type()
         'staff',
         array(
             'labels' => array(
-                'name'          => __('スタッフ'),
-                'singular_name' => __('スタッフ'),
+                'name'          => __('社員紹介'),
+                'singular_name' => __('社員紹介'),
             ),
             'public'        => true,
             'show_in_rest'  => true,
