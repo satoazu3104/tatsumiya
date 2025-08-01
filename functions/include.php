@@ -101,6 +101,7 @@ include get_template_directory() . '/functions/custom-rest/theme_media.php';
  * ショートコード
  */
 include get_template_directory() . '/functions/shortcode/news.php';
+include get_template_directory() . '/functions/shortcode/news_page.php';
 include get_template_directory() . '/functions/shortcode/voice.php';
 include get_template_directory() . '/functions/shortcode/categorys.php';
 include get_template_directory() . '/functions/shortcode/works.php';
@@ -136,13 +137,3 @@ include get_template_directory() . '/functions/parm.php';
  */
 // include get_template_directory().'/functions/registration.php';
 include get_template_directory() . '/functions/block-registration/register.php';
-
-add_filter('aioseo_breadcrumbs_trail', function ($trail) {
-    foreach ($trail as $key => $crumb) {
-        // 「未分類（Uncategorized）」のスラッグが 'uncategorized' であることを前提
-        if (isset($crumb['term']) && $crumb['term']->slug === 'uncategorized') {
-            unset($trail[$key]);
-        }
-    }
-    return array_values($trail);
-});
