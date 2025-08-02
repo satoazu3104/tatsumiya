@@ -30,10 +30,9 @@
 
     &__fv {
         padding: 0 0 res(100px);
-        
+
         &.is-active {
-            .p-img__fv-back__picture {
-            }
+            .p-img__fv-back__picture {}
         }
     }
 
@@ -49,7 +48,7 @@
         position: relative;
         z-index: 1;
         padding: res(160px) 0;
-        
+
         .l-wrap__title-button {
             width: calc(100% - res(286px));
         }
@@ -100,9 +99,14 @@
 
     &__hero {
         padding: res(240px) 0 res(32px);
-        
+
         @include sp {
             padding: 104px 0 12px;
+            aspect-ratio: 375/265;
+            
+            &.recruit {
+                aspect-ratio: unset;
+            }
         }
 
         .p-title__wrap {

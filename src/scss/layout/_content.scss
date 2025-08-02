@@ -38,7 +38,9 @@
         @include content-gap(120px);
         
         @include sp {
-            gap: 48px;
+            gap: 0;
+            align-content: space-between;
+            height: 100%;
         }
     }
 
