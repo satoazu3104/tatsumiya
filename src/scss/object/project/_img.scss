@@ -191,7 +191,7 @@
         top: res(16px);
 
         @include dec('before') {
-            @include size-res(95.67px, 18px);
+            @include size-res(105.67px, 18px);
             background-color: $color-white;
             @include mask-image(fix-mail);
         }
