@@ -2,83 +2,96 @@
 add_shortcode('pipe_works_list', 'display_pipe_works_list');
 function display_pipe_works_list()
 {
-    // タクソノミークエリの取得
+    // パラメータ取得
     $material = isset($_GET['pipe_works_material']) ? sanitize_text_field($_GET['pipe_works_material']) : '';
-    $shape = isset($_GET['pipe_works_shape']) ? sanitize_text_field($_GET['pipe_works_shape']) : '';
+    $shape    = isset($_GET['pipe_works_shape'])    ? sanitize_text_field($_GET['pipe_works_shape'])    : '';
 
-    // タクソノミークエリの構築
-    $tax_query = array('relation' => 'AND');
+    // tax_query 組み立て
+    $tax_query = array();
 
     if ($material) {
         $tax_query[] = array(
             'taxonomy' => 'pipe_works_material-cat',
-            'field'    => 'slug',
-            'terms'    => $material,
+            'field'    => 'id',   // ★ここをslugからidに変更
+            'terms'    => (int) $material,
         );
     }
 
     if ($shape) {
         $tax_query[] = array(
             'taxonomy' => 'pipe_works_shape-cat',
-            'field'    => 'slug',
-            'terms'    => $shape,
+            'field'    => 'id',   // ★ここもidに
+            'terms'    => (int) $shape,
         );
     }
 
-    // 投稿の取得
+    if (!empty($tax_query) && count($tax_query) > 1) {
+        // 両方指定時は AND
+        $tax_query = array_merge(array('relation' => 'AND'), $tax_query);
+    }
+
+    // 投稿取得
     $args = array(
-        'post_type' => 'pipe_works',
+        'post_type'      => 'pipe_works',
         'posts_per_page' => -1,
-        'tax_query' => count($tax_query) > 1 ? $tax_query : '',
+        'post_status'    => 'publish',
     );
+
+    if (!empty($tax_query)) {
+        $args['tax_query'] = $tax_query;
+    }
 
     $query = new WP_Query($args);
 
-    // 代替の画像 URL を設定
+    // 代替画像
     $fallback_image_url = get_template_directory_uri() . '/dist/assets/images/common/noimage.webp';
-    // カテゴリリスト取得
-    $materials = get_terms(array('taxonomy' => 'pipe_works_material-cat', 'hide_empty' => false));
-    $shapes = get_terms(array('taxonomy' => 'pipe_works_shape-cat', 'hide_empty' => false));
-    ob_start();
 
-    // フィルターフォーム
+    // カテゴリ（タクソノミー）取得
+    $materials = get_terms(array('taxonomy' => 'pipe_works_material-cat', 'hide_empty' => false));
+    $shapes    = get_terms(array('taxonomy' => 'pipe_works_shape-cat',    'hide_empty' => false));
+
+    ob_start();
 ?>
-    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url().'/business/pipe/works'; ?>">
+    <form class="l-wrap__cat-form" method="get" action="">
         <p class="p-text__body c-text--white">材質・形状から検索する</p>
         <div class="l-wrap__cat-form__inner">
             <select class="c-input__select" name="pipe_works_material">
                 <option value="">材質で絞り込む</option>
-                <?php foreach ($materials as $term): ?>
-                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($material, $term->slug); ?>>
-                        <?php echo esc_html($term->name); ?>
-                    </option>
-                <?php endforeach; ?>
+                <?php if (!is_wp_error($materials)) : foreach ($materials as $term): ?>
+                        <option value="<?php echo esc_attr($term->term_id); ?>" <?php selected($material, $term->term_id); ?>>
+                            <?php echo esc_html($term->name); ?>
+                        </option>
+                <?php endforeach;
+                endif; ?>
             </select>
 
             <select class="c-input__select" name="pipe_works_shape">
                 <option value="">形状で絞り込む</option>
-                <?php foreach ($shapes as $term): ?>
-                    <option value="<?php echo esc_attr($term->slug); ?>" <?php selected($shape, $term->slug); ?>>
-                        <?php echo esc_html($term->name); ?>
-                    </option>
-                <?php endforeach; ?>
+                <?php if (!is_wp_error($shapes)) : foreach ($shapes as $term): ?>
+                        <option value="<?php echo esc_attr($term->term_id); ?>" <?php selected($shape, $term->term_id); ?>>
+                            <?php echo esc_html($term->name); ?>
+                        </option>
+                <?php endforeach;
+                endif; ?>
             </select>
 
             <button type="submit">検索</button>
         </div>
     </form>
+
     <div class="pipe-works-results">
         <?php if ($query->have_posts()): ?>
             <ul class="l-list__works">
                 <?php while ($query->have_posts()): $query->the_post();
                     $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-post__img--thumb'));
                     if (empty($thumbnail)) {
-                        $thumbnail = '<img src="' . $fallback_image_url . '" alt="Fallback Image" class="p-post__img--thumb" />';
+                        $thumbnail = '<img src="' . esc_url($fallback_image_url) . '" alt="Fallback Image" class="p-post__img--thumb" />';
                     }
                 ?>
                     <li class="c-item__works">
                         <?php echo $thumbnail; ?>
                         <div class="c-item__works__content">
+                            <p class="p-text__item-m"><?php the_title(); ?></p>
                             <div class="l-wrap__cat-list__group">
                                 <div class="l-wrap__cat-list">
                                     <p class="p-text__min">材質 :</p>
@@ -86,8 +99,7 @@ function display_pipe_works_list()
                                         <?php
                                         $material_terms = get_the_terms(get_the_ID(), 'pipe_works_material-cat');
                                         if (!empty($material_terms) && !is_wp_error($material_terms)) {
-                                            $materials_list = wp_list_pluck($material_terms, 'name');
-                                            echo esc_html(implode(', ', $materials_list));
+                                            echo esc_html(implode(', ', wp_list_pluck($material_terms, 'name')));
                                         } else {
                                             echo 'なし';
                                         }
@@ -100,8 +112,7 @@ function display_pipe_works_list()
                                         <?php
                                         $shape_terms = get_the_terms(get_the_ID(), 'pipe_works_shape-cat');
                                         if (!empty($shape_terms) && !is_wp_error($shape_terms)) {
-                                            $shapes_list = wp_list_pluck($shape_terms, 'name');
-                                            echo esc_html(implode(', ', $shapes_list));
+                                            echo esc_html(implode(', ', wp_list_pluck($shape_terms, 'name')));
                                         } else {
                                             echo 'なし';
                                         }
@@ -109,10 +120,10 @@ function display_pipe_works_list()
                                     </p>
                                 </div>
                             </div>
-                            <p class="p-text__item-m"><?php the_title(); ?></p>
                         </div>
                     </li>
-                <?php endwhile; ?>
+                <?php endwhile;
+                wp_reset_postdata(); ?>
             </ul>
         <?php else: ?>
             <br>
@@ -120,7 +131,5 @@ function display_pipe_works_list()
         <?php endif; ?>
     </div>
 <?php
-
-    wp_reset_postdata();
     return ob_get_clean();
 }

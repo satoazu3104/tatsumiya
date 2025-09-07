@@ -454,8 +454,9 @@
 
                 &.item {
                     display: grid;
-                    grid-template-columns: res(133px, 104px) 1fr;
+                    grid-template-columns: res(180px, 104px) 1fr;
                     border-bottom: 1px solid #C8C1BF;
+                    gap: 12px;
 
                     @include sp {
                         grid-template-columns: 100%;
@@ -466,6 +467,24 @@
                         border-bottom: unset;
                     }
                 }
+
+                &.item-media {
+                    display: grid;
+                    grid-template-columns: res(180px, 104px) 1fr res(240px);
+                    border-bottom: 1px solid #C8C1BF;
+                    gap: 12px;
+
+                    @include sp {
+                        grid-template-columns: 100%;
+                        gap: 12px;
+                    }
+
+                    &:nth-last-child(1) {
+                        border-bottom: unset;
+                    }
+                }
+
+
 
                 &.detail {
                     display: grid;
@@ -557,9 +576,10 @@
         width: 100%;
         height: auto;
         padding: 24px 12px;
-        
+
         @include sp {
             aspect-ratio: unset;
+
             .p-text__item-m {
                 font-size: 14px;
             }
