@@ -52,7 +52,7 @@ function display_pipe_works_list()
 
     ob_start();
 ?>
-    <form class="l-wrap__cat-form" method="get" action="">
+    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url().'/business/pipe/works'; ?>">
         <p class="p-text__body c-text--white">材質・形状から検索する</p>
         <div class="l-wrap__cat-form__inner">
             <select class="c-input__select" name="pipe_works_material">
