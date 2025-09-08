@@ -212,10 +212,73 @@
             bottom: 76px;
         }
     }
-    
+
     &__machine {
         width: 100%;
         height: auto;
         aspect-ratio: 4/3;
+    }
+
+    &__ccac-about {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+    }
+
+    &__pop-up {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+
+        &.is-active {}
+
+        &__picture {
+            @include pc {
+                &.is-active {
+                    position: fixed;
+                    z-index: 90;
+                    background-color: white;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: calc(100vw - res(284px));
+                    height: calc(100dvh - res(160px));
+                    overflow-y: scroll;
+                    padding: res(80px);
+                }
+            }
+        }
+    }
+}
+
+html {
+    @include pc {
+        &.pop-up {
+            overflow: hidden;
+        }
+    }
+}
+
+main {
+    @include pc {
+        position: relative;
+
+        @include dec('before') {
+            background-color: black;
+            z-index: 90;
+            inset: 0;
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .2s ease;
+        }
+
+        &.pop-up {
+            z-index: 100000;
+
+            &::before {
+                opacity: .5;
+            }
+        }
     }
 }

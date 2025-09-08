@@ -99,6 +99,13 @@
             display: grid;
             grid-template-columns: 100%;
         }
+
+        &.part4 {
+            @include pc {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
     }
 
     &__info-value {}
@@ -130,6 +137,17 @@
 
         @include sp {
             grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    &__uses {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: res(40px);
+        
+        @include sp {
+            grid-template-columns: 100%;
+            gap: 48px;
         }
     }
 }

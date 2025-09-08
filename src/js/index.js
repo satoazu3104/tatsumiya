@@ -98,3 +98,21 @@ document.addEventListener('DOMContentLoaded', function () {
         link.textContent = '新着情報';
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const popUps = document.querySelectorAll('.p-img__pop-up__picture');
+    const html = document.querySelector('html');
+    const main = document.querySelector('main');
+    if (popUps.length > 0) {
+        console.log(popUps);
+        popUps.forEach(function (pop) {
+            const meida = pop.querySelector('.p-img__pop-up');
+            pop.addEventListener('click', () => {
+                pop.classList.toggle('is-active');
+                meida.classList.toggle('is-active');
+                html.classList.toggle('pop-up');
+                main.classList.toggle('pop-up');
+            })
+        })
+    }
+})

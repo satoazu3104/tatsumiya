@@ -321,4 +321,27 @@
         align-items: baseline;
         justify-content: center;
     }
+    
+    &__ccac-about {
+        display: grid;
+        grid-template-columns: 1fr res(640px);
+        grid-template-areas: 'media content';
+        gap: res(80px);
+        align-items: center;
+        
+        @include sp {
+            grid-template-columns: 100%;
+            grid-template-areas: 'content' 'media';
+        }
+    }
+    
+    &__ccac-point {
+        display: grid;
+        grid-template-columns: 50% 1fr;
+        gap: res(80px);
+        
+        @include sp {
+            grid-template-columns: 100%;
+        }
+    }
 }
