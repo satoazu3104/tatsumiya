@@ -453,6 +453,16 @@
             grid-template-columns: 100%;
             grid-template-areas: 'label' 'value';
         }
+        
+        &.media {
+            grid-template-columns: res(264px, 220px) 1fr res(400px);
+            grid-template-areas: 'label value media';
+            
+            @include sp {
+                grid-template-columns: 100%;
+                grid-template-areas: 'label' 'value' 'media';
+            }
+        }
 
         &:nth-child(1) {
             border-top: 1px solid #C8C1BF;

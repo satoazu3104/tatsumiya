@@ -215,8 +215,22 @@
 
     &__machine {
         width: 100%;
-        height: auto;
-        aspect-ratio: 4/3;
+        height: 100%;
+
+        &.is-active {
+            height: auto;
+            aspect-ratio: 4/3;
+        }
+
+        &__picture {
+            @include pc {
+                padding: res(24px) 0 res(24px) res(24px);
+            }
+            
+            @include sp {
+                padding-bottom: 24px;
+            }
+        }
     }
 
     &__ccac-about {
