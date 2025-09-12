@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(popUps);
         popUps.forEach(function (pop) {
             const meida = pop.querySelector('.p-img__pop-up');
-            pop.addEventListener('click', () => {
+            pop.addEventListener('click', (e) => {
                 pop.classList.toggle('is-active');
                 meida.classList.toggle('is-active');
                 html.classList.toggle('pop-up');
