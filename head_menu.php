@@ -1,104 +1,123 @@
 <?php
-$menus = wp_get_nav_menu_items('header');
-// メニュー項目を階層構造に整理する関数
-function build_menu_tree($menu_items)
-{
-    $menu = array();
-    $menu_by_id = array();
+$raw_menu_items = wp_get_nav_menu_items('header');
 
-    foreach ($menu_items as $menu_item) {
-        $menu_by_id[$menu_item->ID] = $menu_item;
-        if ($menu_item->menu_item_parent == 0) {
-            $menu[$menu_item->ID] = $menu_item;
-            $menu[$menu_item->ID]->children = array();
+/**
+ * メニューをツリー化（安全な2パス）
+ * - どの順番で返ってきても親子関係を構築
+ * - children プロパティを必ず持たせる
+ */
+function build_menu_tree($menu_items) {
+    $indexed = array();
+    foreach ($menu_items as $item) {
+        $item->children = array();
+        $indexed[$item->ID] = $item;
+    }
+
+    $tree = array();
+    foreach ($indexed as $item) {
+        $parent_id = (int) $item->menu_item_parent;
+        if ($parent_id && isset($indexed[$parent_id])) {
+            $indexed[$parent_id]->children[] = $item;
         } else {
-            if (!isset($menu_by_id[$menu_item->menu_item_parent]->children)) {
-                $menu_by_id[$menu_item->menu_item_parent]->children = array();
-            }
-            $menu_by_id[$menu_item->menu_item_parent]->children[] = $menu_item;
+            $tree[$item->ID] = $item;
         }
     }
-    return $menu;
+    return $tree;
 }
 
-$menus = build_menu_tree($menus);
-$head_index = 0;
-$head_count = count($menus);
+$menus = build_menu_tree($raw_menu_items);
 
 $post = get_post(get_the_ID());
-$slug = $post ? $post->post_name : null;
-$head_index = 0;
-$head_count = count($menus);
+$current_slug = $post ? $post->post_name : null;
+
 $pc_menu = '';
 
 $slug_array = array(
     "staff" => "professional",
-    "news" => "magazine"
+    "news"  => "magazine",
 );
-?>
 
+/**
+ * レベル別のUL/Li/リンクのクラス定義
+ * 必要に応じて編集してください
+ */
+function header_menu_classmap($level) {
+    return array(
+        'ul'   => $level === 0 ? 'l-header__list'      : ($level === 1 ? 'l-header__sub-list' : 'l-header__sub-sub-list'),
+        'li'   => $level === 0 ? 'l-header__items'     : ($level === 1 ? 'l-header__sub-items' : 'l-header__sub-sub-items'),
+        'link' => $level === 0 ? 'l-header__link'      : ($level === 1 ? 'l-header__sub-link' : 'l-header__sub-sub-link'),
+        'slug' => $level === 0 ? 'l-header__slug p-text__header-slug c-text--upper' : '',
+        'title'=> $level === 0 ? 'l-header__title p-text__header' : ($level === 1 ? 'l-header__sub-title p-text__header' : 'l-header__sub-sub-title p-text__header'),
+    );
+}
+
+/**
+ * メニュー項目を再帰描画
+ */
+function render_menu_items($items, $level = 0, $slug_map = array(), $current_id = null) {
+    if (empty($items)) return;
+
+    $classes = header_menu_classmap($level);
+    echo '<ul class="' . esc_attr($classes['ul']) . '">';
+
+    foreach ($items as $item) {
+        // タイトル・スラッグ
+        $title = strtoupper($item->title);
+        $is_current = ($current_id && (int)$current_id === (int)$item->object_id) ? ' is-active' : '';
+
+        // object_id からスラッグ取得（カスタムリンク等は0のことがある）
+        $item_post = !empty($item->object_id) ? get_post($item->object_id) : null;
+        $slug      = $item_post ? $item_post->post_name : '';
+
+        // トップ階層だけ slug 表示をカスタム（必要なければ条件を外してOK）
+        $slug_text = $level === 0
+            ? (isset($slug_map[$slug]) ? $slug_map[$slug] : $slug)
+            : '';
+
+        echo '<li class="' . esc_attr($classes['li'] . $is_current) . '">';
+
+        echo '<a href="' . esc_url($item->url) . '" class="' . esc_attr($classes['link']) . '" data-slug="' . esc_attr($slug) . '">';
+
+        if ($level === 0 && $slug_text !== '') {
+            echo '<p class="' . esc_attr($classes['slug']) . '">' . esc_html($slug_text) . '</p>';
+        }
+
+        echo '<p class="' . esc_attr($classes['title']) . '">' . esc_html($title) . '</p>';
+        echo '</a>';
+
+        // 子があれば再帰
+        if (!empty($item->children)) {
+            render_menu_items($item->children, $level + 1, $slug_map, $current_id);
+        }
+
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
+?>
 <div class="l-header__decoy"></div>
 <div class="l-header__logo">
-    <a
-        class="l-header__logo-link"
-        href="<?php echo is_front_page() ? '#top' : get_site_url(); ?>">
+    <a class="l-header__logo-link" href="<?php echo is_front_page() ? '#top' : esc_url(get_site_url()); ?>">
         <img
             class="l-header__img--logo p-img__logo-header header"
-            src="<?php echo get_template_directory_uri() . '/dist/assets/images/common/icon-logo-header.webp'; ?>" alt="Logo image">
+            src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/icon-logo-header.webp'); ?>"
+            alt="Logo image">
     </a>
 </div>
-<header class="l-header__wrap <?php echo is_front_page() ? $pc_menu : 'is-active ' . $pc_menu; ?>">
-    <a href="<?php echo site_url() . '/contact'; ?>" class="p-img__fix-contact pc js-loaded-animation"></a>
-    <div class="l-header__inner <?php echo $pc_menu; ?>">
-        <!-- ロゴ -->
 
-        <!-- ナビゲーション -->
-        <nav class="l-header__nav <?php echo $pc_menu; ?> js-menu-wrap">
-            <ul class="l-header__list <?php echo $pc_menu; ?>">
-                <?php if (! empty($menus)) : foreach ($menus as $menu) :
-                        // トップレベルメニュー情報
-                        $head_index++;
-                        $title      = strtoupper($menu->title);
-                        $post_loop  = get_post($menu->object_id);
-                        $slug       = $post_loop ? $post_loop->post_name : '';
-                        $active     = get_the_ID() == $menu->object_id ? 'is-active' : '';
-                ?>
-                        <li class="l-header__items <?php echo $active; ?>">
-                            <a href="<?php echo esc_url($menu->url); ?>"
-                                class="l-header__link"
-                                data-slug="<?php echo esc_attr($slug); ?>">
-                                <p class="l-header__slug p-text__header-slug c-text--upper">
-                                    <?php echo esc_html($slug_array[$slug] ?? $slug); ?>
-                                </p>
-                                <p class="l-header__title p-text__header"><?php echo esc_html($title); ?></p>
-                            </a>
+<header class="l-header__wrap <?php echo is_front_page() ? esc_attr($pc_menu) : 'is-active ' . esc_attr($pc_menu); ?>">
+    <a href="<?php echo esc_url(site_url('/contact')); ?>" class="p-img__fix-contact pc js-loaded-animation"></a>
 
-                            <?php if (! empty($menu->children)) : ?>
-                                <ul class="l-header__sub-list">
-                                    <?php foreach ($menu->children as $child) :
-                                        // サブメニュー情報
-                                        $child_title = strtoupper($child->title);
-                                        $child_post  = get_post($child->object_id);
-                                        $child_slug  = $child_post ? $child_post->post_name : '';
-                                        $child_active = get_the_ID() == $child->object_id ? 'is-active' : '';
-                                    ?>
-                                        <li class="l-header__sub-items <?php echo $child_active; ?>">
-                                            <a href="<?php echo esc_url($child->url); ?>"
-                                                class="l-header__sub-link"
-                                                data-slug="<?php echo esc_attr($child_slug); ?>">
-                                                <p class="l-header__sub-title p-text__header">
-                                                    <?php echo esc_html($child_title); ?>
-                                                </p>
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
+    <div class="l-header__inner <?php echo esc_attr($pc_menu); ?>">
+        <nav class="l-header__nav <?php echo esc_attr($pc_menu); ?> js-menu-wrap">
+            <?php
+                // 現在表示中の投稿ID
+                $current_post_id = get_the_ID();
 
-                        </li>
-                <?php endforeach;
-                endif; ?>
-            </ul>
+                // ここで再帰的に出力（トップレベルから）
+                render_menu_items($menus, 0, $slug_array, $current_post_id);
+            ?>
         </nav>
 
         <div class="l-header__button">

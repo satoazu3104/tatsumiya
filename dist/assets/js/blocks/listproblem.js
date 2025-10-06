@@ -1,2 +1,394 @@
-!function(){"use strict";var e=window.wp.blocks,l=window.wp.blockEditor,m=(window.wp.element,window.wp.components),t="/home/sato/sato/serve/www/tatsumiya/wp-content/themes/origin/src/js/blocks/listproblem.js";(0,e.registerBlockType)("portart/listproblem",{title:"お悩みリスト",icon:"smiley",category:"layout",attributes:{blocksData:{type:"array",default:[]},count:{type:"number",default:1},addId:{type:"string",default:""}},edit:({attributes:{blocksData:e,count:a,addId:n},setAttributes:o})=>wp.element.createElement("div",{__self:void 0,__source:{fileName:t,lineNumber:65,columnNumber:7}},wp.element.createElement(l.InspectorControls,{__self:void 0,__source:{fileName:t,lineNumber:66,columnNumber:9}},wp.element.createElement(m.TextControl,{label:"追加Id",value:n,onChange:e=>{o({addId:e})},__self:void 0,__source:{fileName:t,lineNumber:67,columnNumber:11}})),wp.element.createElement("div",{style:{display:"grid",gridTemplateColumns:"repeat(2, 1fr)",gap:"24px"},__self:void 0,__source:{fileName:t,lineNumber:73,columnNumber:9}},e.map(((n,r)=>wp.element.createElement("div",{__self:void 0,__source:{fileName:t,lineNumber:79,columnNumber:13}},wp.element.createElement("div",{key:n.id,className:"dynamic-block",__self:void 0,__source:{fileName:t,lineNumber:80,columnNumber:15}},wp.element.createElement(l.RichText,{value:n.value,onChange:l=>((l,m)=>{let t=e;t[m].value=l,o({blocksData:t,count:a++})})(l,r),tagName:"p",placeholder:"テキストを入力してください",keepPlaceholderOnFocus:!0,__self:void 0,__source:{fileName:t,lineNumber:81,columnNumber:17}}),wp.element.createElement(m.Button,{isDestructive:!0,onClick:()=>(l=>{const m=e.filter((e=>e.id!==l));o({blocksData:m,count:a++})})(n.id),__self:void 0,__source:{fileName:t,lineNumber:88,columnNumber:17}},"アイテムを削除")))))),wp.element.createElement(m.Button,{isPrimary:!0,onClick:()=>{const l={id:e.length+1,content:""};o({blocksData:[...e,l],count:a++})},__self:void 0,__source:{fileName:t,lineNumber:93,columnNumber:9}},"アイテムを追加")),save:({className:e,attributes:{blocksData:m,addId:a}})=>wp.element.createElement(wp.element.Fragment,null,wp.element.createElement("ul",{className:"p-wrap__problem--list animation u-anim__fade-in",__self:void 0,__source:{fileName:t,lineNumber:101,columnNumber:9}},wp.element.createElement("div",{className:"p-wrap__problem__dec--list-back animation u-anim__fuwa",__self:void 0,__source:{fileName:t,lineNumber:102,columnNumber:11}}),wp.element.createElement("div",{className:"p-wrap__problem__dec--dot",__self:void 0,__source:{fileName:t,lineNumber:103,columnNumber:11}},wp.element.createElement("div",{className:"c-fv__wrap--dots__inner",__self:void 0,__source:{fileName:t,lineNumber:104,columnNumber:13}},wp.element.createElement("div",{className:"c-fv__dot",__self:void 0,__source:{fileName:t,lineNumber:105,columnNumber:15}}),wp.element.createElement("div",{className:"c-fv__dot",__self:void 0,__source:{fileName:t,lineNumber:106,columnNumber:15}}),wp.element.createElement("div",{className:"c-fv__dot",__self:void 0,__source:{fileName:t,lineNumber:107,columnNumber:15}}),wp.element.createElement("div",{className:"c-fv__dot",__self:void 0,__source:{fileName:t,lineNumber:108,columnNumber:15}}),wp.element.createElement("div",{className:"c-fv__dot",__self:void 0,__source:{fileName:t,lineNumber:109,columnNumber:15}}))),wp.element.createElement("div",{className:"p-wrap__problem__dec--human animation u-anim__scroll-up",__self:void 0,__source:{fileName:t,lineNumber:112,columnNumber:11}}),m.map(((e,m)=>wp.element.createElement("li",{className:"p-wrap__problem--items",__self:void 0,__source:{fileName:t,lineNumber:114,columnNumber:13}},wp.element.createElement(l.RichText.Content,{tagName:"p",value:e.value,className:"c-text--bold c-text__title",__self:void 0,__source:{fileName:t,lineNumber:115,columnNumber:15}}))))))})}();
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+!function() {
+/*!**************************************!*\
+  !*** ./src/js/blocks/listproblem.js ***!
+  \**************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+var _jsxFileName = "/home/sato/sato/serve/www/tatsumiya/wp-content/themes/origin/src/js/blocks/listproblem.js";
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('portart/listproblem', {
+  title: 'お悩みリスト',
+  icon: 'smiley',
+  category: 'layout',
+  attributes: {
+    blocksData: {
+      type: 'array',
+      default: []
+    },
+    count: {
+      type: 'number',
+      default: 1
+    },
+    addId: {
+      type: 'string',
+      default: ''
+    }
+  },
+  edit: ({
+    attributes: {
+      blocksData,
+      count,
+      addId
+    },
+    setAttributes
+  }) => {
+    const onChangeId = newId => {
+      setAttributes({
+        addId: newId
+      });
+    };
+    // アイテムの追加
+    const addBlock = () => {
+      const newBlock = {
+        id: blocksData.length + 1,
+        content: ``
+      };
+      setAttributes({
+        blocksData: [...blocksData, newBlock],
+        count: count++
+      });
+    };
+
+    // アイテムの削除
+    const removeBlock = id => {
+      const updatedBlocksData = blocksData.filter(block => block.id !== id);
+      setAttributes({
+        blocksData: updatedBlocksData,
+        count: count++
+      });
+    };
+
+    // テキストの編集
+    const changeArrayText = (newText, index, label) => {
+      let newArray = blocksData;
+      newArray[index][label] = newText;
+      setAttributes({
+        blocksData: newArray,
+        count: count++
+      });
+    };
+    const changeText = (newText, label) => {
+      setAttributes({
+        [label]: newText
+      });
+    };
+    return wp.element.createElement("div", {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65,
+        columnNumber: 7
+      }
+    }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66,
+        columnNumber: 9
+      }
+    }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+      label: "\u8FFD\u52A0Id",
+      value: addId,
+      onChange: onChangeId,
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67,
+        columnNumber: 11
+      }
+    })), wp.element.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gap: '24px'
+      },
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 73,
+        columnNumber: 9
+      }
+    }, blocksData.map((block, index) => wp.element.createElement("div", {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 79,
+        columnNumber: 13
+      }
+    }, wp.element.createElement("div", {
+      key: block.id,
+      className: "dynamic-block",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 80,
+        columnNumber: 15
+      }
+    }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      value: block.value,
+      onChange: newText => changeArrayText(newText, index, 'value'),
+      tagName: "p",
+      placeholder: "\u30C6\u30AD\u30B9\u30C8\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
+      keepPlaceholderOnFocus: true,
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 81,
+        columnNumber: 17
+      }
+    }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isDestructive: true,
+      onClick: () => removeBlock(block.id),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 88,
+        columnNumber: 17
+      }
+    }, "\u30A2\u30A4\u30C6\u30E0\u3092\u524A\u9664"))))), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isPrimary: true,
+      onClick: addBlock,
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 93,
+        columnNumber: 9
+      }
+    }, "\u30A2\u30A4\u30C6\u30E0\u3092\u8FFD\u52A0"));
+  },
+  save: ({
+    className,
+    attributes: {
+      blocksData,
+      addId
+    }
+  }) => {
+    return wp.element.createElement(wp.element.Fragment, null, wp.element.createElement("ul", {
+      className: "p-wrap__problem--list animation u-anim__fade-in",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 101,
+        columnNumber: 9
+      }
+    }, wp.element.createElement("div", {
+      className: "p-wrap__problem__dec--list-back animation u-anim__fuwa",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 102,
+        columnNumber: 11
+      }
+    }), wp.element.createElement("div", {
+      className: "p-wrap__problem__dec--dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 103,
+        columnNumber: 11
+      }
+    }, wp.element.createElement("div", {
+      className: "c-fv__wrap--dots__inner",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 104,
+        columnNumber: 13
+      }
+    }, wp.element.createElement("div", {
+      className: "c-fv__dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 105,
+        columnNumber: 15
+      }
+    }), wp.element.createElement("div", {
+      className: "c-fv__dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 106,
+        columnNumber: 15
+      }
+    }), wp.element.createElement("div", {
+      className: "c-fv__dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 107,
+        columnNumber: 15
+      }
+    }), wp.element.createElement("div", {
+      className: "c-fv__dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 108,
+        columnNumber: 15
+      }
+    }), wp.element.createElement("div", {
+      className: "c-fv__dot",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 109,
+        columnNumber: 15
+      }
+    }))), wp.element.createElement("div", {
+      className: "p-wrap__problem__dec--human animation u-anim__scroll-up",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 112,
+        columnNumber: 11
+      }
+    }), blocksData.map((slug, index) => wp.element.createElement("li", {
+      className: "p-wrap__problem--items",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 114,
+        columnNumber: 13
+      }
+    }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText.Content, {
+      tagName: "p",
+      value: slug.value,
+      className: "c-text--bold c-text__title",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 115,
+        columnNumber: 15
+      }
+    })))));
+  }
+});
+}();
+/******/ })()
+;
 //# sourceMappingURL=listproblem.js.map

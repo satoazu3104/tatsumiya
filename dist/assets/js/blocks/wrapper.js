@@ -1,3 +1,631 @@
-/*! For license information please see wrapper.js.LICENSE.txt */
-!function(){var e={429:function(e,l,t){"use strict";t.d(l,{C:function(){return r}});const r=[{label:"div",value:"div"},{label:"ul",value:"ul"},{label:"li",value:"li"},{label:"section",value:"section",description:"文書のセクションを示す"},{label:"article",value:"article",description:"独立したコンテンツを表す"},{label:"aside",value:"aside",description:"コンテンツの補足情報"},{label:"header",value:"header",description:"文書またはセクションのヘッダー"},{label:"footer",value:"footer",description:"文書またはセクションのフッター"},{label:"nav",value:"nav",description:"ナビゲーションリンクの集合"},{label:"h1",value:"h1",description:"最も重要な見出し"},{label:"h2",value:"h2",description:"2番目に重要な見出し"},{label:"h3",value:"h3",description:"3番目に重要な見出し"},{label:"h4",value:"h4",description:"4番目に重要な見出し"},{label:"h5",value:"h5",description:"5番目に重要な見出し"},{label:"h6",value:"h6",description:"6番目に重要な見出し"},{label:"main",value:"main",description:"文書の主要な内容"},{label:"figure",value:"figure",description:"画像や図表のコンテナ"},{label:"figcaption",value:"figcaption",description:"figureのキャプション"},{label:"address",value:"address",description:"連絡先情報"},{label:"table",value:"table",description:"テーブル"},{label:"caption",value:"caption",description:"テーブルのキャプション"},{label:"thead",value:"thead",description:"テーブルのヘッダー"},{label:"tbody",value:"tbody",description:"テーブルのボディ"},{label:"tfoot",value:"tfoot",description:"テーブルのフッター"},{label:"tr",value:"tr",description:"テーブルの行"},{label:"th",value:"th",description:"テーブルのヘッダーセル"},{label:"td",value:"td",description:"テーブルのデータセル"},{label:"col",value:"col",description:"列の定義"},{label:"colgroup",value:"colgroup",description:"列のグループ"},{label:"details",value:"details",description:"詳細情報"},{label:"summary",value:"summary",description:"詳細の概要"},{label:"dialog",value:"dialog",description:"対話ボックス"},{label:"template",value:"template",description:"テンプレート"},{label:"slot",value:"slot",description:"スロット"}]},942:function(e,l){var t;!function(){"use strict";var r={}.hasOwnProperty;function a(){for(var e="",l=0;l<arguments.length;l++){var t=arguments[l];t&&(e=o(e,n(t)))}return e}function n(e){if("string"==typeof e||"number"==typeof e)return e;if("object"!=typeof e)return"";if(Array.isArray(e))return a.apply(null,e);if(e.toString!==Object.prototype.toString&&!e.toString.toString().includes("[native code]"))return e.toString();var l="";for(var t in e)r.call(e,t)&&e[t]&&(l=o(l,t));return l}function o(e,l){return l?e?e+" "+l:e+l:e}e.exports?(a.default=a,e.exports=a):void 0===(t=function(){return a}.apply(l,[]))||(e.exports=t)}()}},l={};function t(r){var a=l[r];if(void 0!==a)return a.exports;var n=l[r]={exports:{}};return e[r](n,n.exports,t),n.exports}t.n=function(e){var l=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(l,{a:l}),l},t.d=function(e,l){for(var r in l)t.o(l,r)&&!t.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:l[r]})},t.o=function(e,l){return Object.prototype.hasOwnProperty.call(e,l)},function(){"use strict";var e=window.wp.blocks,l=window.wp.blockEditor,r=window.wp.components,a=t(942),n=t.n(a),o=t(429),i="/home/sato/sato/serve/www/tatsumiya/wp-content/themes/origin/src/js/blocks/wrapper.js";function u(){return u=Object.assign?Object.assign.bind():function(e){for(var l=1;l<arguments.length;l++){var t=arguments[l];for(var r in t)({}).hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},u.apply(null,arguments)}(0,e.registerBlockType)("portart/wrapper",{title:"wrapper",icon:"smiley",category:"layout",attributes:{wrapToggle:{type:"boolean",default:!1},addClassName:{type:"string",default:""},addId:{type:"string",default:""},customDataAttrs:{type:"string",default:""},linkUrl:{type:"string",default:""},isChecked:{type:"boolean",default:!1},display:{type:"string",default:""},tagName:{type:"string",default:"div"}},edit:({attributes:e,setAttributes:t})=>{const{addClassName:a,addId:n,customDataAttrs:u,linkUrl:s,wrapToggle:c,isChecked:d,display:m,tagName:p}=e;return wp.element.createElement("div",{className:"b-wrapper__box",__self:void 0,__source:{fileName:i,lineNumber:40,columnNumber:13}},wp.element.createElement("div",{className:"b-wrapper__box__tool",__self:void 0,__source:{fileName:i,lineNumber:41,columnNumber:17}},wp.element.createElement("span",{className:"c-text__med b-wrapper__class",__self:void 0,__source:{fileName:i,lineNumber:42,columnNumber:21}},"Class名: ",a),wp.element.createElement(r.Button,{isSecondary:!0,onClick:()=>{t({display:""===m?"pc":"pc"===m?"sp":""})},__self:void 0,__source:{fileName:i,lineNumber:43,columnNumber:21}},m?`${m}のみ表示`:"両方表示"),wp.element.createElement(r.Button,{isSecondary:!0,onClick:()=>t({wrapToggle:!c}),__self:void 0,__source:{fileName:i,lineNumber:51,columnNumber:21}},c?"開く":"折りたたむ")),wp.element.createElement(l.InspectorControls,{__self:void 0,__source:{fileName:i,lineNumber:55,columnNumber:17}},wp.element.createElement(r.SelectControl,{label:"ラッパータグを選択",value:p,options:o.C,onChange:e=>t({tagName:e}),__self:void 0,__source:{fileName:i,lineNumber:56,columnNumber:21}}),wp.element.createElement(r.TextareaControl,{label:"追加class",value:a,onChange:e=>t({addClassName:e}),__self:void 0,__source:{fileName:i,lineNumber:62,columnNumber:21}}),wp.element.createElement(r.TextControl,{label:"追加Id",value:n,onChange:e=>t({addId:e}),__self:void 0,__source:{fileName:i,lineNumber:67,columnNumber:21}}),wp.element.createElement(r.TextareaControl,{label:"追加のdata属性（複数可）",value:u,onChange:e=>t({customDataAttrs:e}),__self:void 0,__source:{fileName:i,lineNumber:72,columnNumber:21}}),wp.element.createElement(l.URLInput,{label:"リンクURL",value:s,onChange:e=>t({linkUrl:e}),__self:void 0,__source:{fileName:i,lineNumber:77,columnNumber:21}}),s&&wp.element.createElement(r.CheckboxControl,{label:"別タブでリンクを開く",checked:d,onChange:e=>t({isChecked:e}),__self:void 0,__source:{fileName:i,lineNumber:83,columnNumber:25}})),wp.element.createElement("div",{style:{height:c?"0px":"auto",overflow:c?"hidden":"unset"},__self:void 0,__source:{fileName:i,lineNumber:90,columnNumber:17}},wp.element.createElement(l.InnerBlocks,{__self:void 0,__source:{fileName:i,lineNumber:91,columnNumber:21}})))},save:({attributes:e})=>{const{addClassName:t,addId:r,customDataAttrs:a,linkUrl:o,isChecked:s,display:c,tagName:d}=e,m=(e=>{const l={},t=/(data-[\w-]+)=\"([^\"]*)\"/g;let r;for(;null!==(r=t.exec(e));)l[r[1]]=r[2];return l})(a),p={id:r||void 0,className:n()(t.trim(),c)||void 0,...m},b=d||"div";return o?wp.element.createElement("a",u({href:o,target:s?"_blank":void 0,rel:s?"noopener noreferrer":void 0},p,{__self:void 0,__source:{fileName:i,lineNumber:112,columnNumber:13}}),wp.element.createElement(l.InnerBlocks.Content,{__self:void 0,__source:{fileName:i,lineNumber:118,columnNumber:17}})):wp.element.createElement(b,u({},p,{__self:void 0,__source:{fileName:i,lineNumber:121,columnNumber:13}}),wp.element.createElement(l.InnerBlocks.Content,{__self:void 0,__source:{fileName:i,lineNumber:122,columnNumber:17}}))}})}()}();
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/js/blocks/tags.js":
+/*!*******************************!*\
+  !*** ./src/js/blocks/tags.js ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TAG_OPTIONS: function() { return /* binding */ TAG_OPTIONS; }
+/* harmony export */ });
+const TAG_OPTIONS = [{
+  label: 'div',
+  value: 'div'
+}, {
+  label: 'ul',
+  value: 'ul'
+}, {
+  label: 'li',
+  value: 'li'
+}, {
+  label: 'section',
+  value: 'section',
+  description: '文書のセクションを示す'
+}, {
+  label: 'article',
+  value: 'article',
+  description: '独立したコンテンツを表す'
+}, {
+  label: 'aside',
+  value: 'aside',
+  description: 'コンテンツの補足情報'
+}, {
+  label: 'header',
+  value: 'header',
+  description: '文書またはセクションのヘッダー'
+}, {
+  label: 'footer',
+  value: 'footer',
+  description: '文書またはセクションのフッター'
+}, {
+  label: 'nav',
+  value: 'nav',
+  description: 'ナビゲーションリンクの集合'
+}, {
+  label: 'h1',
+  value: 'h1',
+  description: '最も重要な見出し'
+}, {
+  label: 'h2',
+  value: 'h2',
+  description: '2番目に重要な見出し'
+}, {
+  label: 'h3',
+  value: 'h3',
+  description: '3番目に重要な見出し'
+}, {
+  label: 'h4',
+  value: 'h4',
+  description: '4番目に重要な見出し'
+}, {
+  label: 'h5',
+  value: 'h5',
+  description: '5番目に重要な見出し'
+}, {
+  label: 'h6',
+  value: 'h6',
+  description: '6番目に重要な見出し'
+}, {
+  label: 'main',
+  value: 'main',
+  description: '文書の主要な内容'
+}, {
+  label: 'figure',
+  value: 'figure',
+  description: '画像や図表のコンテナ'
+}, {
+  label: 'figcaption',
+  value: 'figcaption',
+  description: 'figureのキャプション'
+}, {
+  label: 'address',
+  value: 'address',
+  description: '連絡先情報'
+}, {
+  label: 'table',
+  value: 'table',
+  description: 'テーブル'
+}, {
+  label: 'caption',
+  value: 'caption',
+  description: 'テーブルのキャプション'
+}, {
+  label: 'thead',
+  value: 'thead',
+  description: 'テーブルのヘッダー'
+}, {
+  label: 'tbody',
+  value: 'tbody',
+  description: 'テーブルのボディ'
+}, {
+  label: 'tfoot',
+  value: 'tfoot',
+  description: 'テーブルのフッター'
+}, {
+  label: 'tr',
+  value: 'tr',
+  description: 'テーブルの行'
+}, {
+  label: 'th',
+  value: 'th',
+  description: 'テーブルのヘッダーセル'
+}, {
+  label: 'td',
+  value: 'td',
+  description: 'テーブルのデータセル'
+}, {
+  label: 'col',
+  value: 'col',
+  description: '列の定義'
+}, {
+  label: 'colgroup',
+  value: 'colgroup',
+  description: '列のグループ'
+}, {
+  label: 'details',
+  value: 'details',
+  description: '詳細情報'
+}, {
+  label: 'summary',
+  value: 'summary',
+  description: '詳細の概要'
+}, {
+  label: 'dialog',
+  value: 'dialog',
+  description: '対話ボックス'
+}, {
+  label: 'template',
+  value: 'template',
+  description: 'テンプレート'
+}, {
+  label: 'slot',
+  value: 'slot',
+  description: 'スロット'
+}];
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/***/ (function(module, exports) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = '';
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (arg) {
+				classes = appendClass(classes, parseValue(arg));
+			}
+		}
+
+		return classes;
+	}
+
+	function parseValue (arg) {
+		if (typeof arg === 'string' || typeof arg === 'number') {
+			return arg;
+		}
+
+		if (typeof arg !== 'object') {
+			return '';
+		}
+
+		if (Array.isArray(arg)) {
+			return classNames.apply(null, arg);
+		}
+
+		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+			return arg.toString();
+		}
+
+		var classes = '';
+
+		for (var key in arg) {
+			if (hasOwn.call(arg, key) && arg[key]) {
+				classes = appendClass(classes, key);
+			}
+		}
+
+		return classes;
+	}
+
+	function appendClass (value, newClass) {
+		if (!newClass) {
+			return value;
+		}
+	
+		if (value) {
+			return value + ' ' + newClass;
+		}
+	
+		return value + newClass;
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+!function() {
+"use strict";
+/*!**********************************!*\
+  !*** ./src/js/blocks/wrapper.js ***!
+  \**********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _tags__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tags */ "./src/js/blocks/tags.js");
+var _jsxFileName = "/home/sato/sato/serve/www/tatsumiya/wp-content/themes/origin/src/js/blocks/wrapper.js";
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+
+
+
+
+const parseCustomDataAttrs = input => {
+  const attrs = {};
+  const regex = /(data-[\w-]+)=\"([^\"]*)\"/g;
+  let match;
+  while ((match = regex.exec(input)) !== null) {
+    attrs[match[1]] = match[2];
+  }
+  return attrs;
+};
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('portart/wrapper', {
+  title: 'wrapper',
+  icon: 'smiley',
+  category: 'layout',
+  attributes: {
+    wrapToggle: {
+      type: 'boolean',
+      default: false
+    },
+    addClassName: {
+      type: 'string',
+      default: ''
+    },
+    addId: {
+      type: 'string',
+      default: ''
+    },
+    customDataAttrs: {
+      type: 'string',
+      default: ''
+    },
+    linkUrl: {
+      type: 'string',
+      default: ''
+    },
+    isChecked: {
+      type: 'boolean',
+      default: false
+    },
+    display: {
+      type: 'string',
+      default: ''
+    },
+    tagName: {
+      type: 'string',
+      default: 'div'
+    }
+  },
+  edit: ({
+    attributes,
+    setAttributes
+  }) => {
+    const {
+      addClassName,
+      addId,
+      customDataAttrs,
+      linkUrl,
+      wrapToggle,
+      isChecked,
+      display,
+      tagName
+    } = attributes;
+    const toggleHandler = () => setAttributes({
+      wrapToggle: !wrapToggle
+    });
+    return wp.element.createElement("div", {
+      className: "b-wrapper__box",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 40,
+        columnNumber: 13
+      }
+    }, wp.element.createElement("div", {
+      className: "b-wrapper__box__tool",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41,
+        columnNumber: 17
+      }
+    }, wp.element.createElement("span", {
+      className: "c-text__med b-wrapper__class",
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 42,
+        columnNumber: 21
+      }
+    }, "Class\u540D: ", addClassName), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      isSecondary: true,
+      onClick: () => {
+        setAttributes({
+          display: display === '' ? 'pc' : display === 'pc' ? 'sp' : ''
+        });
+      },
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 43,
+        columnNumber: 21
+      }
+    }, display ? `${display}のみ表示` : '両方表示'), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      isSecondary: true,
+      onClick: toggleHandler,
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 51,
+        columnNumber: 21
+      }
+    }, wrapToggle ? '開く' : '折りたたむ')), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 55,
+        columnNumber: 17
+      }
+    }, wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      label: "\u30E9\u30C3\u30D1\u30FC\u30BF\u30B0\u3092\u9078\u629E",
+      value: tagName,
+      options: _tags__WEBPACK_IMPORTED_MODULE_4__.TAG_OPTIONS,
+      onChange: newTagName => setAttributes({
+        tagName: newTagName
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56,
+        columnNumber: 21
+      }
+    }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+      label: "\u8FFD\u52A0class",
+      value: addClassName,
+      onChange: value => setAttributes({
+        addClassName: value
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 62,
+        columnNumber: 21
+      }
+    }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+      label: "\u8FFD\u52A0Id",
+      value: addId,
+      onChange: value => setAttributes({
+        addId: value
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67,
+        columnNumber: 21
+      }
+    }), wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+      label: "\u8FFD\u52A0\u306Edata\u5C5E\u6027\uFF08\u8907\u6570\u53EF\uFF09",
+      value: customDataAttrs,
+      onChange: value => setAttributes({
+        customDataAttrs: value
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 72,
+        columnNumber: 21
+      }
+    }), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.URLInput, {
+      label: "\u30EA\u30F3\u30AFURL",
+      value: linkUrl,
+      onChange: value => setAttributes({
+        linkUrl: value
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 77,
+        columnNumber: 21
+      }
+    }), linkUrl && wp.element.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
+      label: "\u5225\u30BF\u30D6\u3067\u30EA\u30F3\u30AF\u3092\u958B\u304F",
+      checked: isChecked,
+      onChange: checked => setAttributes({
+        isChecked: checked
+      }),
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 83,
+        columnNumber: 25
+      }
+    })), wp.element.createElement("div", {
+      style: {
+        height: wrapToggle ? '0px' : 'auto',
+        overflow: wrapToggle ? 'hidden' : 'unset'
+      },
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 90,
+        columnNumber: 17
+      }
+    }, wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 91,
+        columnNumber: 21
+      }
+    })));
+  },
+  save: ({
+    attributes
+  }) => {
+    const {
+      addClassName,
+      addId,
+      customDataAttrs,
+      linkUrl,
+      isChecked,
+      display,
+      tagName
+    } = attributes;
+    const dataAttrs = parseCustomDataAttrs(customDataAttrs);
+    const fixClass = classnames__WEBPACK_IMPORTED_MODULE_3___default()(addClassName.trim(), display);
+    const wrapperAttrs = {
+      id: addId || undefined,
+      className: fixClass || undefined,
+      ...dataAttrs
+    };
+    const TagName = tagName || 'div';
+    return linkUrl ? wp.element.createElement("a", _extends({
+      href: linkUrl,
+      target: isChecked ? "_blank" : undefined,
+      rel: isChecked ? "noopener noreferrer" : undefined
+    }, wrapperAttrs, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 112,
+        columnNumber: 13
+      }
+    }), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 118,
+        columnNumber: 17
+      }
+    })) : wp.element.createElement(TagName, _extends({}, wrapperAttrs, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 121,
+        columnNumber: 13
+      }
+    }), wp.element.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {
+      __self: undefined,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 122,
+        columnNumber: 17
+      }
+    }));
+  }
+});
+}();
+/******/ })()
+;
 //# sourceMappingURL=wrapper.js.map

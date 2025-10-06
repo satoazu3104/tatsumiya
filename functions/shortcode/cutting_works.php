@@ -52,7 +52,7 @@ function display_cutting_works_list()
 
     ob_start();
 ?>
-    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url().'/business/cutting/works'; ?>">
+    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url() . '/business/cutting/works'; ?>">
         <p class="p-text__body c-text--white">材質・形状から検索する</p>
         <div class="l-wrap__cat-form__inner">
             <select class="c-input__select" name="cutting_works_material">
@@ -83,15 +83,15 @@ function display_cutting_works_list()
         <?php if ($query->have_posts()): ?>
             <ul class="l-list__works">
                 <?php while ($query->have_posts()): $query->the_post();
-                    $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-post__img--thumb'));
+                    $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-post__img--thumb js-popup'));
                     if (empty($thumbnail)) {
-                        $thumbnail = '<img src="' . esc_url($fallback_image_url) . '" alt="Fallback Image" class="p-post__img--thumb" />';
+                        $thumbnail = '<img src="' . esc_url($fallback_image_url) . '" alt="Fallback Image" class="p-post__img--thumb js-popup" />';
                     }
                 ?>
                     <li class="c-item__works">
+                        <p class="p-text__item-m"><?php the_title(); ?></p>
                         <?php echo $thumbnail; ?>
                         <div class="c-item__works__content">
-                            <p class="p-text__item-m"><?php the_title(); ?></p>
                             <div class="l-wrap__cat-list__group">
                                 <div class="l-wrap__cat-list">
                                     <p class="p-text__min">材質 :</p>

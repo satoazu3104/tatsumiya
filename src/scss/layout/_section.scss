@@ -57,9 +57,13 @@
             padding: 64px 0;
         }
 
-        @include dec('after') {
-            width: calc(100vw - res(197px) - res(88px));
+        &::before,
+        &::after {
+            width: calc(100vw - res(88px));
             height: calc(100% + res(100px) + res(202px));
+        }
+
+        @include dec('after') {
             position: absolute;
             z-index: -10;
             background-image: url(../images/common/magazine-back-color.webp);
@@ -73,8 +77,6 @@
         }
 
         @include dec('before') {
-            width: calc(100vw - res(197px) - res(88px));
-            height: calc(100% + res(100px) + res(202px));
             position: absolute;
             z-index: -5;
             background-image: url(../images/common/magazine-back.webp);
@@ -103,7 +105,7 @@
         @include sp {
             padding: 104px 0 12px;
             aspect-ratio: 375/265;
-            
+
             &.recruit {
                 aspect-ratio: unset;
             }
