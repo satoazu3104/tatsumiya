@@ -453,11 +453,11 @@
             grid-template-columns: 100%;
             grid-template-areas: 'label' 'value';
         }
-        
+
         &.media {
             grid-template-columns: res(264px, 220px) 1fr res(400px);
             grid-template-areas: 'label value media';
-            
+
             @include sp {
                 grid-template-columns: 100%;
                 grid-template-areas: 'label' 'value' 'media';
@@ -518,6 +518,14 @@
                     grid-template-columns: repeat(2, 1fr);
                     border-bottom: 1px solid #C8C1BF;
                     gap: res(40px);
+
+                    &.med {
+                        grid-template-columns: .4fr 1fr;
+                        @include sp {
+                            grid-template-columns: 100%;
+                            gap: 12px;
+                        }
+                    }
 
                     @include sp {
                         grid-template-columns: 100%;

@@ -53,22 +53,12 @@ function display_cutting_works_list()
     ob_start();
 ?>
     <form class="l-wrap__cat-form" method="get" action="<?php echo site_url() . '/business/cutting/works'; ?>">
-        <p class="p-text__body c-text--white">材質・形状から検索する</p>
+        <p class="p-text__body c-text--white">材質から検索する</p>
         <div class="l-wrap__cat-form__inner">
             <select class="c-input__select" name="cutting_works_material">
                 <option value="">材質で絞り込む</option>
                 <?php if (!is_wp_error($materials)) : foreach ($materials as $term): ?>
                         <option value="<?php echo esc_attr($term->term_id); ?>" <?php selected($material, $term->term_id); ?>>
-                            <?php echo esc_html($term->name); ?>
-                        </option>
-                <?php endforeach;
-                endif; ?>
-            </select>
-
-            <select class="c-input__select" name="cutting_works_shape">
-                <option value="">形状で絞り込む</option>
-                <?php if (!is_wp_error($shapes)) : foreach ($shapes as $term): ?>
-                        <option value="<?php echo esc_attr($term->term_id); ?>" <?php selected($shape, $term->term_id); ?>>
                             <?php echo esc_html($term->name); ?>
                         </option>
                 <?php endforeach;
