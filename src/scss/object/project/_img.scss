@@ -270,6 +270,11 @@
         object-fit: contain;
         max-width: $max-width;
         margin-inline: auto;
+        
+        @include sp {
+            width: 100%;
+            height: auto;
+        }
 
         &__wrap {
             position: absolute;
