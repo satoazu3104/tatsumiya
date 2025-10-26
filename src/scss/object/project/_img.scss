@@ -265,8 +265,8 @@
     }
 
     &__popup {
-        width: 100%;
-        height: auto;
+        width: auto;
+        height: 100%;
         object-fit: contain;
         max-width: $max-width;
         margin-inline: auto;
