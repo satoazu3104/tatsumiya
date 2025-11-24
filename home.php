@@ -33,6 +33,8 @@ $slug = $post ? $post->post_name : null;
 if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
     // recruitスラッグのページだけに表示する内容
     echo '<a href="' . get_site_url() . '/recruit/entry/" class="p-img__fix-recruit"></a>';
+} else {
+    echo '<a href="' . get_site_url() . '/contact/" class="p-img__fix-contact"></a>';
 }
 ?>
 

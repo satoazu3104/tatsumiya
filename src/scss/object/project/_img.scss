@@ -178,22 +178,16 @@
     }
 
     &__fix-contact {
-        width: res(220px);
-        height: res(56px, 48px);
-        border-radius: 5em;
-        border: 1px solid $color-white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include size-res(180px);
+        background-image: url(../images/common/fix-contact.webp);
+        background-size: cover;
         position: fixed;
         z-index: 100;
-        right: res(120px);
-        top: res(16px);
+        right: res(88px);
+        bottom: res(48px);
 
-        @include dec('before') {
-            @include size-res(105.67px, 18px);
-            background-color: $color-white;
-            @include mask-image(fix-mail);
+        @include sp {
+            display: none;
         }
     }
 
@@ -270,7 +264,7 @@
         object-fit: contain;
         max-width: $max-width;
         margin-inline: auto;
-        
+
         @include sp {
             width: 100%;
             height: auto;

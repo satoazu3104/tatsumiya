@@ -6,7 +6,8 @@ $raw_menu_items = wp_get_nav_menu_items('header');
  * - どの順番で返ってきても親子関係を構築
  * - children プロパティを必ず持たせる
  */
-function build_menu_tree($menu_items) {
+function build_menu_tree($menu_items)
+{
     $indexed = array();
     foreach ($menu_items as $item) {
         $item->children = array();
@@ -41,20 +42,22 @@ $slug_array = array(
  * レベル別のUL/Li/リンクのクラス定義
  * 必要に応じて編集してください
  */
-function header_menu_classmap($level) {
+function header_menu_classmap($level)
+{
     return array(
         'ul'   => $level === 0 ? 'l-header__list'      : ($level === 1 ? 'l-header__sub-list' : 'l-header__sub-sub-list'),
         'li'   => $level === 0 ? 'l-header__items'     : ($level === 1 ? 'l-header__sub-items' : 'l-header__sub-sub-items'),
         'link' => $level === 0 ? 'l-header__link'      : ($level === 1 ? 'l-header__sub-link' : 'l-header__sub-sub-link'),
         'slug' => $level === 0 ? 'l-header__slug p-text__header-slug c-text--upper' : '',
-        'title'=> $level === 0 ? 'l-header__title p-text__header' : ($level === 1 ? 'l-header__sub-title p-text__header' : 'l-header__sub-sub-title p-text__header'),
+        'title' => $level === 0 ? 'l-header__title p-text__header' : ($level === 1 ? 'l-header__sub-title p-text__header' : 'l-header__sub-sub-title p-text__header'),
     );
 }
 
 /**
  * メニュー項目を再帰描画
  */
-function render_menu_items($items, $level = 0, $slug_map = array(), $current_id = null) {
+function render_menu_items($items, $level = 0, $slug_map = array(), $current_id = null)
+{
     if (empty($items)) return;
 
     $classes = header_menu_classmap($level);
@@ -107,16 +110,15 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
 </div>
 
 <header class="l-header__wrap <?php echo is_front_page() ? esc_attr($pc_menu) : 'is-active ' . esc_attr($pc_menu); ?>">
-    <a href="<?php echo esc_url(site_url('/contact')); ?>" class="p-img__fix-contact pc js-loaded-animation"></a>
 
     <div class="l-header__inner <?php echo esc_attr($pc_menu); ?>">
         <nav class="l-header__nav <?php echo esc_attr($pc_menu); ?> js-menu-wrap">
             <?php
-                // 現在表示中の投稿ID
-                $current_post_id = get_the_ID();
+            // 現在表示中の投稿ID
+            $current_post_id = get_the_ID();
 
-                // ここで再帰的に出力（トップレベルから）
-                render_menu_items($menus, 0, $slug_array, $current_post_id);
+            // ここで再帰的に出力（トップレベルから）
+            render_menu_items($menus, 0, $slug_array, $current_post_id);
             ?>
         </nav>
 
