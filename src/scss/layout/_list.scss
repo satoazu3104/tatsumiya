@@ -150,4 +150,14 @@
             gap: 48px;
         }
     }
+    
+    &__media {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: res(80px);
+        
+        @include sp {
+            gap: 40px;
+        }
+    }
 }
