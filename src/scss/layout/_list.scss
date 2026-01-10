@@ -158,6 +158,7 @@
         
         @include sp {
             gap: 40px;
+            grid-template-columns: 100%;
         }
     }
 }
