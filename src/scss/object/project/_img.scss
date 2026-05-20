@@ -344,3 +344,11 @@ main {
         }
     }
 }
+
+@at-root html[lang="ja"] .en__picture {
+    display: none;
+}
+
+@at-root html[lang="en"] .ja__picture {
+    display: none;
+}
