@@ -6,15 +6,7 @@ function portart_get_lang()
     return str_contains($_SERVER['REQUEST_URI'], '/en/') ? 'en' : 'ja';
 }
 remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
-// add_filter( 'wpcf7_recaptcha_verify_response',
-//   function( $is_human, $response_body ) {
-//     $score = isset( $response_body['score'] ) ? $response_body['score'] : 0;
-//     $threshold = 0.5;
-//     $is_human = $threshold < $score;
-//     return $is_human;
-//   },
-//   10, 2
-// );
+
 add_filter(
     'wpcf7_recaptcha_threshold',
 
@@ -31,13 +23,6 @@ add_filter('acf/settings/rest_api_format', function () {
     return 'standard';
 });
 /*
- * 変数
- */
-include get_template_directory() . '/functions/menu/global_menu.php';
-/*
- * class
- */
-/*
  * スタイルシート
  */
 include get_template_directory() . '/functions/style/admin_style.php';
@@ -47,10 +32,6 @@ include get_template_directory() . '/functions/style/front_style.php';
  */
 include get_template_directory() . '/functions/script/front_script.php';
 include get_template_directory() . '/functions/script/admin_script.php';
-/*
- * ヘッドタグ内部に追加
- */
-include get_template_directory() . '/functions/custom_head_tags.php';
 /**
  * サムネイル表示関数
  */
@@ -64,42 +45,12 @@ include get_template_directory() . '/functions/console_log.php';
  */
 include get_template_directory() . '/functions/pagination.php';
 /*
- * 固定ページ登録
- */
-// include get_template_directory().'/functions/add_page/index.php';
-/*
- * テーマカスタマイザー
- */
-// include get_template_directory().'/functions/customizer/sns.php';
-include get_template_directory() . '/functions/customizer/profile.php';
-include get_template_directory() . '/functions/customizer/line-qr.php';
-/*
- * カスタムフィールド 
- */
-// include get_template_directory().'/functions/custom_field/price.php';
-// include get_template_directory().'/functions/custom_field/doctor.php';
-/*
  * カスタム投稿タイプ
  */
-// include get_template_directory() . '/functions/post/voice.php';
-//include get_template_directory().'/functions/post/shop.php';
 include get_template_directory() . '/functions/post/works.php';
 include get_template_directory() . '/functions/post/pipe_works.php';
 include get_template_directory() . '/functions/post/cutting_works.php';
 include get_template_directory() . '/functions/post/staff.php';
-// include get_template_directory().'/functions/post/doctor.php';
-//include get_template_directory().'/functions/post/menu.php';
-//include get_template_directory().'/functions/post/user.php';
-/*
- * カスタムフィールドの絞り込み、カラム追加
- */
-//include get_template_directory().'/functions/admin/customfield_sort.php';
-//include get_template_directory().'/functions/admin/customfield_restrict.php';
-//include get_template_directory().'/functions/custom_field_preview.php';
-/*
- * フェッチ
- */
-include get_template_directory() . '/functions/fetch_data.php';
 /*
  * Custom REST api
  */
@@ -143,5 +94,4 @@ include get_template_directory() . '/functions/parm.php';
 /*
  *  ブロック追加
  */
-// include get_template_directory().'/functions/registration.php';
 include get_template_directory() . '/functions/block-registration/register.php';
