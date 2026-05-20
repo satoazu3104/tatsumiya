@@ -104,7 +104,14 @@ function render_footer_menu_items($items, $level = 0, $slug_map = array(), $curr
  */
 function display_footer_menu()
 {
-    $raw = wp_get_nav_menu_items('footer');
+    if (portart_get_lang() == 'en') {
+        $raw = wp_get_nav_menu_items('footer-en');
+        if (empty($raw))
+            $raw = wp_get_nav_menu_items('footer');
+    } else {
+        $raw = wp_get_nav_menu_items('footer');
+    }
+
     $menus = build_menu_tree($raw);
 
     if (!empty($menus)) {
@@ -113,6 +120,7 @@ function display_footer_menu()
         $slug_array = array(
             'staff' => 'professional',
             'news'  => 'magazine',
+            'en' => 'top'
         );
         $current_post_id = get_the_ID();
         render_footer_menu_items($menus, 0, $slug_array, $current_post_id);

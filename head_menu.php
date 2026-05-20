@@ -1,5 +1,13 @@
 <?php
-$raw_menu_items = wp_get_nav_menu_items('header');
+if (portart_get_lang() == 'en') {
+    $raw_menu_items = wp_get_nav_menu_items('header-en');
+    if (empty($raw_menu_items))
+        $raw_menu_items = wp_get_nav_menu_items('header');
+} else {
+    $menus = wp_get_nav_menu_items('header');
+    $raw_menu_items = wp_get_nav_menu_items('header');
+}
+
 
 /**
  * メニューをツリー化（安全な2パス）
@@ -36,6 +44,7 @@ $pc_menu = '';
 $slug_array = array(
     "staff" => "professional",
     "news"  => "magazine",
+    "en" => "top"
 );
 
 /**

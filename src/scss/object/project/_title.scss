@@ -24,7 +24,7 @@
             &.white {
                 .p-title__en {
                     color: white;
-                    
+
                     span {
                         color: white;
                     }
@@ -34,6 +34,11 @@
 
         &--jp {
             grid-area: jp;
+
+            @at-root html[lang="en"] #{&} {
+                display: none;
+            }
+
 
             &.white {
                 .p-title__jp {
