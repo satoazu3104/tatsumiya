@@ -165,3 +165,56 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 })
+
+function applyLanguage(lang) {
+    const isJa = (lang === 'ja');
+
+    // テキストの表示切替
+    document.querySelectorAll('.lang.ja').forEach(el => {
+        el.classList.toggle('is-active', isJa);
+    });
+    document.querySelectorAll('.lang.en').forEach(el => {
+        el.classList.toggle('is-active', !isJa);
+    });
+    document.querySelectorAll('.lang-media__picture.ja-media__picture').forEach(el => {
+        el.classList.toggle('is-active__picture', isJa);
+    });
+    document.querySelectorAll('.lang-media__picture.en-media__picture').forEach(el => {
+        el.classList.toggle('is-active__picture', !isJa);
+    });
+
+    // ボタン側の表示・状態更新
+    const btn = document.getElementById('switch');
+    if (btn) {
+        btn.dataset.lang = lang;
+        if (lang === 'ja') {
+            btn.classList.add('is-ja')
+            btn.classList.remove('is-en');
+        } else {
+            btn.classList.add('is-en');
+            btn.classList.remove('is-ja');
+        }
+    }
+}
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const btn = document.getElementById('switch');
+
+//     // 1. 保存されている言語を取得（なければ ja）
+//     const savedLang = localStorage.getItem('siteLang');
+//     const initialLang = (savedLang === 'en') ? 'en' : 'ja';
+
+//     // 2. 初期表示を反映
+//     applyLanguage(initialLang);
+
+//     // 3. ボタンクリックで言語切替＋保存
+//     if (btn) {
+//         btn.addEventListener('click', () => {
+//             const currentLang = btn.dataset.lang || 'ja';
+//             const nextLang = (currentLang === 'ja') ? 'en' : 'ja';
+
+//             applyLanguage(nextLang);
+//             localStorage.setItem('siteLang', nextLang); // ★ここで保持
+//         });
+//     }
+// });

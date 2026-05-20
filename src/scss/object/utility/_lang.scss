@@ -1,0 +1,24 @@
+@use 'sass:math';
+@use '../../foundation/theme' as *;
+@use '../../mixin' as *;
+@use '../component/text';
+
+// .lang {
+//     display: none;
+
+//     &.is-active {
+//         display: block;
+
+//         &.empty {
+//             display: none;
+//         }
+//     }
+// }
+
+.lang-media__picture {
+    display: none;
+
+    &.is-active__picture {
+        display: block;
+    }
+}

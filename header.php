@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- -->
-<html <?php language_attributes(); ?>>
+<html lang="<?php echo esc_attr(portart_get_lang()); ?>" dir="ltr">
 
 <head>
     <!-- Google tag (gtag.js) -->

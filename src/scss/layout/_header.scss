@@ -179,7 +179,7 @@
     &__sub-items {
         @include content-gap(18px);
     }
-    
+
     &__sub-sub-items {
         padding-left: res(18px);
     }
@@ -232,6 +232,36 @@
         &.is-open {
             opacity: .5;
             pointer-events: unset;
+        }
+    }
+
+    &__change {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        appearance: none;
+        background-color: unset;
+        outline: none;
+        border: none;
+        padding: 24px;
+        background-color: $color-main;
+        height: res(88px);
+
+        .text-en,
+        .text-jp {
+            opacity: .5;
+
+            &.is-active {
+                opacity: 1;
+                pointer-events: none;
+            }
+        }
+
+        &__wrap {
+            position: absolute;
+            z-index: 10;
+            right: calc(res(88px));
+            height: res(88px);
         }
     }
 }

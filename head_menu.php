@@ -98,6 +98,16 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
 
     echo '</ul>';
 }
+
+$request_url = str_replace('/tatsumiya/', '', $_SERVER['REQUEST_URI']);
+if (portart_get_lang() == 'ja') {
+    $change_url = site_url() . '/en/' . $request_url;
+    console_log($change_url);
+} else {
+    $request_url = str_replace('en', '', $request_url);
+    $change_url = site_url() . $request_url;
+    console_log($change_url);
+}
 ?>
 <div class="l-header__decoy"></div>
 <div class="l-header__logo">
@@ -129,7 +139,17 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
             </button>
         </div>
     </div>
-
+    <div class="l-header__change__wrap">
+        <a href="<?php echo $change_url; ?>" class="l-header__change">
+            <p class="text-en p-text__title--button c-text--white c-text--en <?php echo portart_get_lang() == 'en' ? 'is-active' : ''; ?>">
+                EN
+            </p>
+            <p class="p-text__title--button c-text--white c-text--en">|</p>
+            <p class="text-jp p-text__title--button c-text--white c-text--en <?php echo portart_get_lang() == 'ja' ? 'is-active' : ''; ?>">
+                JP
+            </p>
+        </a>
+    </div>
     <div class="l-header__instagram">
         <a class="c-button__instagram-head" href="https://www.instagram.com/tatsumiya_metal/" target="_blank" rel="noopener noreferrer"></a>
     </div>

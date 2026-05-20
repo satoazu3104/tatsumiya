@@ -1,6 +1,10 @@
 <?php
 add_theme_support('title-tag');
 
+function portart_get_lang()
+{
+    return str_contains($_SERVER['REQUEST_URI'], '/en/') ? 'en' : 'ja';
+}
 remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 // add_filter( 'wpcf7_recaptcha_verify_response',
 //   function( $is_human, $response_body ) {

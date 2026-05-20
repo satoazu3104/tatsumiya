@@ -11,7 +11,8 @@ $phone_number = '06-6789-5831';
  * - 各項目に children を必ず付与
  */
 if (!function_exists('build_menu_tree')) {
-    function build_menu_tree($menu_items) {
+    function build_menu_tree($menu_items)
+    {
         if (empty($menu_items)) return array();
         $indexed = array();
         foreach ($menu_items as $item) {
@@ -35,21 +36,22 @@ if (!function_exists('build_menu_tree')) {
  * フッターメニュー クラスマップ（レベル別）
  * 必要に応じてクラス名は調整してください。
  */
-function footer_menu_classmap($level) {
+function footer_menu_classmap($level)
+{
     return array(
         'ul'   => $level === 0 ? 'l-footer__menu--list'
-                               : ($level === 1 ? 'l-header__sub-list'
-                                               : 'l-header__sub-sub-list'),
+            : ($level === 1 ? 'l-header__sub-list'
+                : 'l-header__sub-sub-list'),
         'li'   => $level === 0 ? 'l-footer__menu--items l-header__items'
-                               : ($level === 1 ? 'l-header__sub-items'
-                                               : 'l-header__sub-sub-items'),
+            : ($level === 1 ? 'l-header__sub-items'
+                : 'l-header__sub-sub-items'),
         'link' => $level === 0 ? 'l-footer__menu--link l-header__link'
-                               : ($level === 1 ? 'l-header__sub-link'
-                                               : 'l-header__sub-sub-link'),
+            : ($level === 1 ? 'l-header__sub-link'
+                : 'l-header__sub-sub-link'),
         'slug' => $level === 0 ? 'l-header__slug p-text__header-slug c-text--upper c-text--white' : '',
-        'title'=> $level === 0 ? 'l-header__title p-text__header c-text--white'
-                               : ($level === 1 ? 'l-header__sub-title p-text__header c-text--white'
-                                               : 'l-header__sub-sub-title p-text__header c-text--white'),
+        'title' => $level === 0 ? 'l-header__title p-text__header c-text--white'
+            : ($level === 1 ? 'l-header__sub-title p-text__header c-text--white'
+                : 'l-header__sub-sub-title p-text__header c-text--white'),
         // ul にも白系の装飾が必要なら追加（例：c-text--white）
     );
 }
@@ -57,7 +59,8 @@ function footer_menu_classmap($level) {
 /**
  * 再帰的にメニュー描画
  */
-function render_footer_menu_items($items, $level = 0, $slug_map = array(), $current_id = null) {
+function render_footer_menu_items($items, $level = 0, $slug_map = array(), $current_id = null)
+{
     if (empty($items)) return;
 
     $classes = footer_menu_classmap($level);
@@ -99,7 +102,8 @@ function render_footer_menu_items($items, $level = 0, $slug_map = array(), $curr
 /**
  * フッターナビゲーションメニュー表示関数（再帰対応版）
  */
-function display_footer_menu() {
+function display_footer_menu()
+{
     $raw = wp_get_nav_menu_items('footer');
     $menus = build_menu_tree($raw);
 
@@ -117,18 +121,20 @@ function display_footer_menu() {
 }
 
 // ロゴ
-function display_logo() { ?>
+function display_logo()
+{ ?>
     <div class="l-footer__wrap--logo">
         <a href="<?php echo esc_url(get_site_url()); ?>">
             <img class="l-footer__img--logo p-img__logo-footer"
-                 src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/icon-logo-footer.webp'); ?>"
-                 alt="Logo image">
+                src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/icon-logo-footer.webp'); ?>"
+                alt="Logo image">
         </a>
     </div>
 <?php }
 
 // スマホ画面底部固定メニュー
-function display_fixed_mobile_menu($phone_number) { ?>
+function display_fixed_mobile_menu($phone_number)
+{ ?>
     <div class="l-footer__fix sp js-fix-bottom">
         <a class="l-footer__fix--inner" href="tel:<?php echo esc_attr($phone_number); ?>" data-state="red">
             <img class="lazyload block-media l-footer__fix--img" data-src="/dist/assets/images/common/icon-phone.webp" alt="phone">
@@ -142,7 +148,8 @@ function display_fixed_mobile_menu($phone_number) { ?>
 <?php }
 
 // 会社情報リスト（必要に応じて拡張）
-function display_information($phone_number) {
+function display_information($phone_number)
+{
     $info_list = [
         ['icon' => '', 'text' => ''],
         ['icon' => '', 'text' => 'TEL : ' . $phone_number],
@@ -161,7 +168,9 @@ function display_information($phone_number) {
 ?>
 
 <style>
-    html { margin-top: 0 !important; }
+    html {
+        margin-top: 0 !important;
+    }
 </style>
 
 <footer class="l-footer__wrap">
@@ -171,16 +180,26 @@ function display_information($phone_number) {
                 <?php display_logo(); ?>
 
                 <div class="l-footer__address">
-                    <p class="p-text__body-m c-text--white">【本社】</p>
                     <p class="p-text__body-m c-text--white">
-                        〒577‐0046 東大阪市西堤本通西1－8－20<br>
+                        <?php if (portart_get_lang() == 'ja'): ?>
+                            【本社】
+                        <?php else: ?>
+                            [Headquarters]
+                        <?php endif; ?>
+                    </p>
+                    <p class="p-text__body-m c-text--white">
+                        <?php if (portart_get_lang() == 'ja'): ?>
+                            〒577‐0046 東大阪市西堤本通西1－8－20<br>
+                        <?php else: ?>
+                            1-8-20 Nishitsutsumi-Hondori Nishi, Higashiosaka City, 577-0046<br>
+                        <?php endif ?>
                         TEL：06-6789-5831　FAX：06-6789-5838
                     </p>
                 </div>
 
                 <a class="c-button__instagram"
-                   href="https://www.instagram.com/tatsumiya_metal/"
-                   target="_blank" rel="noopener noreferrer">
+                    href="https://www.instagram.com/tatsumiya_metal/"
+                    target="_blank" rel="noopener noreferrer">
                     <p class="p-text__button-m c-text--en c-text--upper c-text--white">instagram</p>
                 </a>
 
@@ -189,8 +208,8 @@ function display_information($phone_number) {
                 </div>
 
                 <img class="p-img__footer-text"
-                     src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp?3.0'); ?>"
-                     alt="銅、100年――。">
+                    src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp?3.0'); ?>"
+                    alt="銅、100年――。">
             </div>
 
             <div class="pc">
@@ -211,4 +230,5 @@ display_fixed_mobile_menu($phone_number);
 wp_footer();
 ?>
 </body>
+
 </html>

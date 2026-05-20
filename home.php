@@ -68,9 +68,17 @@ if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
                 echo $post_html;
             } else {
                 if (have_posts()) :
-                    while (have_posts()) : the_post();
-                        the_content(); // ←これがショートコードも処理してくれます
-                    endwhile;
+                    $post = get_post(get_the_ID());
+                    $slug = $post->post_name == 'en' ? 'top' : $post->post_name;
+                    $post_page = get_page_by_path($slug, OBJECT, 'page');
+                    $post_html = apply_filters('the_content', $post_page->post_content);
+                    if ($post_html) {
+                        echo $post_html;
+                    } else {
+                        while (have_posts()) : the_post();
+                            the_content(); // ←これがショートコードも処理してくれます
+                        endwhile;
+                    }
                 endif;
             }
         }
