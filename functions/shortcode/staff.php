@@ -35,7 +35,7 @@ function custom_staff_shortcode($atts)
             $query->the_post();
             $formatted_date = get_the_date('Y.m.d'); // フォーマットした投稿日を取得
             $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large', array('class' => 'p-img__staff'));
-            $name = get_the_title();
+            $name = portart_get_the_title();
             $number++;
 
             // 方法①：正規表現で「(」以降をキャプチャする
@@ -82,7 +82,15 @@ function custom_staff_shortcode($atts)
                         echo $cat_list;
                         ?>
                     </div>
-                    <p class="p-text__post">社員インタビュー / <?php echo $title; ?></p>
+                    <p class="p-text__post">
+                        <?php
+                        if (portart_get_lang() == 'en') {
+                            echo 'Employee Interviews / <br>' . $title;
+                        } else {
+                            echo '社員インタビュー / ' . $title;
+                        }
+                        ?>
+                    </p>
                 </div>
             </li>
 <?php
