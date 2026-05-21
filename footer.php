@@ -90,10 +90,16 @@ function render_footer_menu_items($items, $level = 0, $slug_map = array(), $curr
         $slug_text = ($level === 0 && $slug !== '')
             ? (isset($slug_map[$slug]) ? $slug_map[$slug] : $slug)
             : '';
+        $url = $item->url;
+        if (portart_get_lang() == 'en') {
+            $url = str_replace(get_site_url(), get_site_url() . '/en', $url);
+        }
+        console_log($url);
+
 
         echo '<li class="' . esc_attr($classes['li'] . $is_current) . '">';
 
-        echo '<a href="' . esc_url($item->url) . '" class="' . esc_attr($classes['link']) . '" data-slug="' . esc_attr($slug) . '">';
+        echo '<a href="' . esc_url($url) . '" class="' . esc_attr($classes['link']) . '" data-slug="' . esc_attr($slug) . '">';
         if ($level === 0 && $slug_text !== '') {
             echo '<p class="' . esc_attr($classes['slug']) . '">' . esc_html($slug_text) . '</p>';
         }
