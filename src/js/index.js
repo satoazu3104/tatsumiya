@@ -204,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const links = [
             ...document.querySelectorAll('a.wp-block-portart-wrapper'),
             ...document.querySelectorAll('a.l-header__sub-sub-link'),
+            ...document.querySelectorAll('a.c-button__wrap'),
         ]
         console.log(links);
 

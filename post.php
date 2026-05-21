@@ -107,7 +107,7 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
         <?php Space(80, 48); ?>
 
         <div class="c-text__title-reg p-post__content">
-            <?php echo the_content(); ?>
+            <?php the_content(); ?>
         </div>
 
         <?php Space(80, 48); ?>
