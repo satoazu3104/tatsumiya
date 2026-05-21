@@ -73,6 +73,7 @@ include get_template_directory() . '/functions/post/works.php';
 include get_template_directory() . '/functions/post/pipe_works.php';
 include get_template_directory() . '/functions/post/cutting_works.php';
 include get_template_directory() . '/functions/post/staff.php';
+include get_template_directory() . '/functions/post/translation.php';
 /*
  * Custom REST api
  */
@@ -145,7 +146,7 @@ function portart_add_english_title_meta_box()
         'portart_english_title',
         '英語タイトル',
         'portart_english_title_meta_box_callback',
-        ['post', 'staff', 'cutting_works', 'pipe_works'],
+        ['staff', 'cutting_works', 'pipe_works'],
         'side',
         'high'
     );
@@ -197,12 +198,19 @@ add_action('save_post', 'portart_save_english_title');
 function portart_get_the_title($post_id = null)
 {
     $post_id = $post_id ?: get_the_ID();
+    $post_type = get_post_type($post_id);
 
     if (portart_get_lang() === 'en') {
-        $title_en = get_post_meta($post_id, 'title_en', true);
-
-        if ($title_en) {
-            return $title_en;
+        if ($post_type == 'post') {
+            $en_id = get_post_meta($post_id, '_translation_en', true);
+            if ($en_id) {
+                return $title_en = get_the_title($en_id);
+            }
+        } else {
+            $title_en = get_post_meta($post_id, 'title_en', true);
+            if ($title_en) {
+                return $title_en;
+            }
         }
     }
 

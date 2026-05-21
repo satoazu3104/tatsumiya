@@ -1,5 +1,6 @@
 <?php
 $formatted_date = get_the_date('Y.m.d'); // フォーマットした投稿日を取得
+$post_id = get_the_ID();
 
 $fallback_image_url = get_template_directory_uri() . '/dist/assets/images/common/noimage.webp';
 
@@ -15,7 +16,8 @@ $thumbnail = get_the_post_thumbnail(get_the_ID(), '', array('class' => 'p-post__
 if (empty($thumbnail)) {
     $thumbnail = '<img src="' . $fallback_image_url . '" alt="Fallback Image" class="p-post__img--thumb" />';
 }
-$post_type = get_post_type(get_the_ID());
+$post_type = get_post_type($post_id);
+$get_post = get_post($post_id);
 $title_en = $post_type == 'works' ? "WORKS" : "NEWS";
 $title_ja = $post_type == 'works' ? "お仕事実績" : "お知らせ";
 $hero = $post_type == 'works' ? 'hero-works' : 'hero-news';
@@ -57,6 +59,16 @@ if ($post_type == 'works') {
 }
 $header_slug = "{$post_type_slug}-header";
 $header_page = get_page_by_path($header_slug, OBJECT, 'page');
+
+$content = get_the_content();
+if ($post_type == 'post') {
+    if (portart_get_lang() == 'en') {
+        $en_id = get_post_meta($post_id, '_translation_en', true);
+        if ($en_id) {
+            $content = get_the_content(null, false, $en_id);
+        }
+    }
+}
 ?>
 
 <div class="">
@@ -107,7 +119,9 @@ $header_page = get_page_by_path($header_slug, OBJECT, 'page');
         <?php Space(80, 48); ?>
 
         <div class="c-text__title-reg p-post__content">
-            <?php the_content(); ?>
+            <?php
+            echo $content;
+            ?>
         </div>
 
         <?php Space(80, 48); ?>

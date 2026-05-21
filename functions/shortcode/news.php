@@ -19,9 +19,22 @@ function custom_news_shortcode($atts)
 
     // ニュース記事を取得するクエリを作成
     $args = array(
-        'post_type' => 'post', // 投稿タイプ
-        'posts_per_page' => $atts['count'], // 表示する記事の件数
-        'paged' => $paged,
+        'post_type'      => 'post',
+        'posts_per_page' => $atts['count'],
+        'paged'          => $paged,
+
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array(
+                'key'     => '_language',
+                'compare' => 'NOT EXISTS',
+            ),
+            array(
+                'key'     => '_language',
+                'value'   => 'en',
+                'compare' => '!=',
+            ),
+        ),
     );
     $query = new WP_Query($args);
 

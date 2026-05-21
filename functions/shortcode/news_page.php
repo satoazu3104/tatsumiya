@@ -28,9 +28,22 @@ function custom_news_with_pagination_shortcode($atts)
     $splide = $atts['splide'];
 
     $args = array(
-        'post_type' => 'post',
+        'post_type'      => 'post',
         'posts_per_page' => $atts['count'],
-        'paged' => $paged,
+        'paged'          => $paged,
+
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array(
+                'key'     => '_language',
+                'compare' => 'NOT EXISTS',
+            ),
+            array(
+                'key'     => '_language',
+                'value'   => 'en',
+                'compare' => '!=',
+            ),
+        ),
     );
     $query = new WP_Query($args);
 
