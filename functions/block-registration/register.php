@@ -77,7 +77,7 @@ function portart_render_bodytext_block($attributes, $content, $block)
     $id_attr = $add_id ? ' id="' . esc_attr($add_id) . '"' : '';
 
     $lang = portart_get_lang();
-    if ($lang === 'en') {
+    if ($lang == 'en') {
         $set_text = $text_en ? $text_en : $text;
         return sprintf(
             '<p class="%s"%s>%s</p>',
@@ -218,7 +218,7 @@ function portart_render_wrapper_block($attributes, $content)
     if (!in_array($tag_name, $allowed_tags, true)) {
         $tag_name = 'div';
     }
-    
+
     return sprintf(
         '<%1$s%2$s>%3$s</%1$s>',
         esc_attr($tag_name),

@@ -148,9 +148,25 @@ function display_footer_menu()
 
 // ロゴ
 function display_logo()
-{ ?>
+{
+
+    $logo_link = get_site_url();
+    if (is_front_page()) {
+        if (portart_get_lang() == 'en') {
+            $logo_link = get_site_url() . '/en/#top';
+        } else {
+            $logo_link = get_site_url() . '#top';
+        }
+    } else {
+        if (portart_get_lang() == 'en') {
+            $logo_link = get_site_url() . '/en/';
+        } else {
+            $logo_link = get_site_url();
+        }
+    }
+?>
     <div class="l-footer__wrap--logo">
-        <a href="<?php echo esc_url(get_site_url()); ?>">
+        <a href="<?php echo esc_url($logo_link); ?>">
             <img class="l-footer__img--logo p-img__logo-footer"
                 src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/icon-logo-footer.webp'); ?>"
                 alt="Logo image">

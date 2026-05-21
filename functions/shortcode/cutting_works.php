@@ -49,23 +49,54 @@ function display_cutting_works_list()
     // カテゴリ（タクソノミー）取得
     $materials = get_terms(array('taxonomy' => 'cutting_works_material-cat', 'hide_empty' => false));
     $shapes    = get_terms(array('taxonomy' => 'cutting_works_shape-cat',    'hide_empty' => false));
+    $search_url = '';
+    if (portart_get_lang() == 'en') {
+        $search_url = '/en/business/cutting/works';
+    } else {
+        $search_url = '/business/cutting/works';
+    }
 
     ob_start();
 ?>
-    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url() . '/business/cutting/works'; ?>">
-        <p class="p-text__body c-text--white">材質から検索する</p>
+    <form class="l-wrap__cat-form" method="get" action="<?php echo site_url() . $search_url; ?>">
+        <p class="p-text__body c-text--white">
+            <?php if (portart_get_lang() == 'en'): ?>
+                Search by Material
+            <?php else: ?>
+                材質から検索する
+            <?php endif; ?>
+
+        </p>
         <div class="l-wrap__cat-form__inner">
             <select class="c-input__select" name="cutting_works_material">
-                <option value="">材質で絞り込む</option>
+                <option value="">
+                    <?php if (portart_get_lang() == 'en'): ?>
+                        Filter by material
+                    <?php else: ?>
+                        材質で絞り込む
+                    <?php endif; ?>
+                </option>
                 <?php if (!is_wp_error($materials)) : foreach ($materials as $term): ?>
                         <option value="<?php echo esc_attr($term->term_id); ?>" <?php selected($material, $term->term_id); ?>>
-                            <?php echo esc_html($term->name); ?>
+                            <?php
+                            if (portart_get_lang() == 'en') {
+                                echo esc_html($term->slug);
+                            } else {
+                                echo esc_html($term->name);
+                            }
+                            ?>
                         </option>
                 <?php endforeach;
                 endif; ?>
             </select>
 
-            <button type="submit">検索</button>
+            <button type="submit">
+                <?php if (portart_get_lang() == 'en'): ?>
+                    Search
+                <?php else: ?>
+                    検索
+                <?php endif; ?>
+            </button>
         </div>
     </form>
 
@@ -79,17 +110,27 @@ function display_cutting_works_list()
                     }
                 ?>
                     <li class="c-item__works">
-                        <p class="p-text__item-m"><?php the_title(); ?></p>
+                        <p class="p-text__item-m"><?php echo portart_get_the_title(); ?></p>
                         <?php echo $thumbnail; ?>
                         <div class="c-item__works__content">
                             <div class="l-wrap__cat-list__group">
                                 <div class="l-wrap__cat-list">
-                                    <p class="p-text__min">材質 :</p>
+                                    <p class="p-text__min">
+                                        <?php if (portart_get_lang() == 'en'): ?>
+                                            Material :
+                                        <?php else: ?>
+                                            材質 :
+                                        <?php endif; ?>
+                                    </p>
                                     <p class="p-text__min">
                                         <?php
                                         $material_terms = get_the_terms(get_the_ID(), 'cutting_works_material-cat');
                                         if (!empty($material_terms) && !is_wp_error($material_terms)) {
-                                            echo esc_html(implode(', ', wp_list_pluck($material_terms, 'name')));
+                                            if (portart_get_lang() == 'en') {
+                                                echo esc_html(implode(', ', wp_list_pluck($material_terms, 'slug')));
+                                            } else {
+                                                echo esc_html(implode(', ', wp_list_pluck($material_terms, 'name')));
+                                            }
                                         } else {
                                             echo 'なし';
                                         }
@@ -97,12 +138,22 @@ function display_cutting_works_list()
                                     </p>
                                 </div>
                                 <div class="l-wrap__cat-list">
-                                    <p class="p-text__min">形状 :</p>
+                                    <p class="p-text__min">
+                                        <?php if (portart_get_lang() == 'en'): ?>
+                                            Shape :
+                                        <?php else: ?>
+                                            形状 :
+                                        <?php endif; ?>
+                                    </p>
                                     <p class="p-text__min">
                                         <?php
                                         $shape_terms = get_the_terms(get_the_ID(), 'cutting_works_shape-cat');
                                         if (!empty($shape_terms) && !is_wp_error($shape_terms)) {
-                                            echo esc_html(implode(', ', wp_list_pluck($shape_terms, 'name')));
+                                            if (portart_get_lang() == 'en') {
+                                                echo esc_html(implode(', ', wp_list_pluck($shape_terms, 'slug')));
+                                            } else {
+                                                echo esc_html(implode(', ', wp_list_pluck($shape_terms, 'name')));
+                                            }
                                         } else {
                                             echo 'なし';
                                         }
@@ -117,7 +168,15 @@ function display_cutting_works_list()
             </ul>
         <?php else: ?>
             <br>
-            <p>該当する加工実績は見つかりませんでした。</p>
+            <p>
+                <?php
+                if (portart_get_lang() == 'en') {
+                    echo 'No matching processing results were found.';
+                } else {
+                    echo '該当する加工実績は見つかりませんでした。';
+                }
+                ?>
+            </p>
         <?php endif; ?>
     </div>
 <?php

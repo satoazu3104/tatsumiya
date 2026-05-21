@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const html = document.querySelector('html');
     const main = document.querySelector('main');
     if (popUps.length > 0) {
-        console.log(popUps);
         popUps.forEach(function (pop) {
             const meida = pop.querySelector('.p-img__pop-up');
             pop.addEventListener('click', (e) => {

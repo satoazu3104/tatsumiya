@@ -57,7 +57,6 @@ if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
         } else {
             // 現在の投稿の本文を出力（固定ページ含む）
             $post_type = get_post_type(get_the_ID());
-            console_log($post_type);
             if ($post_type == 'staff') {
                 $staff_page = get_page_by_path('professional', OBJECT, 'page');
                 $staff_html = apply_filters('the_content', $staff_page->post_content);
@@ -88,8 +87,6 @@ if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
 
                     // enページだけ top を読む
                     $slug = ($post->post_name === 'en') ? 'top' : $path;
-                    
-                    console_log($slug);
                     $slug = str_replace('en/', '', $slug);
                     $post_page = get_page_by_path($slug, OBJECT, 'page');
 

@@ -103,7 +103,6 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
         if (portart_get_lang() == 'en') {
             $url = str_replace(get_site_url(), get_site_url() . '/en', $url);
         }
-        console_log($url);
 
         echo '<li class="' . esc_attr($classes['li'] . $is_current) . '">';
 
@@ -134,10 +133,23 @@ if (portart_get_lang() == 'ja') {
     $request_url = str_replace('en', '', $request_url);
     $change_url = site_url() . $request_url;
 }
+
+$logo_link = get_site_url();
+if (is_front_page()) {
+    $logo_link = get_site_url() . '#top';
+    if (portart_get_lang() == 'en') {
+        $logo_link = get_site_url() . '/en/#top';
+    }
+} else {
+    if (portart_get_lang() == 'en') {
+        $logo_link = get_site_url() . '/en/';
+    }
+}
+
 ?>
 <div class="l-header__decoy"></div>
 <div class="l-header__logo">
-    <a class="l-header__logo-link" href="<?php echo is_front_page() ? '#top' : esc_url(get_site_url()); ?>">
+    <a class="l-header__logo-link" href="<?php echo esc_url($logo_link); ?>">
         <img
             class="l-header__img--logo p-img__logo-header header"
             src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/icon-logo-header.webp'); ?>"

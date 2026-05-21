@@ -124,6 +124,7 @@ registerBlockType('portart/bodytext', {
                 addId: newId
             });
         }
+        console.log(text_en);
 
         return (
             <div>

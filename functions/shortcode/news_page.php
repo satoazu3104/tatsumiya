@@ -52,7 +52,7 @@ function custom_news_with_pagination_shortcode($atts)
                 <?php echo $thumbnail; ?>
                 <div class="p-post__item-inner">
                     <p class="p-text__date"><?php echo $formatted_date; ?></p>
-                    <p class="p-text__post"><?php echo get_the_title(); ?></p>
+                    <p class="p-text__post"><?php echo portart_get_the_title(); ?></p>
                 </div>
                 <a class="c-button__link" href="<?php echo get_permalink(); ?>"></a>
             </li>

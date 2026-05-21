@@ -1,6 +1,5 @@
 const firsts = document.getElementsByClassName('js-first-animation');
 window.addEventListener('load', () => {
-    console.log('load')
     if (firsts.length) {
         FirstAnime(firsts);
     } else {
@@ -22,7 +21,6 @@ const FirstAnime = (firsts) => {
 }
 
 const NextAnim = () => {
-    console.log('next');
     const section = document.getElementsByClassName('l-section__main')[0];
     const loadedAnim = document.getElementsByClassName('js-loaded-animation');
     Array.from(loadedAnim).forEach((loaded) => {
