@@ -233,9 +233,15 @@ function display_information($phone_number)
                     <?php display_footer_menu(); ?>
                 </div>
 
-                <img class="p-img__footer-text"
-                    src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp?3.0'); ?>"
-                    alt="銅、100年――。">
+                <?php if (portart_get_lang() == 'en'): ?>
+                    <img class="p-img__footer-text"
+                        src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/footer-text-en.webp?4.0'); ?>"
+                        alt="Copper, 100 years.">
+                <?php else: ?>
+                    <img class="p-img__footer-text"
+                        src="<?php echo esc_url(get_template_directory_uri() . '/dist/assets/images/common/footer-text.webp?4.0'); ?>"
+                        alt="銅、100年――。">
+                <?php endif; ?>
             </div>
 
             <div class="pc">
