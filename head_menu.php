@@ -47,6 +47,8 @@ $slug_array = array(
     "en" => "top"
 );
 
+$title_array = array();
+
 /**
  * レベル別のUL/Li/リンクのクラス定義
  * 必要に応じて編集してください
@@ -65,7 +67,7 @@ function header_menu_classmap($level)
 /**
  * メニュー項目を再帰描画
  */
-function render_menu_items($items, $level = 0, $slug_map = array(), $current_id = null)
+function render_menu_items($items, $level = 0, $slug_map = array(), $current_id = null, $title_map = array())
 {
     if (empty($items)) return;
 
@@ -75,6 +77,17 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
     foreach ($items as $item) {
         // タイトル・スラッグ
         $title = strtoupper($item->title);
+        $title_map = [
+            '非鉄金属材料販売×スリッター加工' => 'Non-Ferrous Metal Sales & Slitting',
+            'CCAC' => 'CCAC',
+            'パイプ加工' => 'Pipe Processing',
+            'パイプ加工実績' => 'Pipe Processing Works',
+            '切削加工' => 'Machining',
+            '切削加工実績' => 'Machining Works',
+        ];
+        if (portart_get_lang() == 'en') {
+            $title = $title_map[$title] ?? $title;
+        }
         $is_current = ($current_id && (int)$current_id === (int)$item->object_id) ? ' is-active' : '';
 
         // object_id からスラッグ取得（カスタムリンク等は0のことがある）
@@ -86,9 +99,15 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
             ? (isset($slug_map[$slug]) ? $slug_map[$slug] : $slug)
             : '';
 
+        $url = $item->url;
+        if (portart_get_lang() == 'en') {
+            $url = str_replace(get_site_url(), get_site_url() . '/en', $url);
+        }
+        console_log($url);
+
         echo '<li class="' . esc_attr($classes['li'] . $is_current) . '">';
 
-        echo '<a href="' . esc_url($item->url) . '" class="' . esc_attr($classes['link']) . '" data-slug="' . esc_attr($slug) . '">';
+        echo '<a href="' . esc_url($url) . '" class="' . esc_attr($classes['link']) . '" data-slug="' . esc_attr($slug) . '">';
 
         if ($level === 0 && $slug_text !== '') {
             echo '<p class="' . esc_attr($classes['slug']) . '">' . esc_html($slug_text) . '</p>';
@@ -111,11 +130,9 @@ function render_menu_items($items, $level = 0, $slug_map = array(), $current_id 
 $request_url = str_replace('/tatsumiya/', '', $_SERVER['REQUEST_URI']);
 if (portart_get_lang() == 'ja') {
     $change_url = site_url() . '/en/' . $request_url;
-    console_log($change_url);
 } else {
     $request_url = str_replace('en', '', $request_url);
     $change_url = site_url() . $request_url;
-    console_log($change_url);
 }
 ?>
 <div class="l-header__decoy"></div>
@@ -137,7 +154,7 @@ if (portart_get_lang() == 'ja') {
             $current_post_id = get_the_ID();
 
             // ここで再帰的に出力（トップレベルから）
-            render_menu_items($menus, 0, $slug_array, $current_post_id);
+            render_menu_items($menus, 0, $slug_array, $current_post_id, $title_array);
             ?>
         </nav>
 

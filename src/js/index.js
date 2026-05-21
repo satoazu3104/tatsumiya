@@ -197,24 +197,48 @@ function applyLanguage(lang) {
     }
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const btn = document.getElementById('switch');
+document.addEventListener('DOMContentLoaded', () => {
+    const lang = document.documentElement.lang;
 
-//     // 1. 保存されている言語を取得（なければ ja）
-//     const savedLang = localStorage.getItem('siteLang');
-//     const initialLang = (savedLang === 'en') ? 'en' : 'ja';
+    if (lang === 'en') {
 
-//     // 2. 初期表示を反映
-//     applyLanguage(initialLang);
+        const links = document.querySelectorAll(
+            'a.wp-block-portart-wrapper'
+        );
 
-//     // 3. ボタンクリックで言語切替＋保存
-//     if (btn) {
-//         btn.addEventListener('click', () => {
-//             const currentLang = btn.dataset.lang || 'ja';
-//             const nextLang = (currentLang === 'ja') ? 'en' : 'ja';
+        links.forEach(link => {
 
-//             applyLanguage(nextLang);
-//             localStorage.setItem('siteLang', nextLang); // ★ここで保持
-//         });
-//     }
-// });
+            const href = link.getAttribute('href');
+
+            // href が無い場合
+            if (!href) return;
+
+            // 外部リンク除外
+            if (
+                href.startsWith('http://') ||
+                href.startsWith('https://') ||
+                href.startsWith('//')
+            ) {
+                return;
+            }
+
+            // 既に /en/ がある場合除外
+            if (href.startsWith('/en/')) {
+                return;
+            }
+
+            // フルパスではない場合
+            if (
+                href.startsWith('/') &&
+                href !== '/'
+            ) {
+
+                link.setAttribute(
+                    'href',
+                    '/en' + href
+                );
+
+            }
+        });
+    }
+});

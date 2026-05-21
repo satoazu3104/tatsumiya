@@ -68,6 +68,18 @@ function render_footer_menu_items($items, $level = 0, $slug_map = array(), $curr
 
     foreach ($items as $item) {
         $title = strtoupper($item->title);
+        $title_map = [
+            '非鉄金属材料販売×スリッター加工' => 'Non-Ferrous Metal Sales & Slitting',
+            'CCAC' => 'CCAC',
+            'パイプ加工' => 'Pipe Processing',
+            'パイプ加工実績' => 'Pipe Processing Works',
+            '切削加工' => 'Machining',
+            '切削加工実績' => 'Machining Works',
+        ];
+        if (portart_get_lang() == 'en') {
+            $title = $title_map[$title] ?? $title;
+        }
+
         $is_current = ($current_id && (int)$current_id === (int)$item->object_id) ? ' is-active' : '';
 
         // スラッグ取得（カスタムリンクは object_id=0 のことがある）

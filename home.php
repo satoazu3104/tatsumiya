@@ -69,16 +69,40 @@ if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
             } else {
                 if (have_posts()) :
                     $post = get_post(get_the_ID());
-                    $slug = $post->post_name == 'en' ? 'top' : $post->post_name;
+
+                    // 親ページがある場合は、親階層込みのパスを作成
+                    $ancestors = get_post_ancestors($post->ID);
+                    $slugs = [];
+
+                    if (!empty($ancestors)) {
+                        $ancestors = array_reverse($ancestors);
+
+                        foreach ($ancestors as $ancestor_id) {
+                            $slugs[] = get_post_field('post_name', $ancestor_id);
+                        }
+                    }
+
+                    $slugs[] = $post->post_name;
+
+                    $path = implode('/', $slugs);
+
+                    // enページだけ top を読む
+                    $slug = ($post->post_name === 'en') ? 'top' : $path;
+                    
+                    console_log($slug);
+                    $slug = str_replace('en/', '', $slug);
                     $post_page = get_page_by_path($slug, OBJECT, 'page');
-                    $post_html = apply_filters('the_content', $post_page->post_content);
-                    if ($post_html) {
+
+                    if ($post_page) {
+                        $post_html = apply_filters('the_content', $post_page->post_content);
+
                         echo $post_html;
                     } else {
                         while (have_posts()) : the_post();
-                            the_content(); // ←これがショートコードも処理してくれます
+                            the_content();
                         endwhile;
                     }
+
                 endif;
             }
         }
