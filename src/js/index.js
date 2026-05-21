@@ -202,7 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lang === 'en') {
 
         const links = document.querySelectorAll(
-            'a.wp-block-portart-wrapper'
+            'a.wp-block-portart-wrapper',
+            'a.l-header__sub-sub-link'
         );
 
         links.forEach(link => {
