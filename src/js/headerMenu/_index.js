@@ -30,7 +30,6 @@ const HeaderMenuToggle = () => {
             Array.from(line).forEach((elm) => {
                 elm.classList.add('is-open');
             })
-            CreateBack();
         } else {
             container.classList.remove('is-open');
             headerButton.classList.remove('is-open');
