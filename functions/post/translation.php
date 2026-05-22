@@ -146,3 +146,34 @@ add_action('before_delete_post', function ($post_id) {
     delete_post_meta($post_id, '_translation_ja');
     delete_post_meta($post_id, '_language');
 });
+
+// 管理画面から英語版を消去
+add_action('pre_get_posts', function ($query) {
+
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    global $pagenow;
+
+    if ($pagenow !== 'edit.php') {
+        return;
+    }
+
+    if ($query->get('post_type') && $query->get('post_type') !== 'post') {
+        return;
+    }
+
+    $query->set('meta_query', array(
+        'relation' => 'OR',
+        array(
+            'key'     => '_language',
+            'compare' => 'NOT EXISTS',
+        ),
+        array(
+            'key'     => '_language',
+            'value'   => 'en',
+            'compare' => '!=',
+        ),
+    ));
+});
