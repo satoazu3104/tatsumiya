@@ -67,6 +67,12 @@
         @include pc {
             margin-left: auto;
         }
+        
+        @include sp {
+            a {
+                color: $color-black;
+            }
+        }
     }
 
     &__contact-button {
