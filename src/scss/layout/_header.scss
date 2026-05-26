@@ -254,6 +254,13 @@
         .text-en,
         .text-jp {
             opacity: .5;
+            @include pc {
+                font-size: 24px;
+            }
+            
+            @include sp {
+                font-size: 20px;
+            }
 
             &.is-active {
                 opacity: 1;

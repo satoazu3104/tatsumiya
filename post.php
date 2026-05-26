@@ -65,7 +65,7 @@ if ($post_type == 'post') {
     if (portart_get_lang() == 'en') {
         $en_id = get_post_meta($post_id, '_translation_en', true);
         if ($en_id) {
-            $content = get_the_content(null, false, $en_id);
+            // $content = get_the_content(null, false, $en_id);
         }
     }
 }

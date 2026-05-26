@@ -5,10 +5,10 @@ add_filter('manage_post_posts_columns', function ($columns) {
     $columns['language'] = '言語';
     return $columns;
 });
-add_filter('manage_post_posts_columns', function ($columns) {
-    $columns['translation'] = '翻訳';
-    return $columns;
-});
+// add_filter('manage_post_posts_columns', function ($columns) {
+//     $columns['translation'] = '翻訳';
+//     return $columns;
+// });
 
 // 翻訳列の中身
 add_action('manage_post_posts_custom_column', function ($column, $post_id) {
@@ -92,16 +92,16 @@ add_action('admin_post_create_translation_en', function () {
     exit;
 });
 
-add_action('add_meta_boxes', function () {
-    add_meta_box(
-        'translation_box',
-        '翻訳ページ',
-        'render_translation_box',
-        'post',
-        'side',
-        'high'
-    );
-});
+// add_action('add_meta_boxes', function () {
+//     add_meta_box(
+//         'translation_box',
+//         '翻訳ページ',
+//         'render_translation_box',
+//         'post',
+//         'side',
+//         'high'
+//     );
+// });
 
 function render_translation_box($post)
 {

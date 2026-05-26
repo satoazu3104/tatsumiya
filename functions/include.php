@@ -204,7 +204,7 @@ function portart_get_the_title($post_id = null)
         if ($post_type == 'post') {
             $en_id = get_post_meta($post_id, '_translation_en', true);
             if ($en_id) {
-                return $title_en = get_the_title($en_id);
+                // return $title_en = get_the_title($en_id);
             }
         } else {
             $title_en = get_post_meta($post_id, 'title_en', true);
