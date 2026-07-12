@@ -30,17 +30,40 @@ $slug = $post ? $post->post_name : null;
 <?php endif; ?>
 
 <?php
+$recruit_text = '';
+$recruit_text_en = '';
+$entry_link = '';
+$contact_link = '';
+$recruit_link = '';
 if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
-    // recruitスラッグのページだけに表示する内容
-    echo '<a href="' . get_site_url() . '/recruit/entry/" class="p-img__fix-recruit"></a>';
+    $recruit_text_en = 'ENTRY';
+    $recruit_text = 'エントリー';
+    $entry_link = 'entry/';
 } else {
-    if (portart_get_lang() == 'en') {
-        echo '<a href="' . get_site_url() . '/en/contact/" class="p-img__fix-contact"></a>';
-    } else {
-        echo '<a href="' . get_site_url() . '/contact/" class="p-img__fix-contact"></a>';
-    }
+    $recruit_text_en = 'RECRUIT';
+    $recruit_text = '採用情報';
+}
+
+if (portart_get_lang() == 'en') {
+    $contact_link = get_site_url() . '/en/contact/';
+    $recruit_link = get_site_url() . '/en/recruit/' . $entry_link;
+} else {
+    $contact_link = get_site_url() . '/contact/';
+    $recruit_link = get_site_url() . '/recruit/' . $entry_link;
 }
 ?>
+
+<div class="l-wrap__fix">
+    <a class="l-wrap__fix__item" href="<?php echo $recruit_link; ?>">
+        <p class="p-text__number c-text--white c-text--en"><?php echo $recruit_text_en; ?></p>
+        <p class="p-title__jp p-text__section-title-jp c-text--white"><?php echo $recruit_text; ?></p>
+    </a>
+    <div class="l-wrap__fix__line"></div>
+    <a class="l-wrap__fix__item" href="<?php echo $contact_link; ?>">
+        <p class="p-text__number c-text--white c-text--en">CONTACT</p>
+        <p class="p-title__jp p-text__section-title-jp c-text--white">お問い合わせ</p>
+    </a>
+</div>
 
 <div class="l-section__load"></div>
 <main

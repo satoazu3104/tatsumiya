@@ -344,4 +344,46 @@
             grid-template-columns: 100%;
         }
     }
+    
+    &__fix {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        padding: 32px 40px;
+        background-color: $color-black;
+        position: fixed;
+        z-index: 100;
+        right: res(104px);
+        bottom: 24px;
+        gap: 32px;
+        
+        @include sp {
+            display: none;
+        }
+        
+        @include dec('before'){
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            border: 1px solid $color-white;
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        &__line {
+            height: 100%;
+            width: 1px;
+            background-color: $color-white;
+            transform: rotate(10deg);
+        }
+        
+        &__item {
+            display: grid;
+            justify-items: center;
+            grid-auto-rows: max-content;
+            gap: 8px;
+        }
+    }
 }

@@ -181,4 +181,10 @@
         font-weight: 700;
         @include space(100);
     }
+    
+    &__fix-min {
+        font-size: 12px;
+        font-weight: 700;
+        @include lineCut(1.5);
+    }
 }

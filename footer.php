@@ -176,15 +176,42 @@ function display_logo()
 
 // スマホ画面底部固定メニュー
 function display_fixed_mobile_menu($phone_number)
-{ ?>
+{
+    $recruit_text = '';
+    $recruit_text_en = '';
+    $entry_link = '';
+    $contact_link = '';
+    $recruit_link = '';
+    if (is_page() && get_post_field('post_name', get_post()) === 'recruit') {
+        $recruit_text_en = 'ENTRY';
+        $recruit_text = 'エントリー';
+        $entry_link = 'entry/';
+    } else {
+        $recruit_text_en = 'RECRUIT';
+        $recruit_text = '採用情報';
+    }
+
+    if (portart_get_lang() == 'en') {
+        $contact_link = get_site_url() . '/en/contact/';
+        $recruit_link = get_site_url() . '/en/recruit/' . $entry_link;
+    } else {
+        $contact_link = get_site_url() . '/contact/';
+        $recruit_link = get_site_url() . '/recruit/' . $entry_link;
+    }
+
+?>
     <div class="l-footer__fix sp js-fix-bottom">
         <a class="l-footer__fix--inner" href="tel:<?php echo esc_attr($phone_number); ?>" data-state="red">
-            <img class="lazyload block-media l-footer__fix--img" data-src="/dist/assets/images/common/icon-phone.webp" alt="phone">
-            <p class="p-text__phone c-text--en c-text--bold"><?php echo esc_html($phone_number); ?></p>
+            <p class="p-text__phone c-text--en c-text--bold c-text--center"><?php echo esc_html($phone_number); ?></p>
+            <p class=" c-text--bold c-text--center p-text__fix-min">お電話はこちら</p>
         </a>
-        <a class="l-footer__fix--inner" href="<?php echo esc_url(site_url('/contact/')); ?>" data-state="mail">
-            <img class="lazyload block-media l-footer__fix--img" data-src="/dist/assets/images/common/icon-mail.webp" alt="mail">
-            <p class="c-text__title c-text--white c-text--bold">お問い合わせ</p>
+        <a class="l-footer__fix--inner" href="<?php echo $contact_link; ?>" data-state="mail">
+            <p class="c-text__title c-text--white c-text--bold c-text--center">CONTACT</p>
+            <p class="c-text--white c-text--bold c-text--center p-text__fix-min">お問い合わせ</p>
+        </a>
+        <a class="l-footer__fix--inner" href="<?php echo $recruit_link; ?>" data-state="mail">
+            <p class="c-text__title c-text--white c-text--bold c-text--center"><?php echo $recruit_text_en; ?></p>
+            <p class="c-text--white c-text--bold c-text--center p-text__fix-min"><?php echo $recruit_text; ?></p>
         </a>
     </div>
 <?php }

@@ -160,5 +160,11 @@
             gap: 40px;
             grid-template-columns: 100%;
         }
+        
+        &.is-fv {
+            @include sp {
+                gap: 12px;
+            }
+        }
     }
 }

@@ -23,6 +23,8 @@
         padding: 0 0 res(77px);
         display: grid;
         align-items: flex-end;
+        grid-auto-rows: max-content;
+        align-content: flex-end;
     }
 
     &__fv-sub {
