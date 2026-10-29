@@ -5,7 +5,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const fvWrap = document.querySelector('.l-section__fv');
 if (fvWrap) {
-    const backImg = fvWrap.querySelector('.p-img__back');
+    const backImg = fvWrap.querySelector('.p-img__back__picture');
+    const backImgInner = backImg.querySelector('img');
     let fvPinBack = gsap.timeline({
         scrollTrigger: {
             scrub: .5,
@@ -30,11 +31,11 @@ if (fvWrap) {
         }
     })
 
-    gsap.set(backImg, {
+    gsap.set(backImgInner, {
         objectPosition: '0% 40%',
     })
 
-    mediaParallax.to(backImg, {
+    mediaParallax.to(backImgInner, {
         objectPosition: '0% 60%',
         ease: "power1.inOut",
     })

@@ -1,4 +1,6 @@
 <?php 
 include get_template_directory().'/functions/include.php';
-ob_end_clean();
+if (ob_get_level() > 0) {
+    ob_end_clean();
+}
 ?>
